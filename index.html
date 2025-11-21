@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>María Luisa Ros Bolea | Digital Strategy & Big Data</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Rajdhani:wght@300;500;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            /* PALETA GAMER GIRL / PASTEL TECH */
+            --bg-dark: #0f0c29; 
+            --bg-secondary: #1a1a2e;
+            --pastel-pink: #ffb7d5; 
+            --pastel-purple: #e0b0ff;
+            --pastel-cyan: #9bf6ff;
+            --pastel-yellow: #fdffb6;
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+            --glass: rgba(255, 255, 255, 0.1);
+            --neon-glow: 0 0 15px rgba(155, 246, 255, 0.3);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html { scroll-behavior: smooth; }
+        
+        body { 
+            font-family: 'Outfit', sans-serif; 
+            background: var(--bg-dark); 
+            color: var(--text-main); 
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ==================== LIGHTBOX ==================== */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 12, 41, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 9999;
+            justify-content: center; align-items: center;
+        }
+
+        .lightbox.active { display: flex; }
+
+        .lightbox-content {
+            max-width: 90%; max-height: 90%;
+            position: relative;
+            border: 2px solid var(--pastel-purple);
+            border-radius: 15px;
+            box-shadow: 0 0 50px rgba(224, 176, 255, 0.4);
+        }
+
+        .lightbox-content img, .lightbox-content video {
+            max-width: 100%; max-height: 85vh;
+            border-radius: 12px; display: block;
+        }
+
+        .lightbox-close {
+            position: absolute; top: 20px; right: 20px;
+            color: var(--pastel-pink); font-size: 3rem;
+            cursor: pointer; transition: all 0.3s; z-index: 10000;
+        }
+
+        .lightbox-close:hover { transform: rotate(90deg) scale(1.2); }
+
+        /* ==================== ANIMATED BACKGROUNDS ==================== */
+        .animated-bg {
+            background: radial-gradient(circle at 50% 50%, #241b4d 0%, #0f0c29 100%);
+            position: relative;
+        }
+
+        /* ==================== HERO SECTION ==================== */
+        .homepage {
+            min-height: 100vh;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            padding: 60px 20px; text-align: center;
+        }
+
+        #particles-canvas {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1; pointer-events: none;
+        }
+
+        .hero-content { z-index: 10; }
+
+        .hero-label {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem; color: var(--pastel-cyan);
+            letter-spacing: 8px; margin-bottom: 20px;
+            text-transform: uppercase; text-shadow: 0 0 10px var(--pastel-cyan);
+        }
+
+        .hero-title {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 6rem; font-weight: 700;
+            background: linear-gradient(to right, var(--pastel-pink), var(--pastel-purple), var(--pastel-cyan));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 15px; line-height: 1.1;
+            text-shadow: 0 5px 30px rgba(224, 176, 255, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem; color: var(--text-muted);
+            margin-bottom: 40px; font-weight: 300;
+        }
+
+        .hero-cta { display: flex; gap: 25px; justify-content: center; }
+
+        .btn-glow {
+            padding: 18px 40px;
+            font-family: 'Rajdhani', sans-serif; font-weight: 700;
+            font-size: 1.1rem; text-decoration: none;
+            border-radius: 5px; text-transform: uppercase;
+            letter-spacing: 2px; transition: 0.4s;
+            position: relative; overflow: hidden;
+        }
+
+        .btn-primary {
+            background: transparent; color: var(--pastel-pink);
+            border: 2px solid var(--pastel-pink);
+            box-shadow: 0 0 15px rgba(255, 183, 213, 0.2);
+        }
+
+        .btn-primary:hover {
+            background: var(--pastel-pink); color: var(--bg-dark);
+            box-shadow: 0 0 40px rgba(255, 183, 213, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent; color: var(--pastel-cyan);
+            border: 2px solid var(--pastel-cyan);
+            box-shadow: 0 0 15px rgba(155, 246, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: var(--pastel-cyan); color: var(--bg-dark);
+            box-shadow: 0 0 40px rgba(155, 246, 255, 0.6);
+        }
+
+        /* ==================== NAVIGATION ==================== */
+        .nav-bar {
+            background: rgba(15, 12, 41, 0.9);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: sticky; top: 0; z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex; justify-content: center;
+            padding: 0 20px; flex-wrap: wrap;
+        }
+
+        .nav-link {
+            background: transparent; border: none;
+            color: var(--text-muted); padding: 20px 30px;
+            cursor: pointer; font-family: 'Rajdhani', sans-serif;
+            font-weight: 700; font-size: 1rem;
+            text-transform: uppercase; letter-spacing: 2px;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--pastel-purple);
+            text-shadow: 0 0 10px var(--pastel-purple);
+        }
+
+        /* ==================== SECTIONS ==================== */
+        .section {
+            display: none; padding: 100px 20px;
+            max-width: 1400px; margin: 0 auto;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .section.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .section-header { text-align: center; margin-bottom: 80px; }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif; font-size: 3.5rem;
+            color: var(--pastel-purple); text-transform: uppercase;
+            margin-bottom: 15px; text-shadow: 0 0 20px rgba(224, 176, 255, 0.4);
+        }
+
+        .section-tagline { color: var(--text-muted); font-size: 1.2rem; letter-spacing: 1px; }
+
+        /* ==================== ABOUT ==================== */
+        .about-layout {
+            display: grid; grid-template-columns: 400px 1fr; gap: 60px;
+        }
+
+        .profile-box {
+            background: var(--bg-secondary); padding: 40px;
+            border-radius: 20px; border: 1px solid rgba(255,255,255,0.05);
+            text-align: center; position: sticky; top: 100px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .profile-photo {
+            width: 250px; height: 250px;
+            border-radius: 50%; border: 4px solid var(--pastel-pink);
+            box-shadow: 0 0 30px rgba(255, 183, 213, 0.4);
+            margin-bottom: 30px; object-fit: cover;
+        }
+
+        .profile-name {
+            font-family: 'Rajdhani', sans-serif; font-size: 2.2rem;
+            color: white; margin-bottom: 10px;
+        }
+
+        .profile-title { color: var(--pastel-cyan); font-weight: 600; margin-bottom: 30px; }
+
+        .stats-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 15px; margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.05);
+            padding: 15px; border-radius: 10px;
+        }
+
+        .stat-value {
+            display: block; font-size: 1.8rem;
+            font-weight: 800; color: var(--pastel-purple);
+        }
+
+        .stat-desc { font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); }
+
+        .cv-btn {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--pastel-pink), var(--pastel-purple));
+            color: var(--bg-dark); font-weight: 700;
+            padding: 15px 30px; border-radius: 30px;
+            text-decoration: none; text-transform: uppercase;
+            letter-spacing: 1px; transition: 0.3s;
+        }
+
+        .cv-btn:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(255, 183, 213, 0.6); }
+
+        .about-main {
+            background: var(--bg-secondary); padding: 50px;
+            border-radius: 20px; border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .intro-text { font-size: 1.1rem; color: #dcdcdc; margin-bottom: 50px; }
+        .intro-text strong { color: var(--pastel-pink); }
+
+        .block-title {
+            font-family: 'Rajdhani', sans-serif; font-size: 2rem;
+            color: var(--pastel-cyan); margin-bottom: 30px;
+            border-left: 4px solid var(--pastel-purple); padding-left: 20px;
+        }
+
+        .skills-layout {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px;
+        }
+
+        .skill-box {
+            background: rgba(255,255,255,0.03); padding: 25px;
+            border-radius: 15px; transition: 0.3s;
+        }
+
+        .skill-box:hover { background: rgba(255,255,255,0.06); transform: translateY(-5px); }
+        .skill-box h4 { color: var(--pastel-pink); margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .skill-box ul { list-style: none; color: #ccc; }
+        .skill-box li { margin-bottom: 8px; display: flex; gap: 10px; }
+        .skill-box li::before { content: '>'; color: var(--pastel-cyan); font-weight: bold; }
+
+        /* ==================== GALLERY & CAROUSELS ==================== */
+        .gallery-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .gallery-card, .carousel-card {
+            background: var(--bg-secondary); border-radius: 20px;
+            overflow: hidden; border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.4s; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .gallery-card:hover, .carousel-card:hover {
+            transform: translateY(-10px); border-color: var(--pastel-purple);
+            box-shadow: 0 20px 50px rgba(224, 176, 255, 0.15);
+        }
+
+        /* Single Media */
+        .card-media {
+            height: 350px; position: relative;
+            cursor: pointer; overflow: hidden;
+        }
+
+        .card-media img, .card-media video {
+            width: 100%; height: 100%;
+            object-fit: cover; transition: 0.5s;
+        }
+
+        .gallery-card:hover .card-media img { transform: scale(1.1); }
+
+        /* Grid Media (The 4-block style) */
+        .carousel-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 175px);
+            gap: 2px; background: var(--bg-dark);
+        }
+
+        .carousel-item {
+            position: relative; width: 100%; height: 100%;
+            overflow: hidden; cursor: pointer;
+        }
+
+        .carousel-item img, .carousel-item video {
+            width: 100%; height: 100%;
+            object-fit: cover; transition: 0.4s; opacity: 0.9;
+        }
+
+        .carousel-item:hover img, .carousel-item:hover video {
+            transform: scale(1.1); opacity: 1; z-index: 2;
+        }
+
+        .carousel-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(224, 176, 255, 0.2);
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: 0.3s;
+        }
+
+        .carousel-item:hover .carousel-overlay { opacity: 1; }
+        .carousel-overlay i { font-size: 2rem; color: white; text-shadow: 0 0 10px black; }
+
+        .card-info { padding: 25px; }
+        .card-title { font-family: 'Rajdhani', sans-serif; font-size: 1.4rem; margin-bottom: 10px; color: white; }
+        .card-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 15px; }
+        
+        .card-tags { display: flex; gap: 10px; flex-wrap: wrap; }
+        .tag {
+            background: rgba(255,255,255,0.1); color: var(--pastel-cyan);
+            padding: 5px 12px; border-radius: 20px; font-size: 0.75rem;
+            text-transform: uppercase; font-weight: 700;
+            border: 1px solid var(--pastel-cyan);
+        }
+
+        /* Banners Branding */
+        .branding-banner {
+            width: 100%; height: 200px; margin-bottom: 30px;
+            border-radius: 15px; overflow: hidden;
+            border: 1px solid var(--pastel-purple);
+            position: relative; cursor: pointer;
+            background: black;
+        }
+        
+        .branding-banner img, .branding-banner video {
+            width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;
+        }
+        
+        .branding-banner:hover img, .branding-banner:hover video { transform: scale(1.05); }
+
+        /* ==================== DATA SECTION ==================== */
+        .data-hero {
+            background: linear-gradient(135deg, #130f40 0%, #2e236e 100%);
+            padding: 80px; border-radius: 40px; text-align: center;
+            border: 2px solid var(--pastel-purple);
+            box-shadow: 0 0 60px rgba(19, 15, 64, 0.8);
+        }
+
+        .data-hero h2 {
+            font-size: 4rem; font-family: 'Orbitron', sans-serif;
+            color: white; text-shadow: 0 0 20px var(--pastel-purple);
+        }
+
+        .hybrid-box {
+            background: rgba(0,0,0,0.3); backdrop-filter: blur(10px);
+            padding: 40px; border-radius: 20px; margin-top: 40px;
+            border: 1px solid var(--pastel-pink);
+        }
+
+        .hybrid-columns {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 40px; margin-top: 40px; text-align: left;
+        }
+
+        .hybrid-column h4 { color: var(--pastel-cyan); margin-bottom: 20px; font-size: 1.3rem; }
+        .hybrid-column ul { list-style: none; color: #ddd; }
+        .hybrid-column li { margin-bottom: 10px; }
+        .hybrid-column li::before { content: '⚡'; margin-right: 10px; color: var(--pastel-yellow); }
+
+        /* ==================== FOOTER ==================== */
+        footer {
+            background: #050510; padding: 80px 20px 30px;
+            border-top: 1px solid rgba(255,255,255,0.05); margin-top: 100px;
+        }
+
+        .footer-grid {
+            max-width: 1200px; margin: 0 auto;
+            display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 50px;
+        }
+
+        .footer-col h3 { color: white; margin-bottom: 25px; font-family: 'Orbitron', sans-serif; }
+        .footer-col p, .footer-col a { color: var(--text-muted); text-decoration: none; transition: 0.3s; }
+        .footer-col a:hover { color: var(--pastel-cyan); padding-left: 5px; }
+        
+        .footer-socials { display: flex; gap: 15px; margin-top: 20px; }
+        .footer-social {
+            width: 40px; height: 40px; background: rgba(255,255,255,0.1);
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; color: white;
+        }
+        .footer-social:hover { background: var(--pastel-pink); transform: translateY(-5px); }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 1024px) {
+            .about-layout { grid-template-columns: 1fr; }
+            .profile-box { position: relative; top: 0; }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 3.5rem; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .gallery-grid { grid-template-columns: 1fr; } /* Una columna en móvil */
+            .carousel-grid { grid-template-rows: repeat(2, 140px); }
+            .data-hero { padding: 40px 20px; }
+            .data-hero h2 { font-size: 2.5rem; }
+            .hybrid-columns { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <div class="lightbox-close">×</div>
+    <div class="lightbox-content" id="lightbox-content"></div>
+</div>
+
+<div class="homepage animated-bg">
+    <canvas id="particles-canvas"></canvas>
+    
+    <div class="hero-content">
+        <div class="hero-label">DATA-DRIVEN // CREATIVE STRATEGY</div>
+        <h1 class="hero-title">María Luisa<br>Ros Bolea</h1>
+        <p class="hero-subtitle">Big Data Insights & Digital Creativity</p>
+        
+        <div class="hero-cta">
+            <a href="#about" class="btn-glow btn-primary" onclick="goToAbout(event)">
+                <i class="fas fa-user-astronaut"></i> Start Mission
+            </a>
+            <a href="#contact" class="btn-glow btn-secondary" onclick="goToContact(event)">
+                <i class="fas fa-comments"></i> Connect
+            </a>
+        </div>
+    </div>
+</div>
+
+<nav class="nav-bar" id="navbar">
+    <div class="nav-container">
+        <button class="nav-link" onclick="switchSection('about', this)">Profile</button>
+        <button class="nav-link" onclick="switchSection('social', this)">Social Media</button>
+        <button class="nav-link" onclick="switchSection('branding', this)">Branding</button>
+        <button class="nav-link" onclick="switchSection('data', this)">Big Data & AI</button>
+        <button class="nav-link" onclick="switchSection('contact', this)">Contact</button>
+    </div>
+</nav>
+
+<section id="about" class="section">
+    <div class="about-layout">
+        <div class="profile-sidebar">
+            <div class="profile-box">
+                <img src="perfil.jpg" alt="María Luisa Ros Bolea" class="profile-photo">
+                <h3 class="profile-name">María Luisa Ros Bolea</h3>
+                <p class="profile-title">Data Scientist & Digital Strategist</p>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-value">LVL 4</span>
+                        <span class="stat-desc">Experience</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value">50+</span>
+                        <span class="stat-desc">Projects</span>
+                    </div>
+                </div>
+                
+                <a href="CV_MariaLuisa_RosBolea_Professional_EN copia.pdf" download class="cv-btn">
+                    <i class="fas fa-file-download"></i> Download CV
+                </a>
+            </div>
+        </div>
+        
+        <div class="about-main">
+            <p class="intro-text">
+                Hey there! I'm a dual-class specialist combining <strong>Digital Communication</strong> with <strong>Big Data & AI</strong>. 
+                <br><br>
+                Currently based in <strong>Madrid</strong>, I don't just look at numbers; I turn them into stories. I bridge the gap between technical data analysis and creative marketing strategies, ensuring every decision is backed by stats and every campaign hits the heart.
+            </p>
+            
+            <div class="content-block">
+                <h3 class="block-title">Skill Tree</h3>
+                <div class="skills-layout">
+                    <div class="skill-box">
+                        <h4><i class="fas fa-database"></i> Data Science</h4>
+                        <ul>
+                            <li>Python (Pandas, NumPy, Scikit)</li>
+                            <li>SQL & NoSQL Databases</li>
+                            <li>Machine Learning Models</li>
+                            <li>Power BI & Tableau Viz</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="skill-box">
+                        <h4><i class="fas fa-hashtag"></i> Digital Marketing</h4>
+                        <ul>
+                            <li>Social Media Strategy</li>
+                            <li>Content Creation & Copy</li>
+                            <li>Paid Social (Ads)</li>
+                            <li>Growth Hacking</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-block" style="margin-top: 40px;">
+                <h3 class="block-title">Quest Log (Experience)</h3>
+                <div style="color: #ccc;">
+                    <p style="margin-bottom: 15px;"><strong>Élan Sexology Institute</strong> | Community Manager (2025-Present)</p>
+                    <p style="margin-bottom: 15px;"><strong>PZT by Posizionarte</strong> | Social Media Manager (2024-Present)</p>
+                    <p><strong>Freelance</strong> | Content Creator (2024-Present)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="social" class="section">
+    <div class="section-header">
+        <h2 class="section-title">Social Media Portfolio</h2>
+        <p class="section-tagline">Engaging content crafted for the digital age</p>
+    </div>
+    
+    <h3 class="block-title" style="text-align: center; border: none;">Video Content</h3>
+    <div class="gallery-grid" style="margin-bottom: 60px;">
+        
+        <div class="gallery-card">
+            <div class="card-media" onclick="openLightbox('skincare.mp4', 'video')">
+                <video src="skincare.mp4"></video>
+                <div class="carousel-overlay"><i class="fas fa-play"></i></div>
+            </div>
+            <div class="card-info">
+                <h4 class="card-title">Personal Project</h4>
+                <p class="card-desc">Aesthetic skincare content.</p>
+                <div class="card-tags"><span class="tag">Beauty</span><span class="tag">Simple</span></div>
+            </div>
+        </div>
+
+        <div class="gallery-card">
+            <div class="card-media" onclick="openLightbox('reel.mp4', 'video')">
+                <video src="reel.mp4"></video>
+                <div class="carousel-overlay"><i class="fas fa-play"></i></div>
+            </div>
+            <div class="card-info">
+                <h4 class="card-title">Élan Sexology Institute</h4>
+                <p class="card-desc">Educational engaging short-form content.</p>
+                <div class="card-tags"><span class="tag">Education</span><span class="tag">Viral</span></div>
+            </div>
+        </div>
+
+        <div class="gallery-card">
+            <div class="card-media" onclick="openLightbox('reel2.mp4', 'video')">
+                <video src="reel2.mp4"></video>
+                <div class="carousel-overlay"><i class="fas fa-play"></i></div>
+            </div>
+            <div class="card-info">
+                <h4 class="card-title">Élan Sexology Institute</h4>
+                <p class="card-desc">Healthcare: "El Viaje". Sensitive messaging with empathy.</p>
+                <div class="card-tags"><span class="tag">Healthcare</span><span class="tag">Empathy</span></div>
+            </div>
+        </div>
+
+        <div class="gallery-card">
+            <div class="card-media" onclick="openLightbox('stories.mp4', 'video')">
+                <video src="stories.mp4"></video>
+                <div class="carousel-overlay"><i class="fas fa-play"></i></div>
+            </div>
+            <div class="card-info">
+                <h4 class="card-title">Personal Project</h4>
+                <p class="card-desc">Dynamic animated Instagram stories.</p>
+                <div class="card-tags"><span class="tag">Stories</span><span class="tag">Animation</span></div>
+            </div>
+        </div>
+
+        <div class="gallery-card">
+            <div class="card-media" onclick="openLightbox('events.mp4', 'video')">
+                <video src="events.mp4"></video>
+                <div class="carousel-overlay"><i class="fas fa-play"></i></div>
+            </div>
+            <div class="card-info">
+                <h4 class="card-title">Personal Project</h4>
+                <p class="card-desc">Professional event marketing campaign.</p>
+                <div class="card-tags"><span class="tag">Promo</span><span class="tag">Event</span></div>
+            </div>
+        </div>
+
+    </div>
+    
+    <h3 class="block-title" style="text-align: center; border: none;">Carousel Campaigns</h3>
+    <div class="gallery-grid">
+        
+        <div class="carousel-card">
+            <div class="carousel-grid">
+                <div class="carousel-item" onclick="openLightbox('zerain1.png', 'image')">
+                    <img src="zerain1.png" alt="Zerain 1">
+                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="carousel-item" onclick="openLightbox('zerain2.png', 'image')">
+                    <img src="zerain2.png" alt="Zerain 2">
+                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="carousel-item" onclick="openLightbox('zerain3.png', 'image')">
+                    <img src="zerain3.png" alt="Zerain 3">
+                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="carousel-item" onclick="openLightbox('zerain4.png', 'image')">
+                    <img src="zerain4.png" alt="Zerain 4">
+                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+            </div>
+            <div class="card-info">
+                <h4 class="card-title">Zerain Restaurant</h4>
+                <p class="card-desc">Complete Basque cuisine campaign.</p>
+                <div class="card-tags"><span class="tag">F&B</span><span class="tag">Strategy</span></div>
+            </div>
+        </div>
+        
+        <div class="carousel-card">
+            <div class="carousel-grid">
+                <div class="carousel-item" onclick="openLightbox('clinicajaro1.png', 'image')">
+                    <img src="clinicajaro1.png" alt="Jaro 1">
+                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="carousel-item" onclick="openLightbox('clinicajaro2.png', 'image')">
+                    <img src="clinicajaro2.png" alt="Jaro 2">
+                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="carousel-item" onclick="openLightbox('clinicajaro3.png', 'image')">
+                    <img src="clinicajaro3.png" alt="Jaro 3">
+                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="carousel-item" onclick="openLightbox('clinicajaro4.png', 'image')">
+                    <img src="clinicajaro4.png" alt="Jaro 4">
+                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+            </div>
+            <div class="card-info">
+                <h4 class="card-title">Clínica Jaro</h4>
+                <p class="card-desc">Wellness & Acupuncture promotion.</p>
+                <div class="card-tags"><span class="tag">Wellness</span><span class="tag">Social</span></div>
+            </div>
+        </div>
+
+        <div class="carousel-card">
+            <div class="carousel-grid">
+                <div class="carousel-item" onclick="openLightbox('activitas1.png', 'image')">
+                    <img src="activitas1.png" alt="Activitas 1">
+                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="carousel-item" onclick="openLightbox('activitas2.png', 'image')">
+                    <img src="activitas2.png" alt="Activitas 2">
+                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="carousel-item" onclick="openLightbox('activitas3.png', 'image')">
+                    <img src="activitas3.png" alt="Activitas 3">
+                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="carousel-item" onclick="openLightbox('activitas4.png', 'image')">
+                    <img src="activitas4.png" alt="Activitas 4">
+                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+            </div>
+            <div class="card-info">
+                <h4 class="card-title">Real Estate Expert Tips</h4>
+                <p class="card-desc">Educational carousel for real estate.</p>
+                <div class="card-tags"><span class="tag">Real Estate</span><span class="tag">Edu</span></div>
+            </div>
+        </div>
+
+        <div class="carousel-card">
+            <div class="carousel-grid">
+                <div class="carousel-item" onclick="openLightbox('campañayuuju1.png', 'image')">
+                    <img src="campañayuuju1.png" alt="Yuuju 1">
+                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="carousel-item" onclick="openLightbox('campañayuuju2.png', 'image')">
+                    <img src="campañayuuju2.png" alt="Yuuju 2">
+                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="carousel-item" onclick="openLightbox('campañayuuju3.png', 'image')">
+                    <img src="campañayuuju3.png" alt="Yuuju 3">
+                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="carousel-item" onclick="openLightbox('campañayuuju4.mp4', 'video')">
+                    <video src="campañayuuju4.mp4" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video>
+                    <div class="carousel-overlay"><i class="fas fa-play"></i></div>
+                </div>
+            </div>
+            <div class="card-info">
+                <h4 class="card-title">Yuuju</h4>
+                <p class="card-desc">Home fiber installation company. Animated storytelling.</p>
+                <div class="card-tags"><span class="tag">Fiber</span><span class="tag">Motion</span></div>
+            </div>
+        </div>
+        
+    </div>
+</section>
+
+<section id="branding" class="section">
+    <div class="section-header">
+        <h2 class="section-title">Branding & Advertising</h2>
+        <p class="section-tagline">Identity design and visual impact</p>
+    </div>
+
+    <div class="branding-banner" onclick="openLightbox('banner_yuuju1.jpg', 'image')">
+        <img src="banner_yuuju1.jpg" alt="Yuuju Banner 1">
+    </div>
+    
+    <div class="branding-banner" onclick="openLightbox('banner_yuuju2.mp4', 'video')">
+        <video src="banner_yuuju2.mp4" autoplay muted loop style="object-fit: cover; width:100%; height:100%;"></video>
+    </div>
+    
+    <div class="gallery-grid">
+        <div class="gallery-card">
+            <div class="card-media" onclick="openLightbox('anunciobeer.png', 'image')">
+                <img src="anunciobeer.png" alt="Beer Ad">
+                <div class="carousel-overlay"><i class="fas fa-eye"></i></div>
+            </div>
+            <div class="card-info">
+                <h4 class="card-title">The Best Beer</h4>
+                <div class="card-tags"><span class="tag">Print</span></div>
+            </div>
+        </div>
+        
+        <div class="gallery-card">
+            <div class="card-media" onclick="openLightbox('bannerejemplo.png', 'image')">
+                <img src="bannerejemplo.png" alt="Japan Food">
+                <div class="carousel-overlay"><i class="fas fa-eye"></i></div>
+            </div>
+            <div class="card-info">
+                <h4 class="card-title">Japan Food</h4>
+                <div class="card-tags"><span class="tag">Branding</span></div>
+            </div>
+        </div>
+        
+        <div class="gallery-card">
+            <div class="card-media" onclick="openLightbox('publicidadburger.png', 'image')">
+                <img src="publicidadburger.png" alt="Burger">
+                <div class="carousel-overlay"><i class="fas fa-eye"></i></div>
+            </div>
+            <div class="card-info">
+                <h4 class="card-title">Burger Bar</h4>
+                <div class="card-tags"><span class="tag">F&B</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="data" class="section">
+    <div class="data-hero">
+        <h2>BIG DATA <span style="color:var(--pastel-cyan)">X</span> AI</h2>
+        <p class="section-tagline" style="color: var(--pastel-purple);">"Decoding human behavior through data"</p>
+        
+        <div class="hybrid-box">
+            <h3 style="color: var(--pastel-pink); font-family: 'Orbitron', sans-serif;">The Hybrid Advantage</h3>
+            <p style="color: #ccc; margin-top: 15px;">
+                My unique profile combines creative communication with advanced data science. I don't just build models; I build models that tell stories and drive revenue.
+            </p>
+            
+            <div class="hybrid-columns">
+                <div class="hybrid-column">
+                    <h4>Technical Stats</h4>
+                    <ul>
+                        <li>Predictive Modeling & ML</li>
+                        <li>Customer Segmentation</li>
+                        <li>A/B Testing & Exp.</li>
+                        <li>Sentiment Analysis</li>
+                    </ul>
+                </div>
+                
+                <div class="hybrid-column">
+                    <h4>Strategic Buffs</h4>
+                    <ul>
+                        <li>Data-Driven Content</li>
+                        <li>Churn Prevention</li>
+                        <li>ROI Attribution</li>
+                        <li>Personalization</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <a href="https://github.com/malurosbolea-ux" target="_blank" class="btn-glow btn-secondary" style="margin-top: 40px; display:inline-block;">
+                <i class="fab fa-github"></i> View Code
+            </a>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="section">
+    <div style="text-align: center; max-width: 800px; margin: 0 auto; background: var(--bg-secondary); padding: 60px; border-radius: 30px; border: 1px solid var(--pastel-purple);">
+        <h2 class="section-title">Ready to Connect?</h2>
+        <p style="font-size: 1.2rem; color: #ccc; margin-bottom: 40px;">
+            Let's transform your data into a strategy that wins.
+        </p>
+        
+        <div style="font-size: 1.5rem; margin-bottom: 40px; color: white;">
+            <p><i class="fas fa-envelope" style="color: var(--pastel-pink);"></i> malurosbolea@gmail.com</p>
+            <p style="margin-top: 15px;"><i class="fas fa-map-marker-alt" style="color: var(--pastel-cyan);"></i> Madrid, Spain</p>
+        </div>
+        
+        <div class="footer-socials" style="justify-content: center;">
+            <a href="https://www.linkedin.com/in/maría-luisa-ros-bolea-400780160/" target="_blank" class="footer-social" style="width: 60px; height: 60px; font-size: 1.5rem;"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.instagram.com/malu_menolu/" target="_blank" class="footer-social" style="width: 60px; height: 60px; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+            <a href="https://github.com/malurosbolea-ux" target="_blank" class="footer-social" style="width: 60px; height: 60px; font-size: 1.5rem;"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-grid">
+        <div class="footer-col">
+            <h3>M.L. ROS BOLEA</h3>
+            <p>Big Data Specialist & Digital Communication Expert. Crafting the future of digital strategy from Madrid.</p>
+        </div>
+        
+        <div class="footer-col">
+            <h3>Menu</h3>
+            <ul style="list-style: none;">
+                <li><a href="#" onclick="switchSection('about', document.querySelectorAll('.nav-link')[0])">About</a></li>
+                <li><a href="#" onclick="switchSection('social', document.querySelectorAll('.nav-link')[1])">Portfolio</a></li>
+                <li><a href="#" onclick="switchSection('data', document.querySelectorAll('.nav-link')[3])">Data</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-col">
+            <h3>Legal</h3>
+            <ul style="list-style: none;">
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Use</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-col">
+            <h3>Contact</h3>
+            <p>malurosbolea@gmail.com</p>
+            <p>Madrid, Spain</p>
+        </div>
+    </div>
+    <div style="text-align: center; margin-top: 50px; font-size: 0.8rem; color: #555;">
+        © 2025 María Luisa Ros Bolea. All rights reserved.
+    </div>
+</footer>
+
+<script>
+    // Lightbox Functions
+    function openLightbox(src, type) {
+        const lightbox = document.getElementById('lightbox');
+        const content = document.getElementById('lightbox-content');
+        
+        content.innerHTML = '';
+        
+        if (type === 'image') {
+            const img = document.createElement('img');
+            img.src = src;
+            content.appendChild(img);
+        } else if (type === 'video') {
+            const video = document.createElement('video');
+            video.src = src;
+            video.controls = true;
+            video.autoplay = true;
+            content.appendChild(video);
+        }
+        
+        lightbox.classList.add('active');
+    }
+    
+    function closeLightbox() {
+        const lightbox = document.getElementById('lightbox');
+        lightbox.classList.remove('active');
+        document.getElementById('lightbox-content').innerHTML = '';
+    }
+    
+    // Particles Canvas
+    const canvas = document.getElementById('particles-canvas');
+    const ctx = canvas.getContext('2d');
+    
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    const particles = [];
+    const particleCount = 80;
+    
+    class Particle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.vx = (Math.random() - 0.5) * 0.5;
+            this.vy = (Math.random() - 0.5) * 0.5;
+            this.radius = Math.random() * 2 + 1;
+            this.color = Math.random() > 0.5 ? 'rgba(155, 246, 255, 0.5)' : 'rgba(224, 176, 255, 0.5)';
+        }
+        
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            
+            if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+            if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+        }
+        
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fillStyle = this.color;
+            ctx.fill();
+        }
+    }
+    
+    for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+    }
+    
+    function connectParticles() {
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < 100) {
+                    ctx.beginPath();
+                    ctx.strokeStyle = `rgba(255, 255, 255, ${0.1 * (1 - distance / 100)})`;
+                    ctx.lineWidth = 1;
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.stroke();
+                }
+            }
+        }
+    }
+    
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        particles.forEach(particle => {
+            particle.update();
+            particle.draw();
+        });
+        
+        connectParticles();
+        requestAnimationFrame(animate);
+    }
+    
+    animate();
+    
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
+    
+    // Navigation
+    function goToAbout(event) {
+        event.preventDefault();
+        document.querySelector('.homepage').style.display = 'none';
+        document.getElementById('navbar').scrollIntoView({ behavior: 'smooth' });
+        setTimeout(() => {
+            switchSection('about', document.querySelectorAll('.nav-link')[0]);
+        }, 100);
+    }
+    
+    function goToContact(event) {
+        event.preventDefault();
+        document.querySelector('.homepage').style.display = 'none';
+        document.getElementById('navbar').scrollIntoView({ behavior: 'smooth' });
+        setTimeout(() => {
+            switchSection('contact', document.querySelectorAll('.nav-link')[4]);
+        }, 100);
+    }
+    
+    function switchSection(sectionId, button) {
+        document.querySelector('.homepage').style.display = 'none';
+        
+        const sections = document.querySelectorAll('.section');
+        sections.forEach(section => {
+            section.style.display = 'none';
+            section.classList.remove('active');
+        });
+        
+        const buttons = document.querySelectorAll('.nav-link');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        
+        const section = document.getElementById(sectionId);
+        section.style.display = 'block';
+        setTimeout(() => {
+            section.classList.add('active');
+        }, 10);
+        
+        if(button) button.classList.add('active');
+        window.scrollTo(0, 0);
+    }
+</script>
+
+</body>
+</html>
