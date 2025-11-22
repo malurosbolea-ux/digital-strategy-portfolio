@@ -10,6 +10,7 @@
 
     <style>
         :root {
+            /* PALETA GAMER GIRL / PASTEL TECH */
             --bg-dark: #0f0c29; 
             --bg-secondary: #1a1a2e;
             --pastel-pink: #ffb7d5; 
@@ -21,120 +22,435 @@
             --glass: rgba(255, 255, 255, 0.1);
             --neon-glow: 0 0 15px rgba(155, 246, 255, 0.3);
         }
+        
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         html { scroll-behavior: smooth; }
-        body { font-family: 'Outfit', sans-serif; background: var(--bg-dark); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+        
+        body { 
+            font-family: 'Outfit', sans-serif; 
+            background: var(--bg-dark); 
+            color: var(--text-main); 
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-        /* LIGHTBOX */
-        .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 12, 41, 0.95); backdrop-filter: blur(10px); z-index: 9999; justify-content: center; align-items: center; }
+        /* ==================== LIGHTBOX ==================== */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 12, 41, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 9999;
+            justify-content: center; align-items: center;
+        }
+
         .lightbox.active { display: flex; }
-        .lightbox-content { max-width: 90%; max-height: 90%; position: relative; border: 2px solid var(--pastel-purple); border-radius: 15px; box-shadow: 0 0 50px rgba(224, 176, 255, 0.4); }
-        .lightbox-content img, .lightbox-content video { max-width: 100%; max-height: 85vh; border-radius: 12px; display: block; }
-        .lightbox-close { position: absolute; top: 20px; right: 20px; color: var(--pastel-pink); font-size: 3rem; cursor: pointer; transition: all 0.3s; z-index: 10000; }
+
+        .lightbox-content {
+            max-width: 90%; max-height: 90%;
+            position: relative;
+            border: 2px solid var(--pastel-purple);
+            border-radius: 15px;
+            box-shadow: 0 0 50px rgba(224, 176, 255, 0.4);
+        }
+
+        .lightbox-content img, .lightbox-content video {
+            max-width: 100%; max-height: 85vh;
+            border-radius: 12px; display: block;
+        }
+
+        .lightbox-close {
+            position: absolute; top: 20px; right: 20px;
+            color: var(--pastel-pink); font-size: 3rem;
+            cursor: pointer; transition: all 0.3s; z-index: 10000;
+        }
+
         .lightbox-close:hover { transform: rotate(90deg) scale(1.2); }
 
-        /* BACKGROUND & HERO */
-        .animated-bg { background: radial-gradient(circle at 50% 50%, #241b4d 0%, #0f0c29 100%); position: relative; }
-        .homepage { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 60px 20px; text-align: center; }
-        #particles-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
-        .hero-content { z-index: 10; }
-        .hero-label { font-family: 'Orbitron', sans-serif; font-size: 1rem; color: var(--pastel-cyan); letter-spacing: 8px; margin-bottom: 20px; text-transform: uppercase; text-shadow: 0 0 10px var(--pastel-cyan); }
-        .hero-title { font-family: 'Rajdhani', sans-serif; font-size: 6rem; font-weight: 700; background: linear-gradient(to right, var(--pastel-pink), var(--pastel-purple), var(--pastel-cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 15px; line-height: 1.1; text-shadow: 0 5px 30px rgba(224, 176, 255, 0.3); }
-        .hero-subtitle { font-size: 1.8rem; color: var(--text-muted); margin-bottom: 40px; font-weight: 300; }
-        .hero-cta { display: flex; gap: 25px; justify-content: center; }
-        .btn-glow { padding: 18px 40px; font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1.1rem; text-decoration: none; border-radius: 5px; text-transform: uppercase; letter-spacing: 2px; transition: 0.4s; position: relative; overflow: hidden; }
-        .btn-primary { background: transparent; color: var(--pastel-pink); border: 2px solid var(--pastel-pink); box-shadow: 0 0 15px rgba(255, 183, 213, 0.2); }
-        .btn-primary:hover { background: var(--pastel-pink); color: var(--bg-dark); box-shadow: 0 0 40px rgba(255, 183, 213, 0.6); }
-        .btn-secondary { background: transparent; color: var(--pastel-cyan); border: 2px solid var(--pastel-cyan); box-shadow: 0 0 15px rgba(155, 246, 255, 0.2); }
-        .btn-secondary:hover { background: var(--pastel-cyan); color: var(--bg-dark); box-shadow: 0 0 40px rgba(155, 246, 255, 0.6); }
+        /* ==================== ANIMATED BACKGROUNDS ==================== */
+        .animated-bg {
+            background: radial-gradient(circle at 50% 50%, #241b4d 0%, #0f0c29 100%);
+            position: relative;
+        }
 
-        /* NAV & SECTIONS */
-        .nav-bar { background: rgba(15, 12, 41, 0.9); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255,255,255,0.1); position: sticky; top: 0; z-index: 1000; }
-        .nav-container { display: flex; justify-content: center; padding: 0 20px; flex-wrap: wrap; }
-        .nav-link { background: transparent; border: none; color: var(--text-muted); padding: 20px 30px; cursor: pointer; font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
-        .nav-link:hover, .nav-link.active { color: var(--pastel-purple); text-shadow: 0 0 10px var(--pastel-purple); }
-        .section { display: none; padding: 100px 20px; max-width: 1400px; margin: 0 auto; animation: fadeIn 0.6s ease-out; }
+        /* ==================== HERO SECTION ==================== */
+        .homepage {
+            min-height: 100vh;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            padding: 60px 20px; text-align: center;
+        }
+
+        #particles-canvas {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1; pointer-events: none;
+        }
+
+        .hero-content { z-index: 10; }
+
+        .hero-label {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem; color: var(--pastel-cyan);
+            letter-spacing: 8px; margin-bottom: 20px;
+            text-transform: uppercase; text-shadow: 0 0 10px var(--pastel-cyan);
+        }
+
+        .hero-title {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 6rem; font-weight: 700;
+            background: linear-gradient(to right, var(--pastel-pink), var(--pastel-purple), var(--pastel-cyan));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 15px; line-height: 1.1;
+            text-shadow: 0 5px 30px rgba(224, 176, 255, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem; color: var(--text-muted);
+            margin-bottom: 40px; font-weight: 300;
+        }
+
+        .hero-cta { display: flex; gap: 25px; justify-content: center; }
+
+        .btn-glow {
+            padding: 18px 40px;
+            font-family: 'Rajdhani', sans-serif; font-weight: 700;
+            font-size: 1.1rem; text-decoration: none;
+            border-radius: 5px; text-transform: uppercase;
+            letter-spacing: 2px; transition: 0.4s;
+            position: relative; overflow: hidden;
+        }
+
+        .btn-primary {
+            background: transparent; color: var(--pastel-pink);
+            border: 2px solid var(--pastel-pink);
+            box-shadow: 0 0 15px rgba(255, 183, 213, 0.2);
+        }
+
+        .btn-primary:hover {
+            background: var(--pastel-pink); color: var(--bg-dark);
+            box-shadow: 0 0 40px rgba(255, 183, 213, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent; color: var(--pastel-cyan);
+            border: 2px solid var(--pastel-cyan);
+            box-shadow: 0 0 15px rgba(155, 246, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: var(--pastel-cyan); color: var(--bg-dark);
+            box-shadow: 0 0 40px rgba(155, 246, 255, 0.6);
+        }
+
+        /* ==================== NAVIGATION ==================== */
+        .nav-bar {
+            background: rgba(15, 12, 41, 0.9);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: sticky; top: 0; z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex; justify-content: center;
+            padding: 0 20px; flex-wrap: wrap;
+        }
+
+        .nav-link {
+            background: transparent; border: none;
+            color: var(--text-muted); padding: 20px 30px;
+            cursor: pointer; font-family: 'Rajdhani', sans-serif;
+            font-weight: 700; font-size: 1rem;
+            text-transform: uppercase; letter-spacing: 2px;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--pastel-purple);
+            text-shadow: 0 0 10px var(--pastel-purple);
+        }
+
+        /* ==================== SECTIONS ==================== */
+        .section {
+            display: none; padding: 100px 20px;
+            max-width: 1400px; margin: 0 auto;
+            animation: fadeIn 0.6s ease-out;
+        }
+
         .section.active { display: block; }
+
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
         .section-header { text-align: center; margin-bottom: 80px; }
-        .section-title { font-family: 'Orbitron', sans-serif; font-size: 3.5rem; color: var(--pastel-purple); text-transform: uppercase; margin-bottom: 15px; text-shadow: 0 0 20px rgba(224, 176, 255, 0.4); }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif; font-size: 3.5rem;
+            color: var(--pastel-purple); text-transform: uppercase;
+            margin-bottom: 15px; text-shadow: 0 0 20px rgba(224, 176, 255, 0.4);
+        }
+
         .section-tagline { color: var(--text-muted); font-size: 1.2rem; letter-spacing: 1px; }
 
-        /* ABOUT */
-        .about-layout { display: grid; grid-template-columns: 400px 1fr; gap: 60px; }
-        .profile-box { background: var(--bg-secondary); padding: 40px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); text-align: center; position: sticky; top: 100px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
-        .profile-photo { width: 250px; height: 250px; border-radius: 50%; border: 4px solid var(--pastel-pink); box-shadow: 0 0 30px rgba(255, 183, 213, 0.4); margin-bottom: 30px; object-fit: cover; }
-        .profile-name { font-family: 'Rajdhani', sans-serif; font-size: 2.2rem; color: white; margin-bottom: 10px; }
+        /* ==================== ABOUT ==================== */
+        .about-layout {
+            display: grid; grid-template-columns: 400px 1fr; gap: 60px;
+        }
+
+        .profile-box {
+            background: var(--bg-secondary); padding: 40px;
+            border-radius: 20px; border: 1px solid rgba(255,255,255,0.05);
+            text-align: center; position: sticky; top: 100px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .profile-photo {
+            width: 250px; height: 250px;
+            border-radius: 50%; border: 4px solid var(--pastel-pink);
+            box-shadow: 0 0 30px rgba(255, 183, 213, 0.4);
+            margin-bottom: 30px; object-fit: cover;
+        }
+
+        .profile-name {
+            font-family: 'Rajdhani', sans-serif; font-size: 2.2rem;
+            color: white; margin-bottom: 10px;
+        }
+
         .profile-title { color: var(--pastel-cyan); font-weight: 600; margin-bottom: 30px; }
-        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px; }
-        .stat-card { background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; }
-        .stat-value { display: block; font-size: 1.8rem; font-weight: 800; color: var(--pastel-purple); }
+
+        .stats-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 15px; margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.05);
+            padding: 15px; border-radius: 10px;
+        }
+
+        .stat-value {
+            display: block; font-size: 1.8rem;
+            font-weight: 800; color: var(--pastel-purple);
+        }
+
         .stat-desc { font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); }
-        .cv-btn { display: inline-block; background: linear-gradient(45deg, var(--pastel-pink), var(--pastel-purple)); color: var(--bg-dark); font-weight: 700; padding: 15px 30px; border-radius: 30px; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
+
+        .cv-btn {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--pastel-pink), var(--pastel-purple));
+            color: var(--bg-dark); font-weight: 700;
+            padding: 15px 30px; border-radius: 30px;
+            text-decoration: none; text-transform: uppercase;
+            letter-spacing: 1px; transition: 0.3s;
+        }
+
         .cv-btn:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(255, 183, 213, 0.6); }
-        .about-main { background: var(--bg-secondary); padding: 50px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); }
+
+        .about-main {
+            background: var(--bg-secondary); padding: 50px;
+            border-radius: 20px; border: 1px solid rgba(255,255,255,0.05);
+        }
+
         .intro-text { font-size: 1.1rem; color: #dcdcdc; margin-bottom: 50px; }
         .intro-text strong { color: var(--pastel-pink); }
-        .block-title { font-family: 'Rajdhani', sans-serif; font-size: 2rem; color: var(--pastel-cyan); margin-bottom: 30px; border-left: 4px solid var(--pastel-purple); padding-left: 20px; }
-        .skills-layout { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
-        .skill-box { background: rgba(255,255,255,0.03); padding: 25px; border-radius: 15px; transition: 0.3s; }
+
+        .block-title {
+            font-family: 'Rajdhani', sans-serif; font-size: 2rem;
+            color: var(--pastel-cyan); margin-bottom: 30px;
+            border-left: 4px solid var(--pastel-purple); padding-left: 20px;
+        }
+
+        .skills-layout {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px;
+        }
+
+        .skill-box {
+            background: rgba(255,255,255,0.03); padding: 25px;
+            border-radius: 15px; transition: 0.3s;
+        }
+
         .skill-box:hover { background: rgba(255,255,255,0.06); transform: translateY(-5px); }
         .skill-box h4 { color: var(--pastel-pink); margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
         .skill-box ul { list-style: none; color: #ccc; }
         .skill-box li { margin-bottom: 8px; display: flex; gap: 10px; }
         .skill-box li::before { content: '>'; color: var(--pastel-cyan); font-weight: bold; }
 
-        /* GALLERY */
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
-        .gallery-card, .carousel-card { background: var(--bg-secondary); border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); transition: 0.4s; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-        .gallery-card:hover, .carousel-card:hover { transform: translateY(-10px); border-color: var(--pastel-purple); box-shadow: 0 20px 50px rgba(224, 176, 255, 0.15); }
-        .card-media { height: 350px; position: relative; cursor: pointer; overflow: hidden; }
-        .card-media img, .card-media video { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        /* ==================== GALLERY & CAROUSELS ==================== */
+        .gallery-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .gallery-card, .carousel-card {
+            background: var(--bg-secondary); border-radius: 20px;
+            overflow: hidden; border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.4s; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .gallery-card:hover, .carousel-card:hover {
+            transform: translateY(-10px); border-color: var(--pastel-purple);
+            box-shadow: 0 20px 50px rgba(224, 176, 255, 0.15);
+        }
+
+        /* Single Media */
+        .card-media {
+            height: 350px; position: relative;
+            cursor: pointer; overflow: hidden;
+        }
+
+        .card-media img, .card-media video {
+            width: 100%; height: 100%;
+            object-fit: cover; transition: 0.5s;
+        }
+
         .gallery-card:hover .card-media img { transform: scale(1.1); }
-        .carousel-grid { display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 175px); gap: 2px; background: var(--bg-dark); }
-        .carousel-item { position: relative; width: 100%; height: 100%; overflow: hidden; cursor: pointer; }
-        .carousel-item img, .carousel-item video { width: 100%; height: 100%; object-fit: cover; transition: 0.4s; opacity: 0.9; }
-        .carousel-item:hover img, .carousel-item:hover video { transform: scale(1.1); opacity: 1; z-index: 2; }
-        .carousel-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(224, 176, 255, 0.2); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.3s; }
+
+        /* Grid Media (The 4-block style) */
+        .carousel-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 175px);
+            gap: 2px; background: var(--bg-dark);
+        }
+
+        .carousel-item {
+            position: relative; width: 100%; height: 100%;
+            overflow: hidden; cursor: pointer;
+        }
+
+        .carousel-item img, .carousel-item video {
+            width: 100%; height: 100%;
+            object-fit: cover; transition: 0.4s; opacity: 0.9;
+        }
+
+        .carousel-item:hover img, .carousel-item:hover video {
+            transform: scale(1.1); opacity: 1; z-index: 2;
+        }
+
+        .carousel-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(224, 176, 255, 0.2);
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: 0.3s;
+        }
+
         .carousel-item:hover .carousel-overlay { opacity: 1; }
         .carousel-overlay i { font-size: 2rem; color: white; text-shadow: 0 0 10px black; }
+
         .card-info { padding: 25px; }
         .card-title { font-family: 'Rajdhani', sans-serif; font-size: 1.4rem; margin-bottom: 10px; color: white; }
         .card-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 15px; }
+        
         .card-tags { display: flex; gap: 10px; flex-wrap: wrap; }
-        .tag { background: rgba(255,255,255,0.1); color: var(--pastel-cyan); padding: 5px 12px; border-radius: 20px; font-size: 0.75rem; text-transform: uppercase; font-weight: 700; border: 1px solid var(--pastel-cyan); }
-        .branding-banner { width: 100%; height: 200px; margin-bottom: 30px; border-radius: 15px; overflow: hidden; border: 1px solid var(--pastel-purple); position: relative; cursor: pointer; background: black; }
-        .branding-banner img, .branding-banner video { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .tag {
+            background: rgba(255,255,255,0.1); color: var(--pastel-cyan);
+            padding: 5px 12px; border-radius: 20px; font-size: 0.75rem;
+            text-transform: uppercase; font-weight: 700;
+            border: 1px solid var(--pastel-cyan);
+        }
+
+        /* Banners Branding */
+        .branding-banner {
+            width: 100%; height: 200px; margin-bottom: 30px;
+            border-radius: 15px; overflow: hidden;
+            border: 1px solid var(--pastel-purple);
+            position: relative; cursor: pointer;
+            background: black;
+        }
+        
+        .branding-banner img, .branding-banner video {
+            width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;
+        }
+        
         .branding-banner:hover img, .branding-banner:hover video { transform: scale(1.05); }
 
-        /* DATA, CONTACT & FOOTER */
-        .data-hero { background: linear-gradient(135deg, #130f40 0%, #2e236e 100%); padding: 80px; border-radius: 40px; text-align: center; border: 2px solid var(--pastel-purple); box-shadow: 0 0 60px rgba(19, 15, 64, 0.8); }
-        .data-hero h2 { font-size: 4rem; font-family: 'Orbitron', sans-serif; color: white; text-shadow: 0 0 20px var(--pastel-purple); }
-        .hybrid-box { background: rgba(0,0,0,0.3); backdrop-filter: blur(10px); padding: 40px; border-radius: 20px; margin-top: 40px; border: 1px solid var(--pastel-pink); text-align: left;}
-        .hybrid-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; text-align: left; }
+        /* ==================== DATA SECTION ==================== */
+        .data-hero {
+            background: linear-gradient(135deg, #130f40 0%, #2e236e 100%);
+            padding: 80px; border-radius: 40px; text-align: center;
+            border: 2px solid var(--pastel-purple);
+            box-shadow: 0 0 60px rgba(19, 15, 64, 0.8);
+        }
+
+        .data-hero h2 {
+            font-size: 4rem; font-family: 'Orbitron', sans-serif;
+            color: white; text-shadow: 0 0 20px var(--pastel-purple);
+        }
+
+        .hybrid-box {
+            background: rgba(0,0,0,0.3); backdrop-filter: blur(10px);
+            padding: 40px; border-radius: 20px; margin-top: 40px;
+            border: 1px solid var(--pastel-pink);
+            text-align: left;
+        }
+
+        .hybrid-columns {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 40px; margin-top: 40px; text-align: left;
+        }
+
         .hybrid-column h4 { color: var(--pastel-cyan); margin-bottom: 20px; font-size: 1.3rem; }
         .hybrid-column ul { list-style: none; color: #ddd; }
         .hybrid-column li { margin-bottom: 10px; }
         .hybrid-column li::before { content: '⚡'; margin-right: 10px; color: var(--pastel-yellow); }
         
         /* Enhanced Contact & Footer Styles */
-        .contact-container { text-align: center; max-width: 800px; margin: 0 auto; background: var(--bg-secondary); padding: 60px; border-radius: 30px; border: 1px solid var(--pastel-purple); box-shadow: 0 0 40px rgba(224, 176, 255, 0.1); }
-        .social-links-big { display: flex; justify-content: center; gap: 20px; margin-top: 30px; flex-wrap: wrap; }
-        .social-btn { display: flex; align-items: center; gap: 10px; padding: 12px 25px; border-radius: 50px; font-weight: 700; text-decoration: none; transition: 0.3s; text-transform: uppercase; font-size: 0.9rem; }
+        .contact-container {
+            text-align: center; max-width: 800px; margin: 0 auto;
+            background: var(--bg-secondary); padding: 60px;
+            border-radius: 30px; border: 1px solid var(--pastel-purple);
+            box-shadow: 0 0 40px rgba(224, 176, 255, 0.1);
+        }
+
+        .social-links-big {
+            display: flex; justify-content: center; gap: 20px;
+            margin-top: 30px; flex-wrap: wrap;
+        }
+
+        .social-btn {
+            display: flex; align-items: center; gap: 10px;
+            padding: 12px 25px; border-radius: 50px;
+            font-weight: 700; text-decoration: none; transition: 0.3s;
+            text-transform: uppercase; font-size: 0.9rem;
+        }
+
         .btn-linkedin { background: #0077b5; color: white; }
         .btn-instagram { background: #E1306C; color: white; }
         .btn-github { background: #333; color: white; }
         .btn-email { background: var(--pastel-purple); color: var(--bg-dark); }
+        
         .social-btn:hover { transform: translateY(-5px); filter: brightness(1.2); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
 
-        footer { background: #050510; padding: 80px 20px 30px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 100px; }
-        .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 50px; }
+        /* ==================== FOOTER ==================== */
+        footer {
+            background: #050510; padding: 80px 20px 30px;
+            border-top: 1px solid rgba(255,255,255,0.05); margin-top: 100px;
+        }
+
+        .footer-grid {
+            max-width: 1200px; margin: 0 auto;
+            display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 50px;
+        }
+
         .footer-col h3 { color: white; margin-bottom: 25px; font-family: 'Orbitron', sans-serif; }
-        .footer-col p, .footer-col a { color: var(--text-muted); text-decoration: none; transition: 0.3s; display: block; margin-bottom: 10px;}
+        .footer-col p, .footer-col a {
+            color: var(--text-muted); text-decoration: none;
+            transition: 0.3s; display: block; margin-bottom: 10px;
+        }
         .footer-col a:hover { color: var(--pastel-cyan); padding-left: 5px; }
         
-        @media (max-width: 1024px) { .about-layout { grid-template-columns: 1fr; } .profile-box { position: relative; top: 0; } }
-        @media (max-width: 768px) { .hero-title { font-size: 3.5rem; } .footer-grid { grid-template-columns: 1fr; gap: 30px; } .gallery-grid { grid-template-columns: 1fr; } .carousel-grid { grid-template-rows: repeat(2, 140px); } .hybrid-columns { grid-template-columns: 1fr; } }
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 1024px) {
+            .about-layout { grid-template-columns: 1fr; }
+            .profile-box { position: relative; top: 0; }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 3.5rem; }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+            .gallery-grid { grid-template-columns: 1fr; }
+            .carousel-grid { grid-template-rows: repeat(2, 140px); }
+            .hybrid-columns { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
@@ -146,13 +462,19 @@
 
 <div class="homepage animated-bg">
     <canvas id="particles-canvas"></canvas>
+    
     <div class="hero-content">
         <div class="hero-label">DATA-DRIVEN // CREATIVE STRATEGY</div>
         <h1 class="hero-title">María Luisa<br>Ros Bolea</h1>
         <p class="hero-subtitle">Big Data Insights & Digital Creativity</p>
+        
         <div class="hero-cta">
-            <a href="#about" class="btn-glow btn-primary" onclick="goToAbout(event)"><i class="fas fa-user-astronaut"></i> Start Mission</a>
-            <a href="#contact" class="btn-glow btn-secondary" onclick="goToContact(event)"><i class="fas fa-comments"></i> Connect</a>
+            <a href="#about" class="btn-glow btn-primary" onclick="goToAbout(event)">
+                <i class="fas fa-user-astronaut"></i> Start Mission
+            </a>
+            <a href="#contact" class="btn-glow btn-secondary" onclick="goToContact(event)">
+                <i class="fas fa-comments"></i> Connect
+            </a>
         </div>
     </div>
 </div>
@@ -171,16 +493,27 @@
     <div class="about-layout">
         <div class="profile-sidebar">
             <div class="profile-box">
-                <img src="newprofile.jpg" alt="María Luisa Ros Bolea" class="profile-photo">
+                <img src="red.jpg" alt="María Luisa Ros Bolea" class="profile-photo">
                 <h3 class="profile-name">María Luisa Ros Bolea</h3>
                 <p class="profile-title">Data Scientist & Digital Strategist</p>
+                
                 <div class="stats-grid">
-                    <div class="stat-card"><span class="stat-value">LVL 4</span><span class="stat-desc">Experience</span></div>
-                    <div class="stat-card"><span class="stat-value">50+</span><span class="stat-desc">Projects</span></div>
+                    <div class="stat-card">
+                        <span class="stat-value">LVL 4</span>
+                        <span class="stat-desc">Experience</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value">50+</span>
+                        <span class="stat-desc">Projects</span>
+                    </div>
                 </div>
-                <a href="CV_MariaLuisa_RosBolea_Professional_EN copia.pdf" download class="cv-btn"><i class="fas fa-file-download"></i> Download CV</a>
+                
+                <a href="CV_MariaLuisa_RosBolea_Professional_EN copia.pdf" download class="cv-btn">
+                    <i class="fas fa-file-download"></i> Download CV
+                </a>
             </div>
         </div>
+        
         <div class="about-main">
             <p class="intro-text">
                 Hey there! 🌸 I'm a <strong>dual-class specialist</strong> combining <strong>Digital Communication</strong> with <strong>Big Data & AI</strong>. 
@@ -193,8 +526,25 @@
             <div class="content-block">
                 <h3 class="block-title">Skill Tree</h3>
                 <div class="skills-layout">
-                    <div class="skill-box"><h4><i class="fas fa-database"></i> Data Science</h4><ul><li>Python (Pandas, NumPy)</li><li>SQL & NoSQL</li><li>Machine Learning</li><li>Power BI</li></ul></div>
-                    <div class="skill-box"><h4><i class="fas fa-hashtag"></i> Digital Marketing</h4><ul><li>Social Media Strategy</li><li>Influencer Management</li><li>Content Creation</li><li>Paid Social & Ads</li></ul></div>
+                    <div class="skill-box">
+                        <h4><i class="fas fa-database"></i> Data Science</h4>
+                        <ul>
+                            <li>Python (Pandas, NumPy, Scikit)</li>
+                            <li>SQL & NoSQL Databases</li>
+                            <li>Machine Learning Models</li>
+                            <li>Power BI & Tableau Viz</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="skill-box">
+                        <h4><i class="fas fa-hashtag"></i> Digital Marketing</h4>
+                        <ul>
+                            <li>Social Media Strategy</li>
+                            <li>Influencer Management</li>
+                            <li>Content Creation</li>
+                            <li>Paid Social & Ads</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -202,86 +552,205 @@
 </section>
 
 <section id="social" class="section">
-    <div class="section-header"><h2 class="section-title">Social Media Portfolio</h2></div>
+    <div class="section-header">
+        <h2 class="section-title">Social Media Portfolio</h2>
+        <p class="section-tagline">Engaging content crafted for the digital age</p>
+    </div>
     
     <h3 class="block-title" style="text-align: center; border: none;">Video Content & Personal Projects</h3>
     <div class="gallery-grid" style="margin-bottom: 60px;">
         <div class="gallery-card">
             <div class="card-media" onclick="openLightbox('skincare.mp4', 'video')">
-                <video src="skincare.mp4"></video><div class="carousel-overlay"><i class="fas fa-play"></i></div>
+                <video src="skincare.mp4"></video>
+                <div class="carousel-overlay"><i class="fas fa-play"></i></div>
             </div>
-            <div class="card-info"><h4 class="card-title">Personal Project</h4><p class="card-desc">Aesthetic skincare content.</p></div>
+            <div class="card-info">
+                <h4 class="card-title">Personal Project</h4>
+                <p class="card-desc">Aesthetic skincare content.</p>
+                <div class="card-tags"><span class="tag">Beauty</span><span class="tag">Simple</span></div>
+            </div>
         </div>
+
         <div class="gallery-card">
             <div class="card-media" onclick="openLightbox('reel.mp4', 'video')">
-                <video src="reel.mp4"></video><div class="carousel-overlay"><i class="fas fa-play"></i></div>
+                <video src="reel.mp4"></video>
+                <div class="carousel-overlay"><i class="fas fa-play"></i></div>
             </div>
-            <div class="card-info"><h4 class="card-title">Élan Sexology Institute</h4><p class="card-desc">Educational engaging content.</p></div>
+            <div class="card-info">
+                <h4 class="card-title">Élan Sexology Institute</h4>
+                <p class="card-desc">Educational engaging short-form content.</p>
+                <div class="card-tags"><span class="tag">Education</span><span class="tag">Viral</span></div>
+            </div>
         </div>
+
         <div class="gallery-card">
             <div class="card-media" onclick="openLightbox('reel2.mp4', 'video')">
-                <video src="reel2.mp4"></video><div class="carousel-overlay"><i class="fas fa-play"></i></div>
+                <video src="reel2.mp4"></video>
+                <div class="carousel-overlay"><i class="fas fa-play"></i></div>
             </div>
-            <div class="card-info"><h4 class="card-title">Élan Sexology Institute</h4><p class="card-desc">Healthcare: "El Viaje".</p></div>
+            <div class="card-info">
+                <h4 class="card-title">Élan Sexology Institute</h4>
+                <p class="card-desc">Healthcare: "El Viaje". Sensitive messaging with empathy.</p>
+                <div class="card-tags"><span class="tag">Healthcare</span><span class="tag">Empathy</span></div>
+            </div>
         </div>
+
         <div class="gallery-card">
             <div class="card-media" onclick="openLightbox('stories.mp4', 'video')">
-                <video src="stories.mp4"></video><div class="carousel-overlay"><i class="fas fa-play"></i></div>
+                <video src="stories.mp4"></video>
+                <div class="carousel-overlay"><i class="fas fa-play"></i></div>
             </div>
-            <div class="card-info"><h4 class="card-title">Personal Project</h4><p class="card-desc">Dynamic Instagram stories.</p></div>
+            <div class="card-info">
+                <h4 class="card-title">Personal Project</h4>
+                <p class="card-desc">Dynamic animated Instagram stories.</p>
+                <div class="card-tags"><span class="tag">Stories</span><span class="tag">Animation</span></div>
+            </div>
         </div>
+
         <div class="gallery-card">
             <div class="card-media" onclick="openLightbox('events.mp4', 'video')">
-                <video src="events.mp4"></video><div class="carousel-overlay"><i class="fas fa-play"></i></div>
+                <video src="events.mp4"></video>
+                <div class="carousel-overlay"><i class="fas fa-play"></i></div>
             </div>
-            <div class="card-info"><h4 class="card-title">Personal Project</h4><p class="card-desc">Event marketing campaign.</p></div>
+            <div class="card-info">
+                <h4 class="card-title">Personal Project</h4>
+                <p class="card-desc">Professional event marketing campaign.</p>
+                <div class="card-tags"><span class="tag">Promo</span><span class="tag">Event</span></div>
+            </div>
         </div>
     </div>
     
     <h3 class="block-title" style="text-align: center; border: none;">Carousel Campaigns</h3>
     <div class="gallery-grid">
+        
         <div class="carousel-card">
             <div class="carousel-grid">
-                <div class="carousel-item" onclick="openLightbox('zerain1.png', 'image')"><img src="zerain1.png"></div>
-                <div class="carousel-item" onclick="openLightbox('zerain2.png', 'image')"><img src="zerain2.png"></div>
-                <div class="carousel-item" onclick="openLightbox('zerain3.png', 'image')"><img src="zerain3.png"></div>
-                <div class="carousel-item" onclick="openLightbox('zerain4.png', 'image')"><img src="zerain4.png"></div>
+                <div class="carousel-item" onclick="openLightbox('zerain1.png', 'image')">
+                    <img src="zerain1.png" alt="Zerain 1">
+                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="carousel-item" onclick="openLightbox('zerain2.png', 'image')">
+                    <img src="zerain2.png" alt="Zerain 2">
+                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="carousel-item" onclick="openLightbox('zerain3.png', 'image')">
+                    <img src="zerain3.png" alt="Zerain 3">
+                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="carousel-item" onclick="openLightbox('zerain4.png', 'image')">
+                    <img src="zerain4.png" alt="Zerain 4">
+                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
             </div>
-            <div class="card-info"><h4 class="card-title">Zerain Restaurant</h4><p class="card-desc">Complete Basque cuisine campaign.</p></div>
+            <div class="card-info">
+                <h4 class="card-title">Zerain Restaurant</h4>
+                <p class="card-desc">Complete Basque cuisine campaign.</p>
+                <div class="card-tags"><span class="tag">F&B</span><span class="tag">Strategy</span></div>
+            </div>
         </div>
+        
         <div class="carousel-card">
             <div class="carousel-grid">
-                <div class="carousel-item" onclick="openLightbox('clinicajaro1.png', 'image')"><img src="clinicajaro1.png"></div>
-                <div class="carousel-item" onclick="openLightbox('clinicajaro2.png', 'image')"><img src="clinicajaro2.png"></div>
-                <div class="carousel-item" onclick="openLightbox('clinicajaro3.png', 'image')"><img src="clinicajaro3.png"></div>
-                <div class="carousel-item" onclick="openLightbox('clinicajaro4.png', 'image')"><img src="clinicajaro4.png"></div>
+                <div class="carousel-item" onclick="openLightbox('clinicajaro1.png', 'image')">
+                    <img src="clinicajaro1.png" alt="Jaro 1">
+                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="carousel-item" onclick="openLightbox('clinicajaro2.png', 'image')">
+                    <img src="clinicajaro2.png" alt="Jaro 2">
+                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="carousel-item" onclick="openLightbox('clinicajaro3.png', 'image')">
+                    <img src="clinicajaro3.png" alt="Jaro 3">
+                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="carousel-item" onclick="openLightbox('clinicajaro4.png', 'image')">
+                    <img src="clinicajaro4.png" alt="Jaro 4">
+                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
             </div>
-            <div class="card-info"><h4 class="card-title">Clínica Jaro</h4><p class="card-desc">Wellness & Acupuncture promotion.</p></div>
+            <div class="card-info">
+                <h4 class="card-title">Clínica Jaro</h4>
+                <p class="card-desc">Wellness & Acupuncture promotion.</p>
+                <div class="card-tags"><span class="tag">Wellness</span><span class="tag">Social</span></div>
+            </div>
         </div>
+
         <div class="carousel-card">
             <div class="carousel-grid">
-                <div class="carousel-item" onclick="openLightbox('campanayuuju1.png', 'image')"><img src="campanayuuju1.png"></div>
-                <div class="carousel-item" onclick="openLightbox('campanayuuju2.png', 'image')"><img src="campanayuuju2.png"></div>
-                <div class="carousel-item" onclick="openLightbox('campanayuuju3.png', 'image')"><img src="campanayuuju3.png"></div>
-                <div class="carousel-item" onclick="openLightbox('campanayuuju4.mp4', 'video')"><video src="campanayuuju4.mp4" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video></div>
+                <div class="carousel-item" onclick="openLightbox('campanayuuju1.png', 'image')">
+                    <img src="campanayuuju1.png" alt="Yuuju 1">
+                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="carousel-item" onclick="openLightbox('campanayuuju2.png', 'image')">
+                    <img src="campanayuuju2.png" alt="Yuuju 2">
+                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="carousel-item" onclick="openLightbox('campanayuuju3.png', 'image')">
+                    <img src="campanayuuju3.png" alt="Yuuju 3">
+                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="carousel-item" onclick="openLightbox('campanayuuju4.mp4', 'video')">
+                    <video src="campanayuuju4.mp4" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video>
+                    <div class="carousel-overlay"><i class="fas fa-play"></i></div>
+                </div>
             </div>
-            <div class="card-info"><h4 class="card-title">Yuuju</h4><p class="card-desc">Home fiber installation. Motion.</p></div>
+            <div class="card-info">
+                <h4 class="card-title">Yuuju</h4>
+                <p class="card-desc">Home fiber installation. Motion.</p>
+                <div class="card-tags"><span class="tag">Fiber</span><span class="tag">Motion</span></div>
+            </div>
         </div>
+        
     </div>
 </section>
 
 <section id="branding" class="section">
-    <div class="section-header"><h2 class="section-title">Branding & Advertising</h2></div>
+    <div class="section-header">
+        <h2 class="section-title">Branding & Advertising</h2>
+        <p class="section-tagline">Identity design and visual impact</p>
+    </div>
+
     <div class="branding-banner" onclick="openLightbox('banner_yuuju1.jpg', 'image')">
-        <img src="banner_yuuju1.jpg" alt="Yuuju Banner">
+        <img src="banner_yuuju1.jpg" alt="Yuuju Banner 1">
     </div>
+    
     <div class="branding-banner" onclick="openLightbox('banner_yuuju2.mp4', 'video')">
-        <video src="banner_yuuju2.mp4" autoplay muted loop style="width:100%; height:100%; object-fit:cover;"></video>
+        <video src="banner_yuuju2.mp4" autoplay muted loop style="object-fit: cover; width:100%; height:100%;"></video>
     </div>
+    
     <div class="gallery-grid">
-        <div class="gallery-card"><div class="card-media" onclick="openLightbox('anunciobeer.png', 'image')"><img src="anunciobeer.png"></div><div class="card-info"><h4 class="card-title">Beer Ad</h4></div></div>
-        <div class="gallery-card"><div class="card-media" onclick="openLightbox('sushi.jpg', 'image')"><img src="sushi.jpg"></div><div class="card-info"><h4 class="card-title">Japan Food</h4></div></div>
-        <div class="gallery-card"><div class="card-media" onclick="openLightbox('publicidadburger.png', 'image')"><img src="publicidadburger.png"></div><div class="card-info"><h4 class="card-title">Burger Bar</h4></div></div>
+        <div class="gallery-card">
+            <div class="card-media" onclick="openLightbox('anunciobeer.png', 'image')">
+                <img src="anunciobeer.png" alt="Beer Ad">
+                <div class="carousel-overlay"><i class="fas fa-eye"></i></div>
+            </div>
+            <div class="card-info">
+                <h4 class="card-title">The Best Beer</h4>
+                <div class="card-tags"><span class="tag">Print</span></div>
+            </div>
+        </div>
+        
+        <div class="gallery-card">
+            <div class="card-media" onclick="openLightbox('sushi.jpg', 'image')">
+                <img src="sushi.jpg" alt="Japan Food">
+                <div class="carousel-overlay"><i class="fas fa-eye"></i></div>
+            </div>
+            <div class="card-info">
+                <h4 class="card-title">Japan Food</h4>
+                <div class="card-tags"><span class="tag">Branding</span></div>
+            </div>
+        </div>
+        
+        <div class="gallery-card">
+            <div class="card-media" onclick="openLightbox('publicidadburger.png', 'image')">
+                <img src="publicidadburger.png" alt="Burger">
+                <div class="carousel-overlay"><i class="fas fa-eye"></i></div>
+            </div>
+            <div class="card-info">
+                <h4 class="card-title">Burger Bar</h4>
+                <div class="card-tags"><span class="tag">F&B</span></div>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -388,40 +857,153 @@
 </footer>
 
 <script>
+    // Lightbox Functions
     function openLightbox(src, type) {
-        const l = document.getElementById('lightbox'), c = document.getElementById('lightbox-content');
-        c.innerHTML = '';
-        if(type==='image'){const i=document.createElement('img'); i.src=src; c.appendChild(i);}
-        else{const v=document.createElement('video'); v.src=src; v.controls=true; v.autoplay=true; c.appendChild(v);}
-        l.classList.add('active');
+        const lightbox = document.getElementById('lightbox');
+        const content = document.getElementById('lightbox-content');
+        
+        content.innerHTML = '';
+        
+        if (type === 'image') {
+            const img = document.createElement('img');
+            img.src = src;
+            content.appendChild(img);
+        } else if (type === 'video') {
+            const video = document.createElement('video');
+            video.src = src;
+            video.controls = true;
+            video.autoplay = true;
+            content.appendChild(video);
+        }
+        
+        lightbox.classList.add('active');
     }
-    function closeLightbox() { document.getElementById('lightbox').classList.remove('active'); }
     
-    const canvas = document.getElementById('particles-canvas'), ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-    const particles = []; 
-    for(let i=0;i<80;i++) particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-0.5)*0.5,vy:(Math.random()-0.5)*0.5,r:Math.random()*2+1,c:Math.random()>0.5?'rgba(155,246,255,0.5)':'rgba(224,176,255,0.5)'});
-    function animate(){
-        ctx.clearRect(0,0,canvas.width,canvas.height);
-        particles.forEach(p=>{
-            p.x+=p.vx; p.y+=p.vy; 
-            if(p.x<0||p.x>canvas.width)p.vx*=-1; if(p.y<0||p.y>canvas.height)p.vy*=-1;
-            ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fillStyle=p.c; ctx.fill();
+    function closeLightbox() {
+        const lightbox = document.getElementById('lightbox');
+        lightbox.classList.remove('active');
+        document.getElementById('lightbox-content').innerHTML = '';
+    }
+    
+    // Particles Canvas
+    const canvas = document.getElementById('particles-canvas');
+    const ctx = canvas.getContext('2d');
+    
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    const particles = [];
+    const particleCount = 80;
+    
+    class Particle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.vx = (Math.random() - 0.5) * 0.5;
+            this.vy = (Math.random() - 0.5) * 0.5;
+            this.radius = Math.random() * 2 + 1;
+            this.color = Math.random() > 0.5 ? 'rgba(155, 246, 255, 0.5)' : 'rgba(224, 176, 255, 0.5)';
+        }
+        
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            
+            if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+            if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+        }
+        
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fillStyle = this.color;
+            ctx.fill();
+        }
+    }
+    
+    for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+    }
+    
+    function connectParticles() {
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < 100) {
+                    ctx.beginPath();
+                    ctx.strokeStyle = `rgba(255, 255, 255, ${0.1 * (1 - distance / 100)})`;
+                    ctx.lineWidth = 1;
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.stroke();
+                }
+            }
+        }
+    }
+    
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        particles.forEach(particle => {
+            particle.update();
+            particle.draw();
         });
+        
+        connectParticles();
         requestAnimationFrame(animate);
     }
+    
     animate();
     
-    function goToAbout(e){e.preventDefault(); document.querySelector('.homepage').style.display='none'; switchSection('about');}
-    function goToContact(e){e.preventDefault(); document.querySelector('.homepage').style.display='none'; switchSection('contact');}
-    function switchSection(id, btn){
-        document.querySelector('.homepage').style.display='none';
-        document.querySelectorAll('.section').forEach(s=>{s.style.display='none';s.classList.remove('active')});
-        document.querySelectorAll('.nav-link').forEach(b=>b.classList.remove('active'));
-        const s = document.getElementById(id); s.style.display='block'; setTimeout(()=>s.classList.add('active'),10);
-        if(btn) btn.classList.add('active');
-        window.scrollTo(0,0);
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
+    
+    // Navigation
+    function goToAbout(event) {
+        event.preventDefault();
+        document.querySelector('.homepage').style.display = 'none';
+        document.getElementById('navbar').scrollIntoView({ behavior: 'smooth' });
+        setTimeout(() => {
+            switchSection('about', document.querySelectorAll('.nav-link')[0]);
+        }, 100);
+    }
+    
+    function goToContact(event) {
+        event.preventDefault();
+        document.querySelector('.homepage').style.display = 'none';
+        document.getElementById('navbar').scrollIntoView({ behavior: 'smooth' });
+        setTimeout(() => {
+            switchSection('contact', document.querySelectorAll('.nav-link')[4]);
+        }, 100);
+    }
+    
+    function switchSection(sectionId, button) {
+        document.querySelector('.homepage').style.display = 'none';
+        
+        const sections = document.querySelectorAll('.section');
+        sections.forEach(section => {
+            section.style.display = 'none';
+            section.classList.remove('active');
+        });
+        
+        const buttons = document.querySelectorAll('.nav-link');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        
+        const section = document.getElementById(sectionId);
+        section.style.display = 'block';
+        setTimeout(() => {
+            section.classList.add('active');
+        }, 10);
+        
+        if(button) button.classList.add('active');
+        window.scrollTo(0, 0);
     }
 </script>
+
 </body>
 </html>
