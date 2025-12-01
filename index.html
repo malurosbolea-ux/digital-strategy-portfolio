@@ -122,7 +122,7 @@
 
         .btn-primary {
             background: transparent;
-            color: var(--text-main); /* Texto BLANCO para evitar el tono oscuro */
+            color: var(--text-main); /* Texto BLANCO */
             border: 2px solid var(--pastel-pink);
             box-shadow: 0 0 15px rgba(255, 183, 213, 0.2);
         }
@@ -134,7 +134,7 @@
 
         .btn-secondary {
             background: transparent;
-            color: var(--text-main); /* Texto BLANCO para evitar el tono oscuro */
+            color: var(--text-main); /* Texto BLANCO */
             border: 2px solid var(--pastel-cyan);
             box-shadow: 0 0 15px rgba(137, 207, 240, 0.2);
         }
@@ -823,9 +823,9 @@
     <div class="data-hero">
         <h2>BIG DATA <span style="color:var(--pastel-cyan)">X</span> CREATIVITY</h2>
         <p class="section-tagline">"Bridging the gap between Engineering and Humanities"</p>
-        
+    
         <div class="hybrid-box">
-            <h3 style="color: var(--pastel-pink); font-family: 'Orbitron', sans-serif;">The Hybrid Advantage</h3>
+            <h3 style="color: var(--pastel-pink); font-size: 1.8rem; margin-bottom: 20px;">The Hybrid Advantage</h3>
             <p style="color: #ccc; margin-top: 15px; line-height: 1.8;">
                 My profile combines the analytical rigor of <strong>Data Science</strong> with the storytelling power of <strong>Digital Marketing</strong>. 
                 I don't just extract numbers; I translate complex datasets into actionable, human-centric strategies. 
@@ -854,7 +854,7 @@
                 </div>
             </div>
             
-            <a href="https://github.com/malurosbolea-ux" target="_blank" class="btn-glow btn-secondary">
+            <a href="https://github.com/malurosbolea-ux" target="_blank" class="btn-glow btn-secondary" style="margin-top: 40px; display:inline-block;">
                 <i class="fab fa-github"></i> View Code Projects
             </a>
         </div>
@@ -997,11 +997,11 @@
         
         content.innerHTML = '';
         
-        if (type === 'image' || src.endsWith('.png') || src.endsWith('.jpg')) { // Para imágenes genéricas
+        if (type === 'image' || src.endsWith('.png') || src.endsWith('.jpg')) { 
             const img = document.createElement('img');
             img.src = src;
             content.appendChild(img);
-        } else if (type === 'pdf' || src.endsWith('.pdf')) { // Para PDFs
+        } else if (type === 'pdf' || src.endsWith('.pdf')) { 
              const iframe = document.createElement('iframe');
              iframe.src = src;
              iframe.width = '100%';
@@ -1056,8 +1056,8 @@
         
         draw() {
             ctx.beginPath();
-            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-            ctx.fillStyle = this.color;
+            ctx.arc(this.x, p.y, p.radius, 0, Math.PI * 2);
+            ctx.fillStyle = p.color;
             ctx.fill();
         }
     }
@@ -1138,8 +1138,11 @@
         const section = document.getElementById(sectionId);
         section.style.display = 'block';
         setTimeout(() => {
-            switchSection('certifications', document.querySelectorAll('.nav-link')[4]); // Contact es el 5to indice
-        }, 100);
+            section.classList.add('active');
+        }, 10);
+        
+        if(button) button.classList.add('active');
+        window.scrollTo(0, 0);
     }
 </script>
 
