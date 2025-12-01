@@ -15,7 +15,7 @@
             --bg-secondary: #1a1a2e;
             --pastel-pink: #ffb7d5; 
             --pastel-purple: #e0b0ff;
-            --pastel-cyan: #89cff0; /* ¡NUEVO AZUL PASTEL! */
+            --pastel-cyan: #89cff0; /* Pastel Blue */
             --pastel-yellow: #fdffb6;
             --text-main: #ffffff;
             --text-muted: #a0a0a0;
@@ -120,26 +120,14 @@
             position: relative; overflow: hidden;
         }
 
-        .btn-primary {
-            background: transparent; color: var(--pastel-pink);
-            border: 2px solid var(--pastel-pink);
-            box-shadow: 0 0 15px rgba(255, 183, 213, 0.2);
-        }
-
         .btn-primary:hover {
             background: var(--pastel-pink); color: var(--bg-dark);
             box-shadow: 0 0 40px rgba(255, 183, 213, 0.6);
         }
 
-        .btn-secondary {
-            background: transparent; color: var(--pastel-cyan);
-            border: 2px solid var(--pastel-cyan);
-            box-shadow: 0 0 15px rgba(137, 207, 240, 0.2); /* Sombra para el azul pastel */
-        }
-
         .btn-secondary:hover {
             background: var(--pastel-cyan); color: var(--bg-dark);
-            box-shadow: 0 0 40px rgba(137, 207, 240, 0.6);
+            box-shadow: 0 0 40px rgba(155, 246, 255, 0.6);
         }
 
         /* ==================== NAVIGATION ==================== */
@@ -158,7 +146,7 @@
         .nav-link {
             background: transparent; border: none;
             color: var(--text-muted); padding: 20px 30px;
-            cursor: pointer; font-weight: 700; font-size: 1rem;
+            font-weight: 700; font-size: 1rem;
             text-transform: uppercase; letter-spacing: 2px;
             transition: 0.3s;
         }
@@ -334,6 +322,7 @@
         .carousel-overlay i { font-size: 2rem; color: white; text-shadow: 0 0 10px black; }
 
         .card-info { padding: 25px; }
+        
         .card-title { font-size: 1.4rem; margin-bottom: 10px; color: white; }
         
         .card-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 15px; }
@@ -395,7 +384,7 @@
         .cert-card p {
             font-size: 0.9rem;
             color: #ddd;
-            font-style: italic; /* Mi toque para que suene personal */
+            font-style: italic;
             margin-bottom: 20px;
         }
         .cert-card a {
@@ -545,7 +534,8 @@
         <button class="nav-link" onclick="switchSection('social', this)">Social Media</button>
         <button class="nav-link" onclick="switchSection('branding', this)">Branding</button>
         <button class="nav-link" onclick="switchSection('data', this)">Big Data & AI</button>
-        <button class="nav-link" onclick="switchSection('certifications', this)">Certifications</button> <button class="nav-link" onclick="switchSection('contact', this)">Contact</button>
+        <button class="nav-link" onclick="switchSection('certifications', this)">Certifications</button>
+        <button class="nav-link" onclick="switchSection('contact', this)">Contact</button>
     </div>
 </nav>
 
@@ -849,7 +839,7 @@
                 </div>
             </div>
             
-            <a href="https://github.com/malurosbolea-ux" target="_blank" class="btn-glow btn-secondary" onclick="openLightbox('TITULO.pdf', 'pdf')">
+            <a href="https://github.com/malurosbolea-ux" target="_blank" class="btn-glow btn-secondary">
                 <i class="fab fa-github"></i> View Code Projects
             </a>
         </div>
@@ -865,10 +855,10 @@
     <div class="cert-grid">
         
         <div class="cert-card">
-            <span class="date">Issued: Aug 2025</span>
+            <span class="date">Completed: Jun 2024</span>
             <h4>Bachelor's Degree: Digital Communication</h4>
             <div class="issuer">CEU San Pablo University</div>
-            <p>I have mastered the official university degree, mastering the theory and practice of digital communication.</p>
+            <p>I achieved my official university degree, mastering the theory and practice of digital communication.</p>
             <a href="TITULO.pdf" target="_blank">View Document</a>
         </div>
         
@@ -881,7 +871,15 @@
         </div>
 
         <div class="cert-card">
-            <span class="date">Issued: Nov 2025</span>
+            <span class="date">Completed: Dec 2025</span>
+            <h4>AWS Cloud Essentials: Foundations</h4>
+            [cite_start]<div class="issuer">AWS Training & Certification [cite: 1]</div>
+            [cite_start]<p>I successfully completed the AWS Foundations course, gaining essential knowledge on getting started with the AWS Cloud[cite: 3]. This foundational understanding is key for managing modern data infrastructure.</p>
+            <a href="tituoAWSfoundations 2.pdf" target="_blank">View Document</a>
+        </div>
+        
+        <div class="cert-card">
+            <span class="date">Completed: Nov 2025</span>
             <h4>Databricks Fundamentals Accreditation</h4>
             <div class="issuer">Databricks Academy</div>
             <p>I learned the foundational concepts of data platforms and how to leverage Databricks for modern data workflows.</p>
@@ -892,7 +890,7 @@
             <span class="date">Issued: Jul 2023</span>
             <h4>COIL: Brands with Purpose (International Project)</h4>
             <div class="issuer">CEU San Pablo / U. Católica Andrés Bello</div>
-            <p>I participated in an international collaborative project focused on purpose-driven branding and global communication.</p>
+            <p>I participated in the collaborative international project focused on purpose-driven branding and global communication.</p>
             <a href="1758460644182.png" target="_blank">View Document</a>
         </div>
         
@@ -902,6 +900,14 @@
             <div class="issuer">Google</div>
             <p>I gained a solid 360-degree understanding of digital marketing tools and strategies, from SEO to SEM.</p>
             <a href="Fundamentos de Marketing Digital : Google.pdf" target="_blank">View Document</a>
+        </div>
+
+        <div class="cert-card">
+            <span class="date">Issued: Dec 2025</span>
+            <h4>Google Analytics Certification</h4>
+            <div class="issuer">Google</div>
+            <p>I successfully achieved this certification, which ensures I have the necessary skills to analyze and measure digital performance using modern analytics tools.</p>
+            <a href="GoogleAnalitycGA4.jpg" target="_blank">View Document</a>
         </div>
         
     </div>
@@ -947,7 +953,8 @@
             <a href="#" onclick="switchSection('about', document.querySelectorAll('.nav-link')[0])">About Profile</a>
             <a href="#" onclick="switchSection('social', document.querySelectorAll('.nav-link')[1])">Social Portfolio</a>
             <a href="#" onclick="switchSection('data', document.querySelectorAll('.nav-link')[3])">Big Data & AI</a>
-            <a href="#" onclick="switchSection('certifications', document.querySelectorAll('.nav-link')[4])">Certifications</a> </div>
+            <a href="#" onclick="switchSection('certifications', document.querySelectorAll('.nav-link')[4])">Certifications</a>
+        </div>
         
         <div class="footer-col">
             <h3>Connect</h3>
@@ -975,11 +982,11 @@
         
         content.innerHTML = '';
         
-        if (type === 'image' || src.endsWith('.png')) { // Para la imagen del COIL (PNG)
+        if (type === 'image' || src.endsWith('.png') || src.endsWith('.jpg')) { // Para imágenes genéricas
             const img = document.createElement('img');
             img.src = src;
             content.appendChild(img);
-        } else if (type === 'pdf' || src.endsWith('.pdf')) { // Para PDFs, intentamos abrir
+        } else if (type === 'pdf' || src.endsWith('.pdf')) { // Para PDFs
              const iframe = document.createElement('iframe');
              iframe.src = src;
              iframe.width = '100%';
@@ -1097,7 +1104,7 @@
         document.querySelector('.homepage').style.display = 'none';
         document.getElementById('navbar').scrollIntoView({ behavior: 'smooth' });
         setTimeout(() => {
-            switchSection('contact', document.querySelectorAll('.nav-link')[5]); // Índice 5 para Contact
+            switchSection('contact', document.querySelectorAll('.nav-link')[5]); // Contact es el 5to indice
         }, 100);
     }
     
