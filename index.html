@@ -854,7 +854,7 @@
                 </div>
             </div>
             
-            <a href="https://github.com/malurosbolea-ux" target="_blank" class="btn-glow btn-secondary" style="margin-top: 40px; display:inline-block;">
+            <a href="https://github.com/malurosbolea-ux" target="_blank" class="btn-glow btn-secondary">
                 <i class="fab fa-github"></i> View Code Projects
             </a>
         </div>
@@ -997,11 +997,11 @@
         
         content.innerHTML = '';
         
-        if (type === 'image' || src.endsWith('.png') || src.endsWith('.jpg')) { 
+        if (type === 'image' || src.endsWith('.png') || src.endsWith('.jpg') || src.endsWith('.jpeg') || src.endsWith('.gif')) { // Para imágenes genéricas
             const img = document.createElement('img');
             img.src = src;
             content.appendChild(img);
-        } else if (type === 'pdf' || src.endsWith('.pdf')) { 
+        } else if (type === 'pdf' || src.endsWith('.pdf')) { // Para PDFs
              const iframe = document.createElement('iframe');
              iframe.src = src;
              iframe.width = '100%';
@@ -1056,8 +1056,8 @@
         
         draw() {
             ctx.beginPath();
-            ctx.arc(this.x, p.y, p.radius, 0, Math.PI * 2);
-            ctx.fillStyle = p.color;
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fillStyle = this.color;
             ctx.fill();
         }
     }
