@@ -107,7 +107,7 @@
             margin-bottom: 40px; font-weight: 300;
         }
 
-        .hero-cta { display: flex; gap: 25px; justify-content: center; }
+        .hero-cta { display: flex; gap: 25px; justify-content: center; flex-wrap: wrap; }
 
         .btn-glow {
             padding: 18px 40px;
@@ -120,7 +120,7 @@
 
         .btn-primary {
             background: transparent;
-            color: var(--text-main); /* Texto BLANCO */
+            color: var(--text-main);
             border: 2px solid var(--pastel-pink);
             box-shadow: 0 0 15px rgba(255, 183, 213, 0.2);
         }
@@ -132,7 +132,7 @@
 
         .btn-secondary {
             background: transparent;
-            color: var(--text-main); /* Texto BLANCO */
+            color: var(--text-main);
             border: 2px solid var(--pastel-cyan);
             box-shadow: 0 0 15px rgba(137, 207, 240, 0.2);
         }
@@ -140,6 +140,48 @@
         .btn-secondary:hover {
             background: var(--pastel-cyan); color: var(--bg-dark);
             box-shadow: 0 0 40px rgba(137, 207, 240, 0.6);
+        }
+
+        /* ==================== SCROLL INDICATOR ==================== */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            animation: fadeInUp 1.5s ease 1s both;
+        }
+
+        .scroll-indicator span {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--text-muted);
+            opacity: 0.6;
+        }
+
+        .scroll-arrow {
+            width: 24px;
+            height: 24px;
+            border-right: 2px solid var(--pastel-purple);
+            border-bottom: 2px solid var(--pastel-purple);
+            transform: rotate(45deg);
+            animation: scrollBounce 2s infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes scrollBounce {
+            0%, 100% { transform: rotate(45deg) translateY(0); opacity: 0.6; }
+            50% { transform: rotate(45deg) translateY(8px); opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
 
         /* ==================== NAVIGATION ==================== */
@@ -160,7 +202,7 @@
             color: var(--text-muted); padding: 20px 30px;
             font-weight: 700; font-size: 1rem;
             text-transform: uppercase; letter-spacing: 2px;
-            transition: 0.3s;
+            transition: 0.3s; cursor: pointer;
         }
 
         .nav-link:hover, .nav-link.active {
@@ -201,11 +243,42 @@
             box-shadow: 0 0 50px rgba(0,0,0,0.5);
         }
 
+        .profile-photo-wrapper {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            margin: 0 auto 30px;
+        }
+
+        .profile-photo-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -4px; left: -4px;
+            width: calc(100% + 8px);
+            height: calc(100% + 8px);
+            border-radius: 50%;
+            background: conic-gradient(
+                var(--pastel-pink),
+                var(--pastel-purple),
+                var(--pastel-cyan),
+                var(--pastel-pink)
+            );
+            animation: spinGlow 4s linear infinite;
+        }
+
+        @keyframes spinGlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
         .profile-photo {
             width: 250px; height: 250px;
-            border-radius: 50%; border: 4px solid var(--pastel-pink);
+            border-radius: 50%;
             box-shadow: 0 0 30px rgba(255, 183, 213, 0.4);
-            margin-bottom: 30px; object-fit: cover;
+            object-fit: cover;
+            position: relative;
+            z-index: 2;
+            border: 4px solid var(--bg-secondary);
         }
 
         .profile-name {
@@ -233,6 +306,12 @@
 
         .stat-desc { font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); }
 
+        /* ==================== CV DROPDOWN ==================== */
+        .cv-dropdown-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
         .cv-btn {
             display: inline-block;
             background: linear-gradient(45deg, var(--pastel-pink), var(--pastel-purple));
@@ -240,9 +319,112 @@
             padding: 15px 30px; border-radius: 30px;
             text-decoration: none; text-transform: uppercase;
             letter-spacing: 1px; transition: 0.3s;
+            cursor: pointer; border: none;
+            font-size: 1rem;
+            font-family: 'Outfit', sans-serif;
         }
 
         .cv-btn:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(255, 183, 213, 0.6); }
+
+        .cv-dropdown-menu {
+            display: none;
+            position: absolute;
+            bottom: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-secondary);
+            border: 1px solid var(--pastel-purple);
+            border-radius: 15px;
+            padding: 10px;
+            min-width: 280px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6), 0 0 20px rgba(224, 176, 255, 0.15);
+            z-index: 100;
+            animation: dropUp 0.3s ease;
+        }
+
+        .cv-dropdown-menu.active { display: block; }
+
+        @keyframes dropUp {
+            from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+
+        .cv-dropdown-menu::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%) rotate(45deg);
+            width: 14px; height: 14px;
+            background: var(--bg-secondary);
+            border-right: 1px solid var(--pastel-purple);
+            border-bottom: 1px solid var(--pastel-purple);
+        }
+
+        .cv-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 18px;
+            border-radius: 10px;
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .cv-option:hover {
+            background: rgba(255, 183, 213, 0.15);
+        }
+
+        .cv-option i {
+            font-size: 1.3rem;
+            width: 30px;
+            text-align: center;
+        }
+
+        .cv-option .cv-opt-label { color: white; }
+        .cv-option .cv-opt-desc { font-size: 0.75rem; color: var(--text-muted); font-weight: 400; }
+
+        .cv-option:first-child i { color: var(--pastel-cyan); }
+        .cv-option:last-child i { color: var(--pastel-pink); }
+
+        .cv-divider {
+            height: 1px;
+            background: rgba(255,255,255,0.08);
+            margin: 4px 10px;
+        }
+
+        /* ==================== SOCIAL ICONS ROW (Profile Box) ==================== */
+        .profile-socials {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .profile-socials a {
+            width: 42px; height: 42px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(255,255,255,0.05);
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            transition: 0.3s;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .profile-socials a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .profile-socials a.social-linkedin:hover { background: #0077b5; color: white; border-color: #0077b5; }
+        .profile-socials a.social-github:hover { background: #6e5494; color: white; border-color: #6e5494; }
+        .profile-socials a.social-instagram:hover { background: #E1306C; color: white; border-color: #E1306C; }
+        .profile-socials a.social-email:hover { background: var(--pastel-purple); color: var(--bg-dark); border-color: var(--pastel-purple); }
 
         .about-main {
             background: var(--bg-secondary); padding: 50px;
@@ -456,8 +638,8 @@
 
         .hybrid-column h4 { color: var(--pastel-cyan); margin-bottom: 20px; font-size: 1.3rem; }
         .hybrid-column ul { list-style: none; color: #ddd; }
-        .hybrid-column li { margin-bottom: 10px; }
-        .hybrid-column li::before { content: '⚡'; margin-right: 10px; color: var(--pastel-yellow); }
+        .hybrid-column li { margin-bottom: 10px; display: flex; align-items: center; }
+        .hybrid-column li::before { content: '\f0da'; font-family: 'Font Awesome 6 Free'; font-weight: 900; margin-right: 12px; color: var(--pastel-yellow); font-size: 0.8rem; }
         
         /* Enhanced Contact & Footer Styles */
         .contact-container {
@@ -503,6 +685,61 @@
             transition: 0.3s; display: block; margin-bottom: 10px;
         }
         .footer-col a:hover { color: var(--pastel-cyan); padding-left: 5px; }
+
+        .footer-social-icons {
+            display: flex; gap: 12px; margin-top: 15px;
+        }
+
+        .footer-social-icons a {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(255,255,255,0.06);
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .footer-social-icons a:hover {
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* ==================== STATUS BAR (visual flair) ==================== */
+        .status-bar {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 12px 20px;
+            background: rgba(255,255,255,0.02);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--pastel-cyan);
+            animation: pulse 2s infinite;
+        }
+
+        .status-dot.pink { background: var(--pastel-pink); animation-delay: 0.5s; }
+        .status-dot.purple { background: var(--pastel-purple); animation-delay: 1s; }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
         
         /* ==================== RESPONSIVE ==================== */
         @media (max-width: 1024px) {
@@ -517,16 +754,26 @@
             .carousel-grid { grid-template-rows: repeat(2, 140px); }
             .hybrid-columns { grid-template-columns: 1fr; }
             .cert-grid { grid-template-columns: 1fr; }
+            .data-hero { padding: 40px 20px; }
+            .data-hero h2 { font-size: 2.5rem; }
+            .status-bar { flex-wrap: wrap; gap: 15px; }
         }
-    </style></head><body><div class="lightbox" id="lightbox" onclick="closeLightbox()">
-    <div class="lightbox-close">×</div>
-    <div class="lightbox-content" id="lightbox-content"></div></div><div class="homepage animated-bg">
+    </style></head><body>
+
+<!-- ==================== LIGHTBOX ==================== -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <div class="lightbox-close">&times;</div>
+    <div class="lightbox-content" id="lightbox-content"></div>
+</div>
+
+<!-- ==================== HERO ==================== -->
+<div class="homepage animated-bg">
     <canvas id="particles-canvas"></canvas>
     
     <div class="hero-content">
         <div class="hero-label">DATA-DRIVEN // CREATIVE STRATEGY</div>
         <h1 class="hero-title">María Luisa<br>Ros Bolea</h1>
-        <p class="hero-subtitle">Big Data Insights & Digital Creativity</p>
+        <p class="hero-subtitle">Big Data Insights &amp; Digital Creativity</p>
         
         <div class="hero-cta">
             <a href="#about" class="btn-glow btn-primary" onclick="goToAbout(event)">
@@ -536,46 +783,94 @@
                 <i class="fas fa-comments"></i> Connect
             </a>
         </div>
-    </div></div><nav class="nav-bar" id="navbar">
+    </div>
+
+    <div class="scroll-indicator">
+        <span>Scroll</span>
+        <div class="scroll-arrow"></div>
+    </div>
+</div>
+
+<!-- ==================== STATUS BAR ==================== -->
+<div class="status-bar">
+    <div class="status-item"><div class="status-dot"></div> Madrid / Murcia</div>
+    <div class="status-item"><div class="status-dot pink"></div> Open to opportunities</div>
+    <div class="status-item"><div class="status-dot purple"></div> MSc Big Data & AI 2026</div>
+</div>
+
+<!-- ==================== NAVIGATION ==================== -->
+<nav class="nav-bar" id="navbar">
     <div class="nav-container">
         <button class="nav-link" onclick="switchSection('about', this)">Profile</button>
         <button class="nav-link" onclick="switchSection('social', this)">Social Media</button>
         <button class="nav-link" onclick="switchSection('branding', this)">Branding</button>
-        <button class="nav-link" onclick="switchSection('data', this)">Big Data & AI</button>
+        <button class="nav-link" onclick="switchSection('data', this)">Big Data &amp; AI</button>
         <button class="nav-link" onclick="switchSection('certifications', this)">Certifications</button>
         <button class="nav-link" onclick="switchSection('contact', this)">Contact</button>
-    </div></nav><section id="about" class="section">
+    </div>
+</nav>
+
+<!-- ==================== ABOUT / PROFILE ==================== -->
+<section id="about" class="section">
     <div class="about-layout">
         <div class="profile-sidebar">
             <div class="profile-box">
-                <img src="perfilnuevo.jpg" alt="María Luisa Ros Bolea" class="profile-photo">
+                <div class="profile-photo-wrapper">
+                    <img src="nuevafotodeperfilclaude.png" alt="María Luisa Ros Bolea" class="profile-photo">
+                </div>
                 <h3 class="profile-name">María Luisa Ros Bolea</h3>
-                <p class="profile-title">Data Scientist & Digital Strategist</p>
+                <p class="profile-title">Data Scientist &amp; Digital Strategist</p>
                 
                 <div class="stats-grid">
                     <div class="stat-card">
                         <span class="stat-value">HYBRID</span>
-                        <span class="stat-desc">Tech & Creative</span>
+                        <span class="stat-desc">Tech &amp; Creative</span>
                     </div>
                     <div class="stat-card">
-                        <span class="stat-value">360º</span>
+                        <span class="stat-value">360&ordm;</span>
                         <span class="stat-desc">Digital Vision</span>
                     </div>
                 </div>
                 
-                <a href="CV_MariaLuisa_RosBolea_DataAnalyst.pdf" download class="cv-btn">
-                    <i class="fas fa-file-download"></i> Download CV
-                </a>
+                <div class="cv-dropdown-wrapper">
+                    <button class="cv-btn" onclick="toggleCVDropdown(event)">
+                        <i class="fas fa-file-download"></i> Download CV
+                    </button>
+                    <div class="cv-dropdown-menu" id="cvDropdown">
+                        <a href="CV_MariaLuisa_DataAnalyst.pdf" download class="cv-option">
+                            <i class="fas fa-chart-line"></i>
+                            <div>
+                                <div class="cv-opt-label">Data Analyst &amp; BI</div>
+                                <div class="cv-opt-desc">Technical &amp; analytics focus</div>
+                            </div>
+                        </a>
+                        <div class="cv-divider"></div>
+                        <a href="CV_MariaLuisa_Marketing.pdf" download class="cv-option">
+                            <i class="fas fa-bullhorn"></i>
+                            <div>
+                                <div class="cv-opt-label">Marketing &amp; Strategy</div>
+                                <div class="cv-opt-desc">Digital marketing focus</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="profile-socials">
+                    <a href="https://www.linkedin.com/in/marialuisarosbolea/" target="_blank" class="social-linkedin" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/malurosbolea-ux" target="_blank" class="social-github" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.instagram.com/malu_menolu/" target="_blank" class="social-instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="mailto:malurosbolea@gmail.com" class="social-email" title="Email"><i class="fas fa-envelope"></i></a>
+                </div>
             </div>
         </div>
         
         <div class="about-main">
             <p class="intro-text">
-                Hey there! 🌸 I'm a <strong>dual-class specialist</strong> combining <strong>Digital Communication</strong> with <strong>Big Data & AI</strong>.  
+                Hey there! I'm a <strong>dual-class specialist</strong> combining <strong>Digital Communication</strong> with <strong>Big Data &amp; AI</strong>.  
                 <br><br>
-                Born in <strong>Madrid</strong> but currently living my best life between there and <strong>Murcia</strong>, I bring a unique hybrid profile to the table. I’m an alumni of <strong>CEU San Pablo</strong> and am currently grinding for my <strong>Master’s in Big Data</strong>.
+                Originally from <strong>Cartagena (Murcia)</strong> and currently based in <strong>Madrid</strong>, I bring a unique hybrid profile to the table. I'm an alumni of <strong>CEU San Pablo</strong> and am currently completing my <strong>Master's in Big Data &amp; Artificial Intelligence</strong>.
                 <br><br>
-                My skillset is vast! 🎮 I master every corner of <strong>Digital Marketing</strong>: from <strong>Influencer Management</strong> and <strong>Content Creation</strong> to deep <strong>Metric Analysis</strong>. I don't just post; I strategize. I bridge the gap between technical data and creative storytelling, ensuring every decision is backed by stats and every campaign hits the heart. 💖
+                My skillset spans every corner of <strong>Digital Marketing</strong>: from <strong>Influencer Management</strong> and <strong>Content Creation</strong> to deep <strong>Metric Analysis</strong>. I don't just post; I strategize. I bridge the gap between technical data and creative storytelling, ensuring every decision is backed by stats and every campaign hits the heart.
             </p>
             
             <div class="content-block">
@@ -585,9 +880,9 @@
                         <h4><i class="fas fa-database"></i> Data Science</h4>
                         <ul>
                             <li>Python (Pandas, NumPy, Scikit)</li>
-                            <li>SQL & NoSQL Databases</li>
+                            <li>SQL &amp; NoSQL Databases</li>
                             <li>Machine Learning Models</li>
-                            <li>Power BI & Tableau Viz</li>
+                            <li>Power BI &amp; Tableau Viz</li>
                         </ul>
                     </div>
                     
@@ -597,19 +892,23 @@
                             <li>Social Media Strategy</li>
                             <li>Influencer Management</li>
                             <li>Content Creation</li>
-                            <li>Paid Social & Ads</li>
+                            <li>Paid Social &amp; Ads</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-    </div></section><section id="social" class="section">
+    </div>
+</section>
+
+<!-- ==================== SOCIAL MEDIA ==================== -->
+<section id="social" class="section">
     <div class="section-header">
         <h2 class="section-title">Social Media Portfolio</h2>
         <p class="section-tagline">Engaging content crafted for the digital age</p>
     </div>
     
-    <h3 class="block-title" style="text-align: center; border: none;">Video Content & Personal Projects</h3>
+    <h3 class="block-title" style="text-align: center; border: none;">Video Content &amp; Personal Projects</h3>
     <div class="gallery-grid" style="margin-bottom: 60px;">
         <div class="gallery-card">
             <div class="card-media" onclick="openLightbox('skincare.mp4', 'video')">
@@ -629,7 +928,7 @@
                 <div class="carousel-overlay"><i class="fas fa-play"></i></div>
             </div>
             <div class="card-info">
-                <h4 class="card-title">Élan Sexology Institute</h4>
+                <h4 class="card-title">&Eacute;lan Sexology Institute</h4>
                 <p class="card-desc">Educational engaging short-form content.</p>
                 <div class="card-tags"><span class="tag">Education</span><span class="tag">Viral</span></div>
             </div>
@@ -641,7 +940,7 @@
                 <div class="carousel-overlay"><i class="fas fa-play"></i></div>
             </div>
             <div class="card-info">
-                <h4 class="card-title">Élan Sexology Institute</h4>
+                <h4 class="card-title">&Eacute;lan Sexology Institute</h4>
                 <p class="card-desc">Healthcare: "El Viaje". Sensitive messaging with empathy.</p>
                 <div class="card-tags"><span class="tag">Healthcare</span><span class="tag">Empathy</span></div>
             </div>
@@ -697,7 +996,7 @@
             <div class="card-info">
                 <h4 class="card-title">Zerain Restaurant</h4>
                 <p class="card-desc">Complete Basque cuisine campaign.</p>
-                <div class="card-tags"><span class="tag">F&B</span><span class="tag">Strategy</span></div>
+                <div class="card-tags"><span class="tag">F&amp;B</span><span class="tag">Strategy</span></div>
             </div>
         </div>
         
@@ -721,8 +1020,8 @@
                 </div>
             </div>
             <div class="card-info">
-                <h4 class="card-title">Clínica Jaro</h4>
-                <p class="card-desc">Wellness & Acupuncture promotion.</p>
+                <h4 class="card-title">Cl&iacute;nica Jaro</h4>
+                <p class="card-desc">Wellness &amp; Acupuncture promotion.</p>
                 <div class="card-tags"><span class="tag">Wellness</span><span class="tag">Social</span></div>
             </div>
         </div>
@@ -753,9 +1052,13 @@
             </div>
         </div>
         
-    </div></section><section id="branding" class="section">
+    </div>
+</section>
+
+<!-- ==================== BRANDING ==================== -->
+<section id="branding" class="section">
     <div class="section-header">
-        <h2 class="section-title">Branding & Advertising</h2>
+        <h2 class="section-title">Branding &amp; Advertising</h2>
         <p class="section-tagline">Identity design and visual impact</p>
     </div>
 
@@ -797,10 +1100,14 @@
             </div>
             <div class="card-info">
                 <h4 class="card-title">Burger Bar</h4>
-                <div class="card-tags"><span class="tag">F&B</span></div>
+                <div class="card-tags"><span class="tag">F&amp;B</span></div>
             </div>
         </div>
-    </div></section><section id="data" class="section">
+    </div>
+</section>
+
+<!-- ==================== BIG DATA & AI ==================== -->
+<section id="data" class="section">
     <div class="data-hero">
         <h2>BIG DATA <span style="color:var(--pastel-cyan)">X</span> CREATIVITY</h2>
         <p class="section-tagline">"Bridging the gap between Engineering and Humanities"</p>
@@ -817,9 +1124,9 @@
                 <div class="hybrid-column">
                     <h4>Technical Stats (Science)</h4>
                     <ul>
-                        <li>Predictive Modeling & ML</li>
+                        <li>Predictive Modeling &amp; ML</li>
                         <li>Customer Segmentation</li>
-                        <li>A/B Testing & Experimentation</li>
+                        <li>A/B Testing &amp; Experimentation</li>
                         <li>SQL / Python / NoSQL</li>
                     </ul>
                 </div>
@@ -829,20 +1136,26 @@
                     <ul>
                         <li>Data-Driven Storytelling</li>
                         <li>Visual Content Strategy</li>
-                        <li>Brand Identity & Empathy</li>
+                        <li>Brand Identity &amp; Empathy</li>
                         <li>User Experience (UX) Writing</li>
                     </ul>
                 </div>
             </div>
             
-            <a href="https://github.com/malurosbolea-ux" target="_blank" class="btn-glow btn-secondary">
-                <i class="fab fa-github"></i> View Code Projects
-            </a>
+            <div style="margin-top: 30px; text-align: center;">
+                <a href="https://github.com/malurosbolea-ux" target="_blank" class="btn-glow btn-secondary" style="display: inline-block;">
+                    <i class="fab fa-github"></i> View Code Projects
+                </a>
+            </div>
         </div>
-    </div></section><section id="certifications" class="section">
+    </div>
+</section>
+
+<!-- ==================== CERTIFICATIONS ==================== -->
+<section id="certifications" class="section">
     <div class="section-header">
         <h2 class="section-title">Certifications</h2>
-        <p class="section-tagline">I never stop learning: always mastering new skills and platforms. 💖</p>
+        <p class="section-tagline">I never stop learning: always mastering new skills and platforms.</p>
     </div>
 
     <div class="cert-grid">
@@ -910,6 +1223,7 @@
             <p>I successfully completed this course, learning Python basics specifically for Data Science, including data types and structures.</p>
             <a href="CertificadoIBMPY0101ENCognitive Class.pdf" target="_blank">View Document</a>
         </div>
+
         <div class="cert-card">
             <span class="date">Completed: Jun 2024</span>
             <h4>Bachelor's Degree: Digital Communication</h4>
@@ -929,7 +1243,7 @@
         <div class="cert-card">
             <span class="date">Completed: Dec 2025</span>
             <h4>AWS Cloud Essentials: Foundations</h4>
-            <div class="issuer">AWS Training & Certification</div>
+            <div class="issuer">AWS Training &amp; Certification</div>
             <p>I successfully completed the AWS Foundations course, gaining essential knowledge on getting started with the AWS Cloud. This foundational understanding is key for managing modern data infrastructure.</p>
             <a href="tituoAWSfoundations 2.pdf" target="_blank">View Document</a>
         </div>
@@ -945,7 +1259,7 @@
         <div class="cert-card">
             <span class="date">Issued: Jul 2023</span>
             <h4>COIL: Brands with Purpose (International Project)</h4>
-            <div class="issuer">CEU San Pablo / U. Católica Andrés Bello</div>
+            <div class="issuer">CEU San Pablo / U. Cat&oacute;lica Andr&eacute;s Bello</div>
             <p>I participated in the collaborative international project focused on purpose-driven branding and global communication.</p>
             <a href="1758460644182.png" target="_blank">View Document</a>
         </div>
@@ -982,7 +1296,11 @@
             <a href="diplomaDatabriksAI.pdf" target="_blank">View Document</a>
         </div>
         
-    </div></section><section id="contact" class="section">
+    </div>
+</section>
+
+<!-- ==================== CONTACT ==================== -->
+<section id="contact" class="section">
     <div class="contact-container">
         <h2 class="section-title">Ready to Connect?</h2>
         <p style="font-size: 1.2rem; color: #ccc; margin-bottom: 30px;">
@@ -990,7 +1308,7 @@
         </p>
         
         <div class="social-links-big">
-            <a href="https://www.linkedin.com/in/maría-luisa-ros-bolea-400780160/" target="_blank" class="social-btn btn-linkedin">
+            <a href="https://www.linkedin.com/in/marialuisarosbolea/" target="_blank" class="social-btn btn-linkedin">
                 <i class="fab fa-linkedin"></i> LinkedIn
             </a>
             <a href="mailto:malurosbolea@gmail.com" class="social-btn btn-email">
@@ -1006,51 +1324,92 @@
          <div style="margin-top: 30px;">
              <p style="color: var(--pastel-cyan); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8;">Let's create high-impact strategies together</p>
          </div>
-    </div></section><footer>
+    </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer>
     <div class="footer-grid">
         <div class="footer-col">
             <h3>M.L. ROS BOLEA</h3>
-            <p>Big Data Specialist & Digital Communication Expert.</p>
+            <p>Big Data Specialist &amp; Digital Communication Expert.</p>
             <p style="font-size: 0.9rem; color: #777;">Crafting the future of digital strategy from Madrid.</p>
+            <div class="footer-social-icons">
+                <a href="https://www.linkedin.com/in/marialuisarosbolea/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/malurosbolea-ux" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.instagram.com/malu_menolu/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="mailto:malurosbolea@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+            </div>
         </div>
         
         <div class="footer-col">
             <h3>Navigation</h3>
             <a href="#" onclick="switchSection('about', document.querySelectorAll('.nav-link')[0])">About Profile</a>
             <a href="#" onclick="switchSection('social', document.querySelectorAll('.nav-link')[1])">Social Portfolio</a>
-            <a href="#" onclick="switchSection('data', document.querySelectorAll('.nav-link')[3])">Big Data & AI</a>
+            <a href="#" onclick="switchSection('data', document.querySelectorAll('.nav-link')[3])">Big Data &amp; AI</a>
             <a href="#" onclick="switchSection('certifications', document.querySelectorAll('.nav-link')[4])">Certifications</a>
         </div>
         
         <div class="footer-col">
             <h3>Connect</h3>
-            <a href="https://www.linkedin.com/in/maría-luisa-ros-bolea-400780160/" target="_blank">LinkedIn</a>
-            <a href="https://www.instagram.com/malu_menolu/" target="_blank">Instagram</a>
-            <a href="mailto:malurosbolea@gmail.com">Email</a>
+            <a href="https://www.linkedin.com/in/marialuisarosbolea/" target="_blank"><i class="fab fa-linkedin-in" style="width:16px; margin-right:6px;"></i> LinkedIn</a>
+            <a href="https://www.instagram.com/malu_menolu/" target="_blank"><i class="fab fa-instagram" style="width:16px; margin-right:6px;"></i> Instagram</a>
+            <a href="https://github.com/malurosbolea-ux" target="_blank"><i class="fab fa-github" style="width:16px; margin-right:6px;"></i> GitHub</a>
+            <a href="mailto:malurosbolea@gmail.com"><i class="fas fa-envelope" style="width:16px; margin-right:6px;"></i> Email</a>
         </div>
         
         <div class="footer-col">
             <h3>Resources</h3>
-            <a href="CV_MariaLuisa_RosBolea_DataAnalyst.pdf" download>Download CV (PDF)</a>
-            <a href="https://github.com/malurosbolea-ux" target="_blank">View Source Code</a>
+            <a href="#" onclick="toggleCVDropdownFooter(event)"><i class="fas fa-file-download" style="width:16px; margin-right:6px;"></i> Download CV</a>
+            <a href="https://github.com/malurosbolea-ux" target="_blank"><i class="fas fa-code" style="width:16px; margin-right:6px;"></i> View Source Code</a>
         </div>
     </div>
     <div style="text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 0.8rem; color: #555;">
         <p style="margin-bottom: 10px; font-style: italic; opacity: 0.7;">This platform was entirely architected and developed by me to showcase the synergy between data and design.</p>
-        © 2026 María Luisa Ros Bolea. All rights reserved.
-    </div></footer><script>
-    // Lightbox Functions
+        &copy; 2026 Mar&iacute;a Luisa Ros Bolea. All rights reserved.
+    </div>
+</footer>
+
+<!-- ==================== SCRIPTS ==================== -->
+<script>
+    // ==================== CV DROPDOWN ====================
+    function toggleCVDropdown(event) {
+        event.stopPropagation();
+        const dropdown = document.getElementById('cvDropdown');
+        dropdown.classList.toggle('active');
+    }
+
+    function toggleCVDropdownFooter(event) {
+        event.preventDefault();
+        // Scroll to profile section and open the dropdown there
+        switchSection('about', document.querySelectorAll('.nav-link')[0]);
+        setTimeout(() => {
+            const dropdown = document.getElementById('cvDropdown');
+            dropdown.classList.add('active');
+        }, 700);
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+        const dropdown = document.getElementById('cvDropdown');
+        const wrapper = document.querySelector('.cv-dropdown-wrapper');
+        if (dropdown && !wrapper.contains(e.target)) {
+            dropdown.classList.remove('active');
+        }
+    });
+
+    // ==================== LIGHTBOX ====================
     function openLightbox(src, type) {
         const lightbox = document.getElementById('lightbox');
         const content = document.getElementById('lightbox-content');
         
         content.innerHTML = '';
         
-        if (type === 'image' || src.endsWith('.png') || src.endsWith('.jpg') || src.endsWith('.jpeg') || src.endsWith('.gif')) { // Para imágenes genéricas
+        if (type === 'image' || src.endsWith('.png') || src.endsWith('.jpg') || src.endsWith('.jpeg') || src.endsWith('.gif')) {
             const img = document.createElement('img');
             img.src = src;
             content.appendChild(img);
-        } else if (type === 'pdf' || src.endsWith('.pdf')) { // Para PDFs
+        } else if (type === 'pdf' || src.endsWith('.pdf')) {
              const iframe = document.createElement('iframe');
              iframe.src = src;
              iframe.width = '100%';
@@ -1075,7 +1434,7 @@
         document.getElementById('lightbox-content').innerHTML = '';
     }
     
-    // Particles Canvas
+    // ==================== PARTICLES ====================
     const canvas = document.getElementById('particles-canvas');
     const ctx = canvas.getContext('2d');
     
@@ -1153,7 +1512,7 @@
         canvas.height = window.innerHeight;
     });
     
-    // Navigation
+    // ==================== NAVIGATION ====================
     function goToAbout(event) {
         event.preventDefault();
         document.querySelector('.homepage').style.display = 'none';
@@ -1168,7 +1527,7 @@
         document.querySelector('.homepage').style.display = 'none';
         document.getElementById('navbar').scrollIntoView({ behavior: 'smooth' });
         setTimeout(() => {
-            switchSection('contact', document.querySelectorAll('.nav-link')[5]); // Contact es el 5to indice
+            switchSection('contact', document.querySelectorAll('.nav-link')[5]);
         }, 100);
     }
     
@@ -1192,4 +1551,6 @@
         
         if(button) button.classList.add('active');
         window.scrollTo(0, 0);
-    }</script></body></html>
+    }
+</script>
+</body></html>
