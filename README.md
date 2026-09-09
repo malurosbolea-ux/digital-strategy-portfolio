@@ -6,7 +6,7 @@ Welcome to the source code of my professional portfolio. This project represents
 
 
 ## 🌐 Live Demo
-**[🔗 Click here to view the Live Portfolio](https://malurosbolea-ux.github.io/portfolio-digital/)** *(Note: Replace `portfolio-digital` with your actual repository name if different)*
+** https://malurosbolea-ux.github.io/digital-strategy-portfolio/ ** *(Note: Replace `portfolio-digital` with your actual repository name if different)*
 
 ## 🛠️ Technical Stack
 This project was built from scratch to demonstrate clean coding practices and semantic structure, avoiding heavy frameworks to ensure performance and control.
