@@ -498,6 +498,12 @@
             grid-template-rows: repeat(2, 175px);
         }
 
+        /* Variant for cards with 8 media items (4 cols x 2 rows) */
+        .carousel-grid-8 {
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 175px);
+        }
+
         .carousel-item {
             position: relative; width: 100%; height: 100%;
             overflow: hidden; cursor: pointer;
@@ -945,6 +951,7 @@
             .gallery-grid { grid-template-columns: 1fr; }
             .carousel-grid { grid-template-rows: repeat(2, 140px); }
             .carousel-grid-6 { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(3, 140px); }
+            .carousel-grid-8 { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(4, 140px); }
             .hybrid-columns { grid-template-columns: 1fr; }
             .cert-grid { grid-template-columns: 1fr; }
             .repo-grid { grid-template-columns: 1fr; }
@@ -1209,6 +1216,48 @@
                 <h4 class="card-title">THEX</h4>
                 <p class="card-desc">Corporate carousel for THEX, an international real estate group. 100% original graphic design, no AI used.</p>
                 <div class="card-tags"><span class="tag">Real Estate</span><span class="tag">Branding</span></div>
+            </div>
+        </div>
+
+        <div class="carousel-card">
+            <div class="carousel-grid carousel-grid-8">
+                <div class="carousel-item" onclick="openLightbox('mrbsample1.png', 'image')">
+                    <img src="mrbsample1.png" alt="MRB Sample 1">
+                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="carousel-item" onclick="openLightbox('mrbsample2.png', 'image')">
+                    <img src="mrbsample2.png" alt="MRB Sample 2">
+                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="carousel-item" onclick="openLightbox('mrbsample3.png', 'image')">
+                    <img src="mrbsample3.png" alt="MRB Sample 3">
+                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="carousel-item" onclick="openLightbox('mrbsample4.png', 'image')">
+                    <img src="mrbsample4.png" alt="MRB Sample 4">
+                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="carousel-item" onclick="openLightbox('mrbsample5.png', 'image')">
+                    <img src="mrbsample5.png" alt="MRB Sample 5">
+                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="carousel-item" onclick="openLightbox('mrbsample6.png', 'image')">
+                    <img src="mrbsample6.png" alt="MRB Sample 6">
+                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="carousel-item" onclick="openLightbox('mrbsample7.png', 'image')">
+                    <img src="mrbsample7.png" alt="MRB Sample 7">
+                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="carousel-item" onclick="openLightbox('mrbsample8.png', 'image')">
+                    <img src="mrbsample8.png" alt="MRB Sample 8">
+                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+            </div>
+            <div class="card-info">
+                <h4 class="card-title">MRB Sample &mdash; Architecture Group</h4>
+                <p class="card-desc">Branding and editorial design for an international architecture group, delivered under a signed confidentiality agreement &mdash; the client's identity is withheld and all work is signed under my placeholder brand, MRB Sample. 100% original graphic design, no AI used.</p>
+                <div class="card-tags"><span class="tag">Architecture</span><span class="tag">Branding</span></div>
             </div>
         </div>
 
