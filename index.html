@@ -504,6 +504,12 @@
             grid-template-rows: repeat(2, 175px);
         }
 
+        /* Variant for cards with 10 media items (5 cols x 2 rows) */
+        .carousel-grid-10 {
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(2, 175px);
+        }
+
         .carousel-item {
             position: relative; width: 100%; height: 100%;
             overflow: hidden; cursor: pointer;
@@ -952,6 +958,7 @@
             .carousel-grid { grid-template-rows: repeat(2, 140px); }
             .carousel-grid-6 { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(3, 140px); }
             .carousel-grid-8 { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(4, 140px); }
+            .carousel-grid-10 { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(5, 140px); }
             .hybrid-columns { grid-template-columns: 1fr; }
             .cert-grid { grid-template-columns: 1fr; }
             .repo-grid { grid-template-columns: 1fr; }
@@ -1186,40 +1193,6 @@
         </div>
         
         <div class="carousel-card">
-            <div class="carousel-grid carousel-grid-6">
-                <div class="carousel-item" onclick="openLightbox('rhex4.png', 'image')">
-                    <img src="rhex4.png" alt="THEX 1">
-                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
-                </div>
-                <div class="carousel-item" onclick="openLightbox('rhex5.png', 'image')">
-                    <img src="rhex5.png" alt="THEX 2">
-                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
-                </div>
-                <div class="carousel-item" onclick="openLightbox('thex1.png', 'image')">
-                    <img src="thex1.png" alt="THEX 3">
-                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
-                </div>
-                <div class="carousel-item" onclick="openLightbox('thex2.png', 'image')">
-                    <img src="thex2.png" alt="THEX 4">
-                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
-                </div>
-                <div class="carousel-item" onclick="openLightbox('thexthexthex1.png', 'image')">
-                    <img src="thexthexthex1.png" alt="THEX 5 - Our Philosophy">
-                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
-                </div>
-                <div class="carousel-item" onclick="openLightbox('thex_thex_thex.png', 'image')">
-                    <img src="thex_thex_thex.png" alt="THEX 6 - The Art of Materiality">
-                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
-                </div>
-            </div>
-            <div class="card-info">
-                <h4 class="card-title">THEX</h4>
-                <p class="card-desc">Corporate carousel for THEX, an international real estate group. 100% original graphic design, no AI used.</p>
-                <div class="card-tags"><span class="tag">Real Estate</span><span class="tag">Branding</span></div>
-            </div>
-        </div>
-
-        <div class="carousel-card">
             <div class="carousel-grid carousel-grid-8">
                 <div class="carousel-item" onclick="openLightbox('mrbsample1.png', 'image')">
                     <img src="mrbsample1.png" alt="MRB Sample 1">
@@ -1262,33 +1235,7 @@
         </div>
 
         <div class="carousel-card">
-            <div class="carousel-grid">
-                <div class="carousel-item" onclick="openLightbox('reel.mp4', 'video')">
-                    <video src="reel.mp4" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video>
-                    <div class="carousel-overlay"><i class="fas fa-play"></i></div>
-                </div>
-                <div class="carousel-item" onclick="openLightbox('reel2.mp4', 'video')">
-                    <video src="reel2.mp4" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video>
-                    <div class="carousel-overlay"><i class="fas fa-play"></i></div>
-                </div>
-                <div class="carousel-item" onclick="openLightbox('elan3.mp4', 'video')">
-                    <video src="elan3.mp4" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video>
-                    <div class="carousel-overlay"><i class="fas fa-play"></i></div>
-                </div>
-                <div class="carousel-item" onclick="openLightbox('elan4.mp4', 'video')">
-                    <video src="elan4.mp4" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video>
-                    <div class="carousel-overlay"><i class="fas fa-play"></i></div>
-                </div>
-            </div>
-            <div class="card-info">
-                <h4 class="card-title">Instituto Élan de Sexología</h4>
-                <p class="card-desc">Educational engaging short-form content and sensitive messaging.</p>
-                <div class="card-tags"><span class="tag">Healthcare</span><span class="tag">Viral</span></div>
-            </div>
-        </div>
-
-        <div class="carousel-card">
-            <div class="carousel-grid carousel-grid-6">
+            <div class="carousel-grid carousel-grid-10">
                 <div class="carousel-item" onclick="openLightbox('sexologiaelan.png', 'image')">
                     <img src="sexologiaelan.png" alt="Élan Sexología - Inteligencia erótica">
                     <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
@@ -1313,10 +1260,26 @@
                     <video src="sequia_sexual.mp4" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video>
                     <div class="carousel-overlay"><i class="fas fa-play"></i></div>
                 </div>
+                <div class="carousel-item" onclick="openLightbox('reel.mp4', 'video')">
+                    <video src="reel.mp4" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video>
+                    <div class="carousel-overlay"><i class="fas fa-play"></i></div>
+                </div>
+                <div class="carousel-item" onclick="openLightbox('reel2.mp4', 'video')">
+                    <video src="reel2.mp4" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video>
+                    <div class="carousel-overlay"><i class="fas fa-play"></i></div>
+                </div>
+                <div class="carousel-item" onclick="openLightbox('elan3.mp4', 'video')">
+                    <video src="elan3.mp4" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video>
+                    <div class="carousel-overlay"><i class="fas fa-play"></i></div>
+                </div>
+                <div class="carousel-item" onclick="openLightbox('elan4.mp4', 'video')">
+                    <video src="elan4.mp4" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video>
+                    <div class="carousel-overlay"><i class="fas fa-play"></i></div>
+                </div>
             </div>
             <div class="card-info">
-                <h4 class="card-title">Élan Sexología — Contenido Educativo</h4>
-                <p class="card-desc">Divulgación sobre intimidad y pareja: carruseles informativos y reels formativos.</p>
+                <h4 class="card-title">Instituto Élan de Sexología</h4>
+                <p class="card-desc">Full social media package for a sexology &amp; couples-therapy institute: educational carousels and short-form video content on intimacy and relationships, handled with sensitive, science-based messaging. 100% original graphic design, no AI used.</p>
                 <div class="card-tags"><span class="tag">Healthcare</span><span class="tag">Educational</span></div>
             </div>
         </div>
