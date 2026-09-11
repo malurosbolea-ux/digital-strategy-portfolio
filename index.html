@@ -534,6 +534,72 @@
         .carousel-item:hover .carousel-overlay { opacity: 1; }
         .carousel-overlay i { font-size: 2rem; color: white; text-shadow: 0 0 10px black; }
 
+        /* "Ver más" badge shown on the 4th tile of galleries with extra media */
+        .carousel-overlay-more {
+            opacity: 1;
+            background: rgba(15, 12, 41, 0.55);
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .carousel-overlay-more span {
+            font-size: 1rem;
+            font-weight: 800;
+            color: white;
+            text-shadow: 0 0 10px black;
+            letter-spacing: 1px;
+        }
+
+        .carousel-item:hover .carousel-overlay-more {
+            background: rgba(224, 176, 255, 0.35);
+        }
+
+        /* Lightbox gallery navigation (prev/next + counter) */
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px; height: 50px;
+            border-radius: 50%;
+            background: rgba(15, 12, 41, 0.7);
+            border: 1px solid var(--pastel-purple);
+            color: white;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: 0.3s;
+            z-index: 10001;
+        }
+
+        .lightbox-nav:hover {
+            background: var(--pastel-purple);
+            color: var(--bg-dark);
+            box-shadow: 0 0 20px rgba(224, 176, 255, 0.5);
+        }
+
+        .lightbox-prev { left: -70px; }
+        .lightbox-next { right: -70px; }
+
+        .lightbox-counter {
+            position: absolute;
+            bottom: -45px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(15, 12, 41, 0.7);
+            border: 1px solid var(--pastel-purple);
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            color: var(--pastel-cyan);
+            white-space: nowrap;
+        }
+
+        @media (max-width: 900px) {
+            .lightbox-prev { left: 10px; }
+            .lightbox-next { right: 10px; }
+        }
+
         .card-info { padding: 25px; }
         
         .card-title { font-size: 1.4rem; margin-bottom: 10px; color: white; }
@@ -1193,38 +1259,22 @@
         </div>
         
         <div class="carousel-card">
-            <div class="carousel-grid carousel-grid-8">
-                <div class="carousel-item" onclick="openLightbox('mrbsample1.png', 'image')">
+            <div class="carousel-grid">
+                <div class="carousel-item" onclick="openGallery('mrb', 0)">
                     <img src="mrbsample1.png" alt="MRB Sample 1">
                     <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
                 </div>
-                <div class="carousel-item" onclick="openLightbox('mrbsample2.png', 'image')">
+                <div class="carousel-item" onclick="openGallery('mrb', 1)">
                     <img src="mrbsample2.png" alt="MRB Sample 2">
                     <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
                 </div>
-                <div class="carousel-item" onclick="openLightbox('mrbsample3.png', 'image')">
+                <div class="carousel-item" onclick="openGallery('mrb', 2)">
                     <img src="mrbsample3.png" alt="MRB Sample 3">
                     <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
                 </div>
-                <div class="carousel-item" onclick="openLightbox('mrbsample4.png', 'image')">
+                <div class="carousel-item" onclick="openGallery('mrb', 3)">
                     <img src="mrbsample4.png" alt="MRB Sample 4">
-                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
-                </div>
-                <div class="carousel-item" onclick="openLightbox('mrbsample5.png', 'image')">
-                    <img src="mrbsample5.png" alt="MRB Sample 5">
-                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
-                </div>
-                <div class="carousel-item" onclick="openLightbox('mrbsample6.png', 'image')">
-                    <img src="mrbsample6.png" alt="MRB Sample 6">
-                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
-                </div>
-                <div class="carousel-item" onclick="openLightbox('mrbsample7.png', 'image')">
-                    <img src="mrbsample7.png" alt="MRB Sample 7">
-                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
-                </div>
-                <div class="carousel-item" onclick="openLightbox('mrbsample8.png', 'image')">
-                    <img src="mrbsample8.png" alt="MRB Sample 8">
-                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
+                    <div class="carousel-overlay carousel-overlay-more"><i class="fas fa-search-plus"></i><span>+4</span></div>
                 </div>
             </div>
             <div class="card-info">
@@ -1235,46 +1285,22 @@
         </div>
 
         <div class="carousel-card">
-            <div class="carousel-grid carousel-grid-10">
-                <div class="carousel-item" onclick="openLightbox('sexologiaelan.png', 'image')">
+            <div class="carousel-grid">
+                <div class="carousel-item" onclick="openGallery('elan', 0)">
                     <img src="sexologiaelan.png" alt="Élan Sexología - Inteligencia erótica">
                     <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
                 </div>
-                <div class="carousel-item" onclick="openLightbox('sexologiaelan4.png', 'image')">
+                <div class="carousel-item" onclick="openGallery('elan', 1)">
                     <img src="sexologiaelan4.png" alt="Élan Sexología - 3 libros para la intimidad">
                     <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
                 </div>
-                <div class="carousel-item" onclick="openLightbox('sexologiaelan6.png', 'image')">
+                <div class="carousel-item" onclick="openGallery('elan', 2)">
                     <img src="sexologiaelan6.png" alt="Élan Sexología - Eyaculación femenina">
                     <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
                 </div>
-                <div class="carousel-item" onclick="openLightbox('sexologiaelan7.png', 'image')">
+                <div class="carousel-item" onclick="openGallery('elan', 3)">
                     <img src="sexologiaelan7.png" alt="Élan Sexología - Agendar el sexo">
-                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
-                </div>
-                <div class="carousel-item" onclick="openLightbox('terapia_pareja.mp4', 'video')">
-                    <video src="terapia_pareja.mp4" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video>
-                    <div class="carousel-overlay"><i class="fas fa-play"></i></div>
-                </div>
-                <div class="carousel-item" onclick="openLightbox('sequia_sexual.mp4', 'video')">
-                    <video src="sequia_sexual.mp4" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video>
-                    <div class="carousel-overlay"><i class="fas fa-play"></i></div>
-                </div>
-                <div class="carousel-item" onclick="openLightbox('reel.mp4', 'video')">
-                    <video src="reel.mp4" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video>
-                    <div class="carousel-overlay"><i class="fas fa-play"></i></div>
-                </div>
-                <div class="carousel-item" onclick="openLightbox('reel2.mp4', 'video')">
-                    <video src="reel2.mp4" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video>
-                    <div class="carousel-overlay"><i class="fas fa-play"></i></div>
-                </div>
-                <div class="carousel-item" onclick="openLightbox('elan3.mp4', 'video')">
-                    <video src="elan3.mp4" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video>
-                    <div class="carousel-overlay"><i class="fas fa-play"></i></div>
-                </div>
-                <div class="carousel-item" onclick="openLightbox('elan4.mp4', 'video')">
-                    <video src="elan4.mp4" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video>
-                    <div class="carousel-overlay"><i class="fas fa-play"></i></div>
+                    <div class="carousel-overlay carousel-overlay-more"><i class="fas fa-search-plus"></i><span>+6</span></div>
                 </div>
             </div>
             <div class="card-info">
@@ -1674,8 +1700,89 @@
         const lightbox = document.getElementById('lightbox');
         lightbox.classList.remove('active');
         document.getElementById('lightbox-content').innerHTML = '';
+        currentGalleryKey = null;
     }
-    
+
+    // ==================== EXPANDABLE GALLERIES (MRB Sample / Élan) ====================
+    // Full media sets for carousels that show only 4 tiles but hold more content.
+    // Nothing is removed — the rest is reachable via the arrows in the lightbox.
+    const mediaGalleries = {
+        mrb: [
+            { src: 'mrbsample1.png', type: 'image' },
+            { src: 'mrbsample2.png', type: 'image' },
+            { src: 'mrbsample3.png', type: 'image' },
+            { src: 'mrbsample4.png', type: 'image' },
+            { src: 'mrbsample5.png', type: 'image' },
+            { src: 'mrbsample6.png', type: 'image' },
+            { src: 'mrbsample7.png', type: 'image' },
+            { src: 'mrbsample8.png', type: 'image' }
+        ],
+        elan: [
+            { src: 'sexologiaelan.png', type: 'image' },
+            { src: 'sexologiaelan4.png', type: 'image' },
+            { src: 'sexologiaelan6.png', type: 'image' },
+            { src: 'sexologiaelan7.png', type: 'image' },
+            { src: 'terapia_pareja.mp4', type: 'video' },
+            { src: 'sequia_sexual.mp4', type: 'video' },
+            { src: 'reel.mp4', type: 'video' },
+            { src: 'reel2.mp4', type: 'video' },
+            { src: 'elan3.mp4', type: 'video' },
+            { src: 'elan4.mp4', type: 'video' }
+        ]
+    };
+
+    let currentGalleryKey = null;
+    let currentGalleryIndex = 0;
+
+    function openGallery(key, index) {
+        currentGalleryKey = key;
+        currentGalleryIndex = index;
+        renderGalleryItem();
+        document.getElementById('lightbox').classList.add('active');
+    }
+
+    function renderGalleryItem() {
+        const gallery = mediaGalleries[currentGalleryKey];
+        const item = gallery[currentGalleryIndex];
+        const content = document.getElementById('lightbox-content');
+        content.innerHTML = '';
+
+        if (item.type === 'image') {
+            const img = document.createElement('img');
+            img.src = item.src;
+            content.appendChild(img);
+        } else {
+            const video = document.createElement('video');
+            video.src = item.src;
+            video.controls = true;
+            video.autoplay = true;
+            content.appendChild(video);
+        }
+
+        const prevBtn = document.createElement('div');
+        prevBtn.className = 'lightbox-nav lightbox-prev';
+        prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+        prevBtn.onclick = function(e) { e.stopPropagation(); navigateGallery(-1); };
+        content.appendChild(prevBtn);
+
+        const nextBtn = document.createElement('div');
+        nextBtn.className = 'lightbox-nav lightbox-next';
+        nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+        nextBtn.onclick = function(e) { e.stopPropagation(); navigateGallery(1); };
+        content.appendChild(nextBtn);
+
+        const counter = document.createElement('div');
+        counter.className = 'lightbox-counter';
+        counter.textContent = (currentGalleryIndex + 1) + ' / ' + gallery.length;
+        content.appendChild(counter);
+    }
+
+    function navigateGallery(direction) {
+        const gallery = mediaGalleries[currentGalleryKey];
+        currentGalleryIndex = (currentGalleryIndex + direction + gallery.length) % gallery.length;
+        renderGalleryItem();
+    }
+
     // ==================== PARTICLES ====================
     const canvas = document.getElementById('particles-canvas');
     const ctx = canvas.getContext('2d');
