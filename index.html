@@ -1973,6 +1973,8 @@
             video.src = src;
             video.controls = true;
             video.autoplay = true;
+            video.playsInline = true;
+            video.preload = 'metadata';
             content.appendChild(video);
         }
         
@@ -2142,7 +2144,7 @@
       "video_chica_desierto.mp4",
       "video_chico_close.mp4",
       "video_chica_nevera.mp4",
-      "magnific_extreme-closeup-of-the-same-young-woman-from-the-r_seedance_1080p_9-16_24fps_97102.mp4"
+      "ai_character_closeup_seedance.mp4"
     ]
   },
   {
@@ -2172,7 +2174,7 @@
             const tiles = shown.map((src, i) => {
                 const more = extra > 0 && i === shown.length - 1;
                 const media = isVid
-                    ? `<video src="${src}#t=0.1" muted loop playsinline preload="metadata" onmouseover="this.play()" onmouseout="this.pause()"></video>`
+                    ? `<video src="${src}" muted loop playsinline preload="metadata" onloadedmetadata="if(this.duration){this.currentTime=Math.min(0.1,this.duration/2)}" onmouseover="this.play().catch(()=>{})" onmouseout="this.pause()"></video>`
                     : `<img src="${src}" alt="${f.title} ${i + 1}" loading="lazy">`;
                 return `<div class="carousel-item" onclick="openGallery('${f.key}', ${i})">${media}<div class="carousel-overlay${more ? ' carousel-overlay-more' : ''}"><i class="fas fa-${isVid ? 'play' : 'search-plus'}"></i>${more ? `<span>+${extra}</span>` : ''}</div></div>`;
             }).join('');
