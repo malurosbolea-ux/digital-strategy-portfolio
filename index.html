@@ -1727,6 +1727,15 @@
         <h4 class="ai-group-title"><i class="fas fa-film"></i> Videos <span>Character close-ups and general shots</span></h4>
         <div class="gallery-grid" id="ai-folders-videos"></div>
 
+        <div class="ai-portfolio-heading" id="ai-products">
+            <div>
+                <h3>Product Design Projects</h3>
+                <p>Personal concept projects published under MRB, my placeholder brand. The product work I develop with brands is covered by exclusivity agreements and cannot be shown publicly, so these are original pieces I created myself using the same AI workflow: product sheets, on-model imagery and short product videos. Click any collection to browse it in full.</p>
+            </div>
+        </div>
+
+        <div class="gallery-grid" id="ai-folders-products"></div>
+
         <div class="ai-coming-next">
             <i class="fas fa-plus-circle"></i>
             <div>
@@ -2185,6 +2194,65 @@
         });
     }
     renderAIFolders();
+
+    // ==================== PRODUCT DESIGN PROJECTS (MRB) ====================
+    // Archivos en products/mrb-outfit/ y products/mrb-jewellery/ (nombres originales, sin cambios).
+    // Cada carpeta mezcla fotos y videos; el tipo se detecta por la extension de cada archivo.
+    const productFolders = [
+        {
+            key: 'mrboutfit',
+            dir: 'products/mrb-outfit/',
+            title: 'MRB Outfit',
+            desc: 'A pastel loungewear set concept with monogram embroidery, scalloped trims, satin bows and a matching scrunchie. The collection includes the product sheet, on-model lifestyle imagery and a short product video.',
+            tags: ['Product Design', 'Fashion', 'Product Sheet', 'Gen-Video'],
+            media: [
+                'mrboutfit_withmodel.png',
+                'mrboutfitfichadeporducto.png',
+                'mrboutfit_videowithmodel.mp4',
+                'mrbutfit_withmodel2.png',
+                'mrboutfit_withmodel3.png'
+            ]
+        },
+        {
+            key: 'mrbjewellery',
+            dir: 'products/mrb-jewellery/',
+            title: 'MRB Jewellery',
+            desc: 'A gold jewellery concept: a sculptural engraved cuff and baroque pearl drop earrings with pav\u00e9 details. The collection includes product shots, on-model imagery and a short product video.',
+            tags: ['Product Design', 'Jewellery', 'Monogram', 'Gen-Video'],
+            media: [
+                'brazaletandearrngmrbwithmodel.png',
+                'earringmrb.png',
+                'mrbjewerellywithmodelvideo.mp4',
+                'brazaletmrb.png',
+                'brazaletinhandmrb.png'
+            ]
+        }
+    ];
+
+    function renderProductFolders() {
+        const grid = document.getElementById('ai-folders-products');
+        if (!grid) return;
+        productFolders.forEach(f => {
+            if (!f.media.length) return;
+            const items = f.media.map(name => ({
+                src: f.dir + name,
+                type: /\.(mp4|mov|webm)$/i.test(name) ? 'video' : 'image'
+            }));
+            mediaGalleries[f.key] = items;
+            const shown = items.slice(0, 4), extra = items.length - shown.length;
+            const tiles = shown.map((it, i) => {
+                const isVid = it.type === 'video';
+                const more = extra > 0 && i === shown.length - 1;
+                const media = isVid
+                    ? `<video src="${it.src}" muted loop playsinline preload="metadata" onloadedmetadata="if(this.duration){this.currentTime=Math.min(0.1,this.duration/2)}" onmouseover="this.play().catch(()=>{})" onmouseout="this.pause()"></video>`
+                    : `<img src="${it.src}" alt="${f.title} ${i + 1}" loading="lazy">`;
+                return `<div class="carousel-item" onclick="openGallery('${f.key}', ${i})">${media}<div class="carousel-overlay${more ? ' carousel-overlay-more' : ''}"><i class="fas fa-${isVid ? 'play' : 'search-plus'}"></i>${more ? `<span>+${extra}</span>` : ''}</div></div>`;
+            }).join('');
+            grid.insertAdjacentHTML('beforeend',
+                `<div class="carousel-card"><div class="carousel-grid n${shown.length}">${tiles}</div><div class="card-info"><h4 class="card-title">${f.title}</h4><p class="card-desc">${f.desc}</p><div class="card-tags">${f.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div></div></div>`);
+        });
+    }
+    renderProductFolders();
 
     // Flechas del teclado y Esc en las galerias
     document.addEventListener('keydown', function(e) {
