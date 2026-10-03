@@ -6,7 +6,7 @@
     <meta property="og:title" content="María Luisa Ros Bolea | Digital Strategy, Big Data & Creative AI">
     <meta property="og:description" content="Data-driven strategy meets creative AI: brand moodboards, consistent AI characters, generative video and product concepts.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="nuevafotoperfil.png">
+    <meta property="og:image" content="https://malurosbolea-ux.github.io/digital-strategy-portfolio/nuevafotoperfil.png">
     <meta name="theme-color" content="#0f0c29">
     
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Rajdhani:wght@300;500;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
@@ -463,7 +463,7 @@
 
         /* ==================== GALLERY & CAROUSELS ==================== */
         .gallery-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
             gap: 30px;
         }
 
@@ -638,7 +638,7 @@
         /* ==================== CERTIFICATIONS SECTION ==================== */
         .cert-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
             gap: 30px;
         }
         .cert-card {
@@ -857,7 +857,7 @@
 
         .repo-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr));
             gap: 25px;
             margin-top: 35px;
         }
@@ -1183,7 +1183,7 @@
 
         /* ==================== RESPONSIVE ==================== */
         @media (max-width: 1024px) {
-            .about-layout { grid-template-columns: 1fr; }
+            .about-layout { grid-template-columns: minmax(0, 1fr); }
             .profile-box { position: relative; top: 0; }
         }
 
@@ -1204,10 +1204,15 @@
             .ai-intro-grid, .ai-tools-grid, .ai-video-grid { grid-template-columns: 1fr; }
             .ai-portfolio-heading { align-items: flex-start; flex-direction: column; }
             .status-bar { flex-wrap: wrap; gap: 15px; }
+            .section-title { font-size: 2.1rem; overflow-wrap: anywhere; }
+            .section-header { margin-bottom: 50px; }
+            .skills-layout { grid-template-columns: minmax(0, 1fr); }
         }
     
         /* ==================== AI FOLDERS ==================== */
-        .ai-group-title { display: flex; align-items: baseline; gap: 12px; margin: 55px 0 22px; font-size: 1.6rem; color: var(--pastel-pink); }
+        .ai-group-title { display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px; margin: 60px 0 22px; font-size: 1.6rem; color: var(--pastel-pink); }
+        .ai-group-title::after { content: ""; flex: 1 1 60px; min-width: 40px; height: 1px; align-self: center; background: linear-gradient(90deg, rgba(255,183,213,0.45), rgba(224,176,255,0.05)); }
+        .ai-portfolio-heading + .ai-group-title { margin-top: 34px; }
         .ai-group-title i { font-size: 1.2rem; color: var(--pastel-purple); }
         .ai-group-title span { font-size: 0.9rem; font-weight: 400; color: var(--text-muted); letter-spacing: 0.5px; }
         .carousel-grid.n1 .carousel-item { grid-column: 1 / -1; grid-row: 1 / -1; }
@@ -1217,7 +1222,7 @@
         .swatches { display: flex; gap: 8px; margin: 2px 0 16px; }
         .swatches i { width: 26px; height: 26px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.65); box-shadow: 0 2px 10px rgba(0,0,0,0.35); transition: transform .25s ease; display: block; }
         .swatches i:hover { transform: translateY(-4px) scale(1.12); }
-        .brand-note { margin: 18px 0 0; padding: 14px 18px; border-left: 3px solid var(--pastel-pink); background: rgba(255, 183, 213, 0.08); border-radius: 0 12px 12px 0; color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+        .brand-note { margin: -4px 0 26px; max-width: 900px; padding: 14px 18px; border-left: 3px solid var(--pastel-pink); background: rgba(255, 183, 213, 0.08); border-radius: 0 12px 12px 0; color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
         .brand-note strong { color: var(--pastel-pink); }
     </style></head><body>
 
@@ -1313,7 +1318,7 @@
                 </div>
 
                 <div class="profile-socials">
-                    <a href="https://www.linkedin.com/in/marialuisarosbolea/" target="_blank" class="social-linkedin" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.linkedin.com/in/mar%C3%ADa-luisa-ros-bolea-400780160/" target="_blank" class="social-linkedin" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                     <a href="https://github.com/malurosbolea-ux" target="_blank" class="social-github" title="GitHub"><i class="fab fa-github"></i></a>
                     <a href="https://www.instagram.com/malu_menolu/" target="_blank" class="social-instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
                     <a href="mailto:malurosbolea@gmail.com" class="social-email" title="Email"><i class="fas fa-envelope"></i></a>
@@ -1370,42 +1375,68 @@
         
         <div class="carousel-card">
             <div class="carousel-grid">
-                <div class="carousel-item" onclick="openLightbox('clinicajaro1.png', 'image')">
-                    <img src="clinicajaro1.png" alt="Jaro 1">
+                <div class="carousel-item" onclick="openGallery('elan', 0)">
+                    <img src="sexologiaelan.png" alt="Élan Sexología - Inteligencia erótica" loading="lazy">
                     <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
                 </div>
-                <div class="carousel-item" onclick="openLightbox('clinicajaro2.png', 'image')">
-                    <img src="clinicajaro2.png" alt="Jaro 2">
+                <div class="carousel-item" onclick="openGallery('elan', 1)">
+                    <img src="sexologiaelan4.png" alt="Élan Sexología - 3 libros para la intimidad" loading="lazy">
                     <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
                 </div>
-                <div class="carousel-item" onclick="openLightbox('clinicajaro3.png', 'image')">
-                    <img src="clinicajaro3.png" alt="Jaro 3">
+                <div class="carousel-item" onclick="openGallery('elan', 2)">
+                    <img src="sexologiaelan6.png" alt="Élan Sexología - Eyaculación femenina" loading="lazy">
                     <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
                 </div>
-                <div class="carousel-item" onclick="openLightbox('clinicajaro4.png', 'image')">
-                    <img src="clinicajaro4.png" alt="Jaro 4">
-                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
+                <div class="carousel-item" onclick="openGallery('elan', 3)">
+                    <img src="sexologiaelan7.png" alt="Élan Sexología - Agendar el sexo" loading="lazy">
+                    <div class="carousel-overlay carousel-overlay-more"><i class="fas fa-search-plus"></i><span>+6</span></div>
                 </div>
             </div>
             <div class="card-info">
-                <h4 class="card-title">Cl&iacute;nica Jaro</h4>
-                <p class="card-desc">Wellness &amp; Acupuncture promotion.</p>
-                <div class="card-tags"><span class="tag">Wellness</span><span class="tag">Social</span></div>
+                <h4 class="card-title">Instituto Élan de Sexología</h4>
+                <p class="card-desc">Full social media package for a sexology &amp; couples-therapy institute: educational carousels and short-form video content on intimacy and relationships, handled with sensitive, science-based messaging. 100% original graphic design, no AI used.</p>
+                <div class="card-tags"><span class="tag">Healthcare</span><span class="tag">Educational</span></div>
+            </div>
+        </div>
+
+        <div class="carousel-card">
+            <div class="carousel-grid">
+                <div class="carousel-item" onclick="openGallery('mrb', 0)">
+                    <img src="mrbsample1.png" alt="MRB Sample 1" loading="lazy">
+                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="carousel-item" onclick="openGallery('mrb', 1)">
+                    <img src="mrbsample2.png" alt="MRB Sample 2" loading="lazy">
+                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="carousel-item" onclick="openGallery('mrb', 2)">
+                    <img src="mrbsample3.png" alt="MRB Sample 3" loading="lazy">
+                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="carousel-item" onclick="openGallery('mrb', 3)">
+                    <img src="mrbsample4.png" alt="MRB Sample 4" loading="lazy">
+                    <div class="carousel-overlay carousel-overlay-more"><i class="fas fa-search-plus"></i><span>+4</span></div>
+                </div>
+            </div>
+            <div class="card-info">
+                <h4 class="card-title">MRB Sample &mdash; Architecture Group</h4>
+                <p class="card-desc">Branding and editorial design for an international architecture group, delivered under a signed confidentiality agreement &mdash; the client's identity is withheld and all work is signed under my placeholder brand, MRB Sample. 100% original graphic design, no AI used.</p>
+                <div class="card-tags"><span class="tag">Architecture</span><span class="tag">Branding</span></div>
             </div>
         </div>
 
         <div class="carousel-card">
             <div class="carousel-grid">
                 <div class="carousel-item" onclick="openLightbox('campanayuuju1.png', 'image')">
-                    <img src="campanayuuju1.png" alt="Yuuju 1">
+                    <img src="campanayuuju1.png" alt="Yuuju 1" loading="lazy">
                     <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
                 </div>
                 <div class="carousel-item" onclick="openLightbox('campanayuuju2.png', 'image')">
-                    <img src="campanayuuju2.png" alt="Yuuju 2">
+                    <img src="campanayuuju2.png" alt="Yuuju 2" loading="lazy">
                     <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
                 </div>
                 <div class="carousel-item" onclick="openLightbox('campanayuuju3.png', 'image')">
-                    <img src="campanayuuju3.png" alt="Yuuju 3">
+                    <img src="campanayuuju3.png" alt="Yuuju 3" loading="lazy">
                     <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
                 </div>
                 <div class="carousel-item" onclick="openLightbox('campanayuuju4.mp4', 'video')">
@@ -1423,19 +1454,19 @@
         <div class="carousel-card">
             <div class="carousel-grid">
                 <div class="carousel-item" onclick="openLightbox('zerain1.png', 'image')">
-                    <img src="zerain1.png" alt="Zerain 1">
+                    <img src="zerain1.png" alt="Zerain 1" loading="lazy">
                     <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
                 </div>
                 <div class="carousel-item" onclick="openLightbox('zerain2.png', 'image')">
-                    <img src="zerain2.png" alt="Zerain 2">
+                    <img src="zerain2.png" alt="Zerain 2" loading="lazy">
                     <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
                 </div>
                 <div class="carousel-item" onclick="openLightbox('zerain3.png', 'image')">
-                    <img src="zerain3.png" alt="Zerain 3">
+                    <img src="zerain3.png" alt="Zerain 3" loading="lazy">
                     <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
                 </div>
                 <div class="carousel-item" onclick="openLightbox('zerain4.png', 'image')">
-                    <img src="zerain4.png" alt="Zerain 4">
+                    <img src="zerain4.png" alt="Zerain 4" loading="lazy">
                     <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
                 </div>
             </div>
@@ -1448,58 +1479,32 @@
         
         <div class="carousel-card">
             <div class="carousel-grid">
-                <div class="carousel-item" onclick="openGallery('mrb', 0)">
-                    <img src="mrbsample1.png" alt="MRB Sample 1">
+                <div class="carousel-item" onclick="openLightbox('clinicajaro1.png', 'image')">
+                    <img src="clinicajaro1.png" alt="Jaro 1" loading="lazy">
                     <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
                 </div>
-                <div class="carousel-item" onclick="openGallery('mrb', 1)">
-                    <img src="mrbsample2.png" alt="MRB Sample 2">
+                <div class="carousel-item" onclick="openLightbox('clinicajaro2.png', 'image')">
+                    <img src="clinicajaro2.png" alt="Jaro 2" loading="lazy">
                     <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
                 </div>
-                <div class="carousel-item" onclick="openGallery('mrb', 2)">
-                    <img src="mrbsample3.png" alt="MRB Sample 3">
+                <div class="carousel-item" onclick="openLightbox('clinicajaro3.png', 'image')">
+                    <img src="clinicajaro3.png" alt="Jaro 3" loading="lazy">
                     <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
                 </div>
-                <div class="carousel-item" onclick="openGallery('mrb', 3)">
-                    <img src="mrbsample4.png" alt="MRB Sample 4">
-                    <div class="carousel-overlay carousel-overlay-more"><i class="fas fa-search-plus"></i><span>+4</span></div>
+                <div class="carousel-item" onclick="openLightbox('clinicajaro4.png', 'image')">
+                    <img src="clinicajaro4.png" alt="Jaro 4" loading="lazy">
+                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
                 </div>
             </div>
             <div class="card-info">
-                <h4 class="card-title">MRB Sample &mdash; Architecture Group</h4>
-                <p class="card-desc">Branding and editorial design for an international architecture group, delivered under a signed confidentiality agreement &mdash; the client's identity is withheld and all work is signed under my placeholder brand, MRB Sample. 100% original graphic design, no AI used.</p>
-                <div class="card-tags"><span class="tag">Architecture</span><span class="tag">Branding</span></div>
+                <h4 class="card-title">Cl&iacute;nica Jaro</h4>
+                <p class="card-desc">Wellness &amp; Acupuncture promotion.</p>
+                <div class="card-tags"><span class="tag">Wellness</span><span class="tag">Social</span></div>
             </div>
         </div>
 
         <div class="carousel-card">
-            <div class="carousel-grid">
-                <div class="carousel-item" onclick="openGallery('elan', 0)">
-                    <img src="sexologiaelan.png" alt="Élan Sexología - Inteligencia erótica">
-                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
-                </div>
-                <div class="carousel-item" onclick="openGallery('elan', 1)">
-                    <img src="sexologiaelan4.png" alt="Élan Sexología - 3 libros para la intimidad">
-                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
-                </div>
-                <div class="carousel-item" onclick="openGallery('elan', 2)">
-                    <img src="sexologiaelan6.png" alt="Élan Sexología - Eyaculación femenina">
-                    <div class="carousel-overlay"><i class="fas fa-search-plus"></i></div>
-                </div>
-                <div class="carousel-item" onclick="openGallery('elan', 3)">
-                    <img src="sexologiaelan7.png" alt="Élan Sexología - Agendar el sexo">
-                    <div class="carousel-overlay carousel-overlay-more"><i class="fas fa-search-plus"></i><span>+6</span></div>
-                </div>
-            </div>
-            <div class="card-info">
-                <h4 class="card-title">Instituto Élan de Sexología</h4>
-                <p class="card-desc">Full social media package for a sexology &amp; couples-therapy institute: educational carousels and short-form video content on intimacy and relationships, handled with sensitive, science-based messaging. 100% original graphic design, no AI used.</p>
-                <div class="card-tags"><span class="tag">Healthcare</span><span class="tag">Educational</span></div>
-            </div>
-        </div>
-
-        <div class="carousel-card">
-            <div class="carousel-grid">
+            <div class="carousel-grid n3">
                 <div class="carousel-item" onclick="openLightbox('skincare.mp4', 'video')">
                     <video src="skincare.mp4" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video>
                     <div class="carousel-overlay"><i class="fas fa-play"></i></div>
@@ -1512,13 +1517,9 @@
                     <video src="events.mp4" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video>
                     <div class="carousel-overlay"><i class="fas fa-play"></i></div>
                 </div>
-                <div class="carousel-item" onclick="openLightbox('personal4.mp4', 'video')">
-                    <video src="personal4.mp4" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video>
-                    <div class="carousel-overlay"><i class="fas fa-play"></i></div>
-                </div>
             </div>
             <div class="card-info">
-                <h4 class="card-title">Proyectos Personales</h4>
+                <h4 class="card-title">Personal Projects</h4>
                 <p class="card-desc">Aesthetic content, dynamic animated stories, and event marketing.</p>
                 <div class="card-tags"><span class="tag">Creative</span><span class="tag">Motion</span></div>
             </div>
@@ -1534,7 +1535,7 @@
     </div>
 
     <div class="branding-banner" onclick="openLightbox('banner_yuuju1.jpg', 'image')">
-        <img src="banner_yuuju1.jpg" alt="Yuuju Banner 1">
+        <img src="banner_yuuju1.jpg" alt="Yuuju Banner 1" loading="lazy">
     </div>
     
     <div class="branding-banner" onclick="openLightbox('banner_yuuju2.mp4', 'video')">
@@ -1544,7 +1545,7 @@
     <div class="gallery-grid">
         <div class="gallery-card">
             <div class="card-media" onclick="openLightbox('anunciobeer.png', 'image')">
-                <img src="anunciobeer.png" alt="Beer Ad">
+                <img src="anunciobeer.png" alt="Beer Ad" loading="lazy">
                 <div class="carousel-overlay"><i class="fas fa-eye"></i></div>
             </div>
             <div class="card-info">
@@ -1555,7 +1556,7 @@
         
         <div class="gallery-card">
             <div class="card-media" onclick="openLightbox('sushi.jpg', 'image')">
-                <img src="sushi.jpg" alt="Japan Food">
+                <img src="sushi.jpg" alt="Japan Food" loading="lazy">
                 <div class="carousel-overlay"><i class="fas fa-eye"></i></div>
             </div>
             <div class="card-info">
@@ -1566,7 +1567,7 @@
         
         <div class="gallery-card">
             <div class="card-media" onclick="openLightbox('publicidadburger.png', 'image')">
-                <img src="publicidadburger.png" alt="Burger">
+                <img src="publicidadburger.png" alt="Burger" loading="lazy">
                 <div class="carousel-overlay"><i class="fas fa-eye"></i></div>
             </div>
             <div class="card-info">
@@ -1678,6 +1679,24 @@
             </div>
         </div>
 
+        <div class="ai-portfolio-heading">
+            <div>
+                <h3>AI Portfolio</h3>
+                <p>Personal experiments in brand direction, character consistency, lighting control and generative video. Click any collection to browse it in full.</p>
+            </div>
+        </div>
+
+        <h4 class="ai-group-title"><i class="fas fa-gem"></i> Brand &amp; product concepts <span>Moodboards and product pieces</span></h4>
+        <p class="brand-note"><strong>About these brands:</strong> &ldquo;Malu&rdquo; is my nickname and, like MRB, it is a placeholder brand I use as an example to build this portfolio. The product work I develop with real brands is covered by exclusivity agreements and cannot be shown publicly, so these are original concepts created with the same AI workflow: moodboards, product sheets, on-model imagery and short product videos.</p>
+        <div class="gallery-grid" id="ai-folders-brand"></div>
+
+        <h4 class="ai-group-title"><i class="fas fa-user-astronaut"></i> Characters &amp; identity <span>The same face, from close-up to full scene</span></h4>
+        <div class="gallery-grid" id="ai-folders-characters"></div>
+
+        <h4 class="ai-group-title"><i class="fas fa-mountain-sun"></i> Places &amp; light <span>Cinematic videos and relighting</span></h4>
+        <div class="gallery-grid" id="ai-folders-worlds"></div>
+
+        <h4 class="ai-group-title"><i class="fas fa-toolbox"></i> Toolkit <span>The models and platforms I work with</span></h4>
         <div class="ai-tools-grid">
             <div class="ai-tool-card">
                 <i class="fas fa-wand-magic-sparkles"></i>
@@ -1723,36 +1742,6 @@
                 <i class="fas fa-brain"></i>
                 <h4>Gemini, ChatGPT &amp; Claude</h4>
                 <p>Prompt engineering, multimodal ideation, research support and creative workflow assistance.</p>
-            </div>
-        </div>
-
-        <div class="ai-portfolio-heading">
-            <div>
-                <h3>AI Portfolio</h3>
-                <p>Personal experiments in brand direction, character consistency, lighting control and generative video. Click any collection to browse it in full.</p>
-                <p class="brand-note"><strong>A quick note on names:</strong> &ldquo;Malu&rdquo; is my nickname. Like MRB, it is an example brand I use to build this portfolio, so every concept below is a personal piece and never a real client project.</p>
-            </div>
-        </div>
-
-        <div class="gallery-grid" id="ai-folders-images"></div>
-
-        <h4 class="ai-group-title"><i class="fas fa-film"></i> Videos <span>Character close-ups and general shots</span></h4>
-        <div class="gallery-grid" id="ai-folders-videos"></div>
-
-        <div class="ai-portfolio-heading" id="ai-products">
-            <div>
-                <h3>Product Design Projects</h3>
-                <p>Personal concept projects published under MRB, my placeholder brand (just like Malu, my nickname, in the moodboards above). The product work I develop with brands is covered by exclusivity agreements and cannot be shown publicly, so these are original pieces I created myself using the same AI workflow: product sheets, on-model imagery and short product videos. Click any collection to browse it in full.</p>
-            </div>
-        </div>
-
-        <div class="gallery-grid" id="ai-folders-products"></div>
-
-        <div class="ai-coming-next">
-            <i class="fas fa-plus-circle"></i>
-            <div>
-                <h4>Portfolio in progress</h4>
-                <p>This space is designed to grow with new AI image, video and creative-production projects as I complete them.</p>
             </div>
         </div>
     </div>
@@ -1827,7 +1816,7 @@
             <h4>AWS Cloud Essentials: Foundations</h4>
             <div class="issuer">AWS Training &amp; Certification</div>
             <p>I successfully completed the AWS Foundations course, gaining essential knowledge on getting started with the AWS Cloud. This foundational understanding is key for managing modern data infrastructure.</p>
-            <a href="tituoAWSfoundations 2.pdf" target="_blank">View Document</a>
+            <a href="tituoAWSfoundations.pdf" target="_blank">View Document</a>
         </div>
         
         <div class="cert-card">
@@ -1843,7 +1832,6 @@
             <h4>COIL: Brands with Purpose (International Project)</h4>
             <div class="issuer">CEU San Pablo / U. Cat&oacute;lica Andr&eacute;s Bello</div>
             <p>I participated in the collaborative international project focused on purpose-driven branding and global communication.</p>
-            <a href="1758460644182.png" target="_blank">View Document</a>
         </div>
         
         <div class="cert-card">
@@ -1881,7 +1869,7 @@
         </p>
         
         <div class="social-links-big">
-            <a href="https://www.linkedin.com/in/marialuisarosbolea/" target="_blank" class="social-btn btn-linkedin">
+            <a href="https://www.linkedin.com/in/mar%C3%ADa-luisa-ros-bolea-400780160/" target="_blank" class="social-btn btn-linkedin">
                 <i class="fab fa-linkedin"></i> LinkedIn
             </a>
             <a href="mailto:malurosbolea@gmail.com" class="social-btn btn-email">
@@ -1907,7 +1895,7 @@
             <p>Big Data Specialist &amp; Digital Communication Expert.</p>
             <p style="font-size: 0.9rem; color: #777;">Crafting the future of digital strategy from Murcia and Madrid.</p>
             <div class="footer-social-icons">
-                <a href="https://www.linkedin.com/in/marialuisarosbolea/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.linkedin.com/in/mar%C3%ADa-luisa-ros-bolea-400780160/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                 <a href="https://github.com/malurosbolea-ux" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
                 <a href="https://www.instagram.com/malu_menolu/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
                 <a href="mailto:malurosbolea@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
@@ -1918,6 +1906,7 @@
             <h3>Navigation</h3>
             <a href="#" onclick="switchSection('about', document.querySelectorAll('.nav-link')[0])">About Profile</a>
             <a href="#" onclick="switchSection('social', document.querySelectorAll('.nav-link')[1])">Social Portfolio</a>
+            <a href="#" onclick="switchSection('branding', document.querySelectorAll('.nav-link')[2])">Branding</a>
             <a href="#" onclick="switchSection('data', document.querySelectorAll('.nav-link')[3])">Big Data</a>
             <a href="#" onclick="switchSection('ai', document.querySelectorAll('.nav-link')[4])">AI Portfolio</a>
             <a href="#" onclick="switchSection('certifications', document.querySelectorAll('.nav-link')[5])">Certifications</a>
@@ -1925,7 +1914,7 @@
         
         <div class="footer-col">
             <h3>Connect</h3>
-            <a href="https://www.linkedin.com/in/marialuisarosbolea/" target="_blank"><i class="fab fa-linkedin-in" style="width:16px; margin-right:6px;"></i> LinkedIn</a>
+            <a href="https://www.linkedin.com/in/mar%C3%ADa-luisa-ros-bolea-400780160/" target="_blank"><i class="fab fa-linkedin-in" style="width:16px; margin-right:6px;"></i> LinkedIn</a>
             <a href="https://www.instagram.com/malu_menolu/" target="_blank"><i class="fab fa-instagram" style="width:16px; margin-right:6px;"></i> Instagram</a>
             <a href="https://github.com/malurosbolea-ux" target="_blank"><i class="fab fa-github" style="width:16px; margin-right:6px;"></i> GitHub</a>
             <a href="mailto:malurosbolea@gmail.com"><i class="fas fa-envelope" style="width:16px; margin-right:6px;"></i> Email</a>
@@ -1938,7 +1927,7 @@
         </div>
     </div>
     <div style="text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 0.8rem; color: #555;">
-        <p style="margin-bottom: 10px; font-style: italic; opacity: 0.7;">This platform was entirely architected and developed by me to showcase the synergy between data and design.</p>
+        <p style="margin-bottom: 10px; font-style: italic; opacity: 0.7;">Designed and directed by me, with AI as a coding partner, to showcase the synergy between data and design.</p>
         &copy; 2026 Mar&iacute;a Luisa Ros Bolea. All rights reserved.
     </div>
 </footer>
@@ -2029,11 +2018,11 @@
             { src: 'sexologiaelan6.png', type: 'image' },
             { src: 'sexologiaelan7.png', type: 'image' },
             { src: 'terapia_pareja.mp4', type: 'video' },
-            { src: 'sequia_sexual.mp4', type: 'video' },
+            { src: 'Cómo superar una sequía sexual-2.mov', type: 'video' },
             { src: 'reel.mp4', type: 'video' },
             { src: 'reel2.mp4', type: 'video' },
-            { src: 'elan3.mp4', type: 'video' },
-            { src: 'elan4.mp4', type: 'video' }
+            { src: 'Superar la vergüenza y recuperar el placer sexual_compressed.mp4', type: 'video' },
+            { src: '¿Terapia de pareja solo cuando todo va mal.mp4', type: 'video' }
         ]
     };
 
@@ -2094,7 +2083,7 @@
     // Las carpetas sin archivos no se muestran. El "+N" y la galeria con flechas se generan solos.
     const aiFolders = [
   {
-    "grid": "images",
+    "grid": "brand",
     "key": "moodboards",
     "title": "Brand Moodboards",
     "desc": "Visual direction for an example brand: a peach, pool-water and amber-glass universe. Palette, texture and light are defined first, then carried across stills and a short motion piece. Malu is my nickname and, like MRB, an example brand used to build this portfolio.",
@@ -2104,7 +2093,13 @@
       "Moodboard",
       "Gen-Image & Video"
     ],
-    "swatches": ["#fcf5e9", "#e8bc9b", "#ea9475", "#cf7d4b", "#74968f"],
+    "swatches": [
+      "#fcf5e9",
+      "#e8bc9b",
+      "#ea9475",
+      "#cf7d4b",
+      "#74968f"
+    ],
     "media": [
       "Handwritten_note_under_amber_pla\u2026_2K_20261003182120.jpg",
       "Peach_resting_near_glass_object_20261003183651.mp4",
@@ -2113,7 +2108,26 @@
     ]
   },
   {
-    "grid": "images",
+    "grid": "characters",
+    "key": "closeups",
+    "title": "Character Close-ups",
+    "desc": "Character-driven video focused on facial detail, micro-expressions and skin texture, keeping the same identity from the first frame to the last.",
+    "tags": [
+      "Gen-Video",
+      "Identity",
+      "Realism"
+    ],
+    "media": [
+      "ai_character_closeup_seedance.mp4",
+      "Woman_gazing_intensely_forward_1080p_20261001170258(1).mp4",
+      "Woman_tilts_head_wearing_gold_20261001165408(2).mp4",
+      "video_ojo_oasis.mp4",
+      "video_chica_desierto.mp4",
+      "video_chico_close.mp4"
+    ]
+  },
+  {
+    "grid": "characters",
     "key": "scenes",
     "title": "Scenes with Characters",
     "desc": "Consistent AI characters placed inside dynamic environments. It demonstrates spatial awareness, narrative composition and identity preservation across poses, framing and lighting.",
@@ -2131,7 +2145,7 @@
     ]
   },
   {
-    "grid": "images",
+    "grid": "characters",
     "key": "sheets",
     "title": "Character Sheets",
     "desc": "Character turnarounds and reference sheets built for generative storytelling, keeping anatomy, facial features and styling coherent across every angle.",
@@ -2152,7 +2166,23 @@
     ]
   },
   {
-    "grid": "images",
+    "grid": "worlds",
+    "key": "resort",
+    "title": "AI Videos",
+    "desc": "AI-generated place, lifestyle and resort videos focused on cinematic atmosphere, continuity and smooth camera movement across each scene.",
+    "tags": [
+      "Places",
+      "Cinematic",
+      "Lifestyle"
+    ],
+    "media": [
+      "resortmodern1.mp4",
+      "_resortmodern2.mp4",
+      "Woman_stretching_in_gym_1080p_20261003091942.mp4"
+    ]
+  },
+  {
+    "grid": "worlds",
     "key": "environments",
     "title": "Environments",
     "desc": "One architectural space, five lighting scenarios. Geometry, materials and camera stay identical while only the light changes, from cool daylight to golden hour, sunset and night. It shows precise control of visual consistency under different illumination.",
@@ -2167,42 +2197,6 @@
       "magnific_use-the-exact-same-archit_LwAehYkswO.png",
       "magnific_use-the-exact-same-archit_lJzXaQrgv9.png",
       "magnific_use-the-exact-same-archit_Eb720Z4uuO.png"
-    ]
-  },
-  {
-    "grid": "videos",
-    "key": "closeups",
-    "title": "Character Close-ups",
-    "desc": "Character-driven video focused on facial detail, micro-expressions and skin texture, keeping the same identity from the first frame to the last.",
-    "tags": [
-      "Gen-Video",
-      "Identity",
-      "Realism"
-    ],
-    "media": [
-      "ai_character_closeup_seedance.mp4",
-      "Woman_gazing_intensely_forward_1080p_20261001170258(1).mp4",
-      "Woman_tilts_head_wearing_gold_20261001165408(2).mp4",
-      "video_ojo_oasis.mp4",
-      "video_chica_desierto.mp4",
-      "video_chico_close.mp4"
-    ]
-  },
-  {
-    "grid": "videos",
-    "key": "resort",
-    "title": "AI Videos",
-    "desc": "AI-generated place, lifestyle and resort videos focused on cinematic atmosphere, continuity and smooth camera movement across each scene.",
-    "tags": [
-      "Places",
-      "Cinematic",
-      "Lifestyle"
-    ],
-    "media": [
-      "resortmodern1.mp4",
-      "_resortmodern2.mp4",
-      "Woman_stretching_in_gym_1080p_20261003091942.mp4",
-      "video_chica_nevera.mp4"
     ]
   }
 ];
@@ -2263,7 +2257,7 @@
     ];
 
     function renderProductFolders() {
-        const grid = document.getElementById('ai-folders-products');
+        const grid = document.getElementById('ai-folders-brand');
         if (!grid) return;
         productFolders.forEach(f => {
             if (!f.media.length) return;
