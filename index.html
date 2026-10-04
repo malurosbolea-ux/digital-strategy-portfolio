@@ -1213,6 +1213,7 @@
         .ai-group-title { display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px; margin: 60px 0 22px; font-size: 1.6rem; color: var(--pastel-pink); }
         .ai-group-title::after { content: ""; flex: 1 1 60px; min-width: 40px; height: 1px; align-self: center; background: linear-gradient(90deg, rgba(255,183,213,0.45), rgba(224,176,255,0.05)); }
         .ai-portfolio-heading + .ai-group-title { margin-top: 34px; }
+        @media (min-width: 1200px) { #ai-folders-brand { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; } }
         .ai-group-title i { font-size: 1.2rem; color: var(--pastel-purple); }
         .ai-group-title span { font-size: 0.9rem; font-weight: 400; color: var(--text-muted); letter-spacing: 0.5px; }
         .carousel-grid.n1 .carousel-item { grid-column: 1 / -1; grid-row: 1 / -1; }
@@ -1686,8 +1687,8 @@
             </div>
         </div>
 
-        <h4 class="ai-group-title"><i class="fas fa-gem"></i> Brand &amp; product concepts <span>Moodboards and product pieces</span></h4>
-        <p class="brand-note"><strong>About these brands:</strong> &ldquo;Malu&rdquo; is my nickname and, like MRB, it is a placeholder brand I use as an example to build this portfolio. The product work I develop with real brands is covered by exclusivity agreements and cannot be shown publicly, so these are original concepts created with the same AI workflow: moodboards, product sheets, on-model imagery and short product videos.</p>
+        <h4 class="ai-group-title"><i class="fas fa-gem"></i> Brand &amp; product concepts <span>Moodboards, packaging and product pieces</span></h4>
+        <p class="brand-note"><strong>About these brands:</strong> I work with real brands, but that work is covered by confidentiality agreements and exclusivity clauses, so I cannot publish it. To show the technique instead, I build personal concepts under two placeholder brands: &ldquo;Malu&rdquo; (my nickname) and MRB. Same workflow and same standards, from moodboards and packaging to product sheets, on-model imagery and short product videos.</p>
         <div class="gallery-grid" id="ai-folders-brand"></div>
 
         <h4 class="ai-group-title"><i class="fas fa-user-astronaut"></i> Characters &amp; identity <span>The same face, from close-up to full scene</span></h4>
@@ -2227,6 +2228,20 @@
     // Cada carpeta mezcla fotos y videos; el tipo se detecta por la extension de cada archivo.
     const productFolders = [
         {
+            key: 'mrbpackaging',
+            dir: '',
+            title: 'Packaging',
+            desc: 'A packaging system for MRB, my placeholder brand: shopping bag, mailer box, ribbon and card, plus a skincare unboxing kit. One dusty-rose palette and serif logotype are held from logo to unboxing, and a short video moves from the full kit to a bottle close-up and the finished set.',
+            tags: ['Packaging', 'Brand Identity', 'Unboxing', 'Gen-Image & Video'],
+            swatches: ['#f5ede9', '#ecc9c9', '#c69c97', '#946a65', '#7b4062'],
+            media: [
+                'mrbpackaging1.jpg',
+                'mrbpackaging_video.mp4',
+                'mrbpackaging2.jpg',
+                'mrbpackaging3.jpg'
+            ]
+        },
+        {
             key: 'mrboutfit',
             dir: '',
             title: 'MRB Outfit',
@@ -2275,8 +2290,9 @@
                     : `<img src="${it.src}" alt="${f.title} ${i + 1}" loading="lazy">`;
                 return `<div class="carousel-item" onclick="openGallery('${f.key}', ${i})">${media}<div class="carousel-overlay${more ? ' carousel-overlay-more' : ''}"><i class="fas fa-${isVid ? 'play' : 'search-plus'}"></i>${more ? `<span>+${extra}</span>` : ''}</div></div>`;
             }).join('');
+            const swatches = f.swatches ? `<div class="swatches" aria-label="Brand palette">${f.swatches.map(c => `<i style="background:${c}" title="${c}"></i>`).join('')}</div>` : '';
             grid.insertAdjacentHTML('beforeend',
-                `<div class="carousel-card"><div class="carousel-grid n${shown.length}">${tiles}</div><div class="card-info"><h4 class="card-title">${f.title}</h4><p class="card-desc">${f.desc}</p><div class="card-tags">${f.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div></div></div>`);
+                `<div class="carousel-card"><div class="carousel-grid n${shown.length}">${tiles}</div><div class="card-info"><h4 class="card-title">${f.title}</h4><p class="card-desc">${f.desc}</p>${swatches}<div class="card-tags">${f.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div></div></div>`);
         });
     }
     renderProductFolders();
