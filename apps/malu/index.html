@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#fbe3ef">
+<meta name="description" content="María Luisa Ros Bolea: data, digital strategy and AI video, as an app.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Malu">
+<title>Malu · María Luisa Ros Bolea</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700&family=Unbounded:wght@500;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--rose:#b4467f;--rose2:#e889b5;--pink:#fbe3ef;--pink2:#f6c7d9;--lilac:#dccdf6;--lilac2:#b48be6;--peach:#f9d8cb;--mint:#c7ecdf;--sky:#cfe2f8;--butter:#f9ebb3;--ink:#3b2748;--ink2:#6b5577;--bg:#fff7fb;--disp:"Unbounded",system-ui,sans-serif;--sans:"Outfit",system-ui,sans-serif;--ser:"Instrument Serif",Georgia,serif;--mono:"JetBrains Mono",ui-monospace,monospace;--ease:cubic-bezier(.22,.9,.25,1);--sat:env(safe-area-inset-top,0px);--sab:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden;background:var(--pink);color:var(--ink);font:400 15px/1.5 var(--sans)}
+button,input{font:inherit;color:inherit;background:none;border:0}
+button,a{cursor:pointer}
+a{color:inherit;text-decoration:none}
+img,video{display:block;max-width:100%}
+:focus-visible{outline:2px solid var(--rose);outline-offset:3px;border-radius:8px}
+.app{position:relative;height:100%;max-width:480px;margin:0 auto;background:var(--bg);overflow:hidden;isolation:isolate}
+@media(min-width:520px){body{background:radial-gradient(circle at 20% 20%,var(--lilac),transparent 40%),radial-gradient(circle at 80% 70%,var(--peach),transparent 45%),var(--pink)}.app{border-radius:0;box-shadow:0 30px 90px rgba(180,70,127,.25)}}
+.screen{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;padding:calc(var(--sat) + 18px) 18px calc(var(--sab) + 130px);opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .35s,transform .45s var(--ease);scrollbar-width:none}
+.screen::-webkit-scrollbar{display:none}
+.screen.on{opacity:1;pointer-events:auto;transform:none}
+h1{font:700 30px/1.02 var(--disp);letter-spacing:-.02em}
+h2{font:700 22px/1.1 var(--disp);letter-spacing:-.01em}
+h3{font:600 17px/1.25 var(--sans)}
+.ser{font-family:var(--ser);font-style:italic;font-weight:400}
+.muted{color:var(--ink2)}
+.mono{font:500 11px var(--mono);letter-spacing:.04em}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.logo{font:700 18px var(--disp);color:var(--rose)}
+.logo span{color:var(--ink)}
+.lang{font:500 12px var(--mono);padding:7px 11px;border-radius:99px;background:#fff;border:1.5px solid var(--pink2)}
+/* me */
+.idcard{position:relative;border-radius:28px;padding:18px;background:linear-gradient(150deg,var(--pink2),var(--lilac) 70%,var(--sky));overflow:hidden}
+.idcard::after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;right:-60px;top:-70px;background:radial-gradient(var(--butter),transparent 70%);opacity:.8}
+.idrow{display:flex;gap:14px;align-items:center;position:relative;z-index:1}
+.ava{width:92px;height:92px;border-radius:24px;object-fit:cover;border:3px solid #fff;box-shadow:0 10px 24px rgba(180,70,127,.3);transform:rotate(-4deg)}
+.idcard h1{font-size:25px}
+.badge{display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:5px 10px;border-radius:99px;background:#fff;font:600 12px var(--sans);color:#2c7a5a}
+.badge i{width:8px;height:8px;border-radius:50%;background:#4cc38a;animation:pulse 1.8s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 6px rgba(76,195,138,.2)}}
+.idcard p{position:relative;z-index:1;margin-top:14px;font-size:15px;line-height:1.45}
+.idcard .ser{font-size:19px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.stat{border-radius:20px;padding:12px 10px;background:#fff;border:1.5px solid var(--pink)}
+.stat b{display:block;font:700 20px var(--disp);color:var(--rose)}
+.stat span{font-size:12px;line-height:1.25;display:block;color:var(--ink2);margin-top:2px}
+.sect{margin-top:26px}
+.sect>.h{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px}
+.sect>.h a,.sect>.h button{font:600 13px var(--sans);color:var(--rose)}
+.svc{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sv{border-radius:22px;padding:14px;min-height:118px;display:flex;flex-direction:column;justify-content:space-between;text-align:left}
+.sv svg{width:30px;height:30px}
+.sv h3{font-size:15px}
+.sv p{font-size:12.5px;color:var(--ink2);line-height:1.35;margin-top:2px}
+.c-pink{background:var(--pink)}.c-lilac{background:var(--lilac)}.c-mint{background:var(--mint)}.c-sky{background:var(--sky)}.c-peach{background:var(--peach)}.c-butter{background:var(--butter)}
+.strip{display:flex;gap:10px;overflow-x:auto;margin:0 -18px;padding:0 18px 4px;scroll-snap-type:x mandatory;scrollbar-width:none}
+.strip::-webkit-scrollbar{display:none}
+.thumb{flex:none;width:132px;scroll-snap-align:start;text-align:left}
+.thumb .im{position:relative;aspect-ratio:9/14;border-radius:20px;overflow:hidden;background:var(--lilac)}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.thumb .im::after{content:"";position:absolute;inset:auto 0 0;height:50%;background:linear-gradient(transparent,rgba(59,39,72,.6))}
+.thumb .pl{position:absolute;z-index:1;left:10px;bottom:10px;width:30px;height:30px;border-radius:50%;background:#fff;display:grid;place-items:center}
+.thumb .pl svg{width:12px;height:12px;fill:var(--rose)}
+.thumb h4{font:600 13px/1.25 var(--sans);margin-top:7px}
+/* reels */
+#s-reels{padding:0;background:#1d1424}
+.reel{position:relative;height:100%;scroll-snap-align:start;scroll-snap-stop:always;overflow:hidden;display:flex;align-items:center;justify-content:center}
+#s-reels{scroll-snap-type:y mandatory}
+.reel .bg{position:absolute;inset:-30px;background-size:cover;background-position:center;filter:blur(28px) saturate(1.2) brightness(.65)}
+.reel video{position:relative;z-index:1;width:100%;max-height:100%;object-fit:contain;background:#000}
+.reel.vert video{height:100%;object-fit:cover}
+.reel .ov{position:absolute;z-index:2;left:0;right:0;bottom:0;padding:60px 76px calc(var(--sab) + 104px) 18px;background:linear-gradient(transparent,rgba(29,20,36,.85));color:#fff}
+.reel .ov .mono{color:var(--pink2)}
+.reel .ov h2{margin:4px 0 6px}
+.reel .ov p{font-size:13.5px;opacity:.9;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.reel .side{position:absolute;z-index:3;right:12px;bottom:calc(var(--sab) + 110px);display:flex;flex-direction:column;gap:14px;align-items:center}
+.rb{width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,.18);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:grid;place-items:center;color:#fff;transition:transform .2s}
+.rb:active{transform:scale(.9)}
+.rb svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.rb.on{background:var(--rose2)}
+.rb small{display:block;font:600 10px var(--sans);margin-top:3px;text-align:center}
+.side label{font:600 10.5px var(--sans);color:#fff;text-align:center;margin-top:-8px}
+.reel .tapmsg{position:absolute;z-index:2;top:calc(var(--sat) + 18px);left:18px;padding:6px 12px;border-radius:99px;background:rgba(255,255,255,.2);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#fff;font:600 12px var(--sans)}
+.reel .prog{position:absolute;z-index:3;left:0;right:0;bottom:calc(var(--sab) + 88px);height:3px;background:rgba(255,255,255,.2)}
+.reel .prog i{display:block;height:100%;width:0;background:var(--pink2)}
+/* work */
+.seg{display:flex;gap:6px;padding:4px;border-radius:99px;background:var(--pink);margin:14px 0 16px}
+.seg button{flex:1;height:38px;border-radius:99px;font:600 13px var(--sans);color:var(--ink2);transition:all .3s}
+.seg button.on{background:#fff;color:var(--rose);box-shadow:0 4px 12px rgba(180,70,127,.15)}
+.pane{display:none}.pane.on{display:block;animation:in .4s var(--ease)}
+@keyframes in{from{opacity:0;transform:translateY(8px)}}
+.proj{border-radius:26px;padding:18px;margin-bottom:12px;position:relative;overflow:hidden}
+.proj .mono{color:var(--rose)}
+.proj h2{margin:6px 0}
+.proj p{font-size:14px;color:var(--ink2)}
+.grade{position:absolute;right:16px;top:16px;width:64px;height:64px;border-radius:50%;background:#fff;display:grid;place-items:center;text-align:center;font:700 20px/1 var(--disp);color:var(--rose)}
+.grade small{display:block;font:500 9px var(--mono);color:var(--ink2)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.chip{padding:6px 11px;border-radius:99px;background:rgba(255,255,255,.75);font:500 12.5px var(--sans)}
+.apps{display:grid;gap:10px}
+.appc{display:flex;gap:14px;align-items:center;padding:12px;border-radius:24px;background:#fff;border:1.5px solid var(--pink);text-align:left;width:100%}
+.appc img{width:62px;height:62px;border-radius:16px;box-shadow:0 6px 14px rgba(59,39,72,.18)}
+.appc div{flex:1}
+.appc p{font-size:13px;color:var(--ink2)}
+.appc .go{font:600 12.5px var(--sans);padding:8px 14px;border-radius:99px;background:var(--pink);color:var(--rose)}
+.tl{position:relative;padding-left:22px}
+.tl::before{content:"";position:absolute;left:6px;top:8px;bottom:8px;width:2px;background:var(--pink2);border-radius:2px}
+.ti{position:relative;padding:0 0 18px}
+.ti::before{content:"";position:absolute;left:-21px;top:5px;width:12px;height:12px;border-radius:50%;background:#fff;border:3px solid var(--rose2)}
+.ti .mono{color:var(--rose)}
+.ti p{font-size:13.5px;color:var(--ink2)}
+.skill{margin-bottom:14px}
+.skill h3{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.skill h3 i{width:12px;height:12px;border-radius:4px}
+/* contact */
+.hello{border-radius:28px;padding:22px 18px;background:var(--ink);color:#fff;position:relative;overflow:hidden}
+.hello h1{font-size:27px}
+.hello .ser{color:var(--pink2);font-size:30px}
+.hello p{margin-top:10px;opacity:.85;font-size:14.5px}
+.hello::after{content:"";position:absolute;right:-50px;bottom:-60px;width:180px;height:180px;border-radius:50%;background:radial-gradient(var(--rose2),transparent 70%);opacity:.5}
+.links{display:grid;gap:10px;margin-top:14px}
+.lk{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:22px;background:#fff;border:1.5px solid var(--pink)}
+.lk .ic{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;flex:none}
+.lk .ic svg{width:22px;height:22px;fill:none;stroke:var(--ink);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.lk div{flex:1;min-width:0}
+.lk b{display:block;font-weight:600}
+.lk span{font-size:12.5px;color:var(--ink2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block}
+.lk em{font-style:normal;color:var(--rose);font-size:18px}
+/* tabbar */
+.tabs{position:absolute;z-index:30;left:12px;right:12px;bottom:calc(var(--sab) + 12px);height:66px;border-radius:24px;background:rgba(255,255,255,.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 10px 30px rgba(180,70,127,.2);border:1.5px solid #fff;display:grid;grid-template-columns:repeat(4,1fr);padding:6px}
+.tab{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border-radius:18px;color:var(--ink2);font:600 11px var(--sans);transition:all .3s}
+.tab svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.tab.on{background:var(--pink);color:var(--rose)}
+.app.dark .tabs{background:rgba(40,28,48,.75);border-color:rgba(255,255,255,.12)}
+.app.dark .tab{color:rgba(255,255,255,.7)}
+.app.dark .tab.on{background:rgba(232,137,181,.25);color:#fff}
+/* mascot */
+.pet{position:absolute;z-index:35;right:14px;bottom:calc(var(--sab) + 90px);width:62px;height:66px;animation:bob 2.4s ease-in-out infinite;filter:drop-shadow(0 8px 12px rgba(180,70,127,.3));transition:opacity .3s}
+.pet svg{width:100%;height:100%}
+.pet .dot{position:absolute;right:2px;top:2px;width:14px;height:14px;border-radius:50%;background:var(--rose);border:2.5px solid #fff}
+@keyframes bob{50%{transform:translateY(-5px)}}
+.app.dark .pet,.app.dark .bubble{opacity:0;pointer-events:none}
+.bubble{position:absolute;z-index:34;right:82px;bottom:calc(var(--sab) + 112px);max-width:200px;padding:9px 12px;border-radius:16px 16px 4px 16px;background:#fff;border:1.5px solid var(--pink2);font:500 12.5px/1.35 var(--sans);box-shadow:0 8px 20px rgba(180,70,127,.15);opacity:0;transform:scale(.8);transform-origin:100% 100%;transition:all .35s var(--ease);pointer-events:none}
+.bubble.on{opacity:1;transform:none}
+/* sheet & chat */
+.sheet{position:absolute;inset:0;z-index:50;pointer-events:none}
+.sheet .scrim{position:absolute;inset:0;background:rgba(59,39,72,.35);opacity:0;transition:opacity .35s}
+.sheet .body{position:absolute;left:0;right:0;bottom:0;height:86%;border-radius:30px 30px 0 0;background:var(--bg);transform:translateY(105%);transition:transform .5s var(--ease);display:flex;flex-direction:column}
+.sheet.on{pointer-events:auto}.sheet.on .scrim{opacity:1}.sheet.on .body{transform:none}
+.chead{display:flex;align-items:center;gap:12px;padding:16px 18px 12px;border-bottom:1.5px solid var(--pink)}
+.chead svg{width:44px;height:48px}
+.chead div{flex:1}
+.chead small{display:block;font-size:12px;color:#2c7a5a}
+.chead .x{width:36px;height:36px;border-radius:50%;background:var(--pink);font-size:18px}
+#msgs{flex:1;overflow-y:auto;padding:16px 16px 8px;display:flex;flex-direction:column;gap:10px}
+.m{max-width:84%;padding:10px 13px;border-radius:18px;font-size:14.5px;line-height:1.45;animation:in .3s var(--ease)}
+.m.b{align-self:flex-start;background:#fff;border:1.5px solid var(--pink);border-bottom-left-radius:6px}
+.m.u{align-self:flex-end;background:var(--rose);color:#fff;border-bottom-right-radius:6px}
+.m a.inl{color:var(--rose);font-weight:600;text-decoration:underline}
+.m .acts{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.m .acts button,.m .acts a{padding:6px 11px;border-radius:99px;background:var(--pink);color:var(--rose);font:600 12.5px var(--sans)}
+.typing{display:flex;gap:4px;padding:14px}
+.typing i{width:7px;height:7px;border-radius:50%;background:var(--rose2);animation:ty 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes ty{50%{transform:translateY(-5px);opacity:.5}}
+.sugs{display:flex;gap:6px;overflow-x:auto;padding:4px 16px 8px;scrollbar-width:none}
+.sugs::-webkit-scrollbar{display:none}
+.sugs button{flex:none;padding:8px 13px;border-radius:99px;background:#fff;border:1.5px solid var(--pink2);font:500 13px var(--sans)}
+.cin{display:flex;gap:8px;padding:8px 14px calc(var(--sab) + 14px)}
+.cin input{flex:1;height:48px;border-radius:99px;background:#fff;border:1.5px solid var(--pink2);padding:0 18px;font-size:15px}
+.cin button{width:48px;height:48px;border-radius:50%;background:var(--rose);color:#fff;display:grid;place-items:center}
+.cin button svg{width:20px;height:20px;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.toast{position:absolute;z-index:70;left:50%;top:calc(var(--sat) + 14px);transform:translate(-50%,-20px);opacity:0;padding:10px 16px;border-radius:99px;background:var(--ink);color:#fff;font:500 13.5px var(--sans);transition:all .35s var(--ease);pointer-events:none;white-space:nowrap}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.splash{position:absolute;inset:0;z-index:90;background:linear-gradient(160deg,var(--pink),var(--lilac));display:grid;place-items:center;transition:opacity .6s,visibility .6s}
+.splash.off{opacity:0;visibility:hidden}
+.splash div{text-align:center}
+.splash svg{width:110px;height:120px;animation:pop .7s cubic-bezier(.3,1.6,.5,1) both}
+.splash b{display:block;font:700 30px var(--disp);color:var(--rose);margin-top:8px;animation:fadeU .6s .3s both}
+@keyframes pop{from{transform:scale(.3);opacity:0}}
+@keyframes fadeU{from{opacity:0;transform:translateY(8px)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="app" id="app">
+
+<section class="screen on" id="s-me">
+  <div class="topbar"><span class="logo">malu<span>.app</span></span><button class="lang" id="lang">ES</button></div>
+  <div class="idcard">
+    <div class="idrow"><img class="ava" src="img/me.jpg" alt="María Luisa Ros Bolea"><div><h1>María Luisa<br>Ros Bolea</h1><span class="badge"><i></i><span data-t="avail"></span></span></div></div>
+    <p><span class="ser" data-t="tagA"></span> <span data-t="tagB"></span></p>
+  </div>
+  <div class="stats">
+    <div class="stat"><b>20K+</b><span data-t="st1"></span></div>
+    <div class="stat"><b>9/10</b><span data-t="st2"></span></div>
+    <div class="stat"><b>C1</b><span data-t="st3"></span></div>
+  </div>
+  <div class="sect"><div class="h"><h2 data-t="whatT"></h2></div><div class="svc" id="svc"></div></div>
+  <div class="sect"><div class="h"><h2 data-t="reelsT"></h2><button data-go="reels" data-t="seeAll"></button></div><div class="strip" id="strip"></div></div>
+  <div class="sect"><div class="h"><h2 data-t="appsT"></h2><button data-go="work" data-w="apps" data-t="seeAll"></button></div><div class="apps" id="appsMini"></div></div>
+</section>
+
+<section class="screen" id="s-reels" aria-label="Commercials"></section>
+
+<section class="screen" id="s-work">
+  <div class="topbar"><h1 data-t="workT"></h1><button class="lang" data-lang>ES</button></div>
+  <div class="seg" id="seg"><button class="on" data-w="projects" data-t="wP"></button><button data-w="apps" data-t="wA"></button><button data-w="path" data-t="wC"></button><button data-w="skills" data-t="wS"></button></div>
+  <div class="pane on" id="w-projects"></div>
+  <div class="pane" id="w-apps"><p class="muted" data-t="appsP" style="margin-bottom:12px"></p><div class="apps" id="appsFull"></div></div>
+  <div class="pane" id="w-path"><div class="tl" id="tl"></div></div>
+  <div class="pane" id="w-skills" ></div>
+</section>
+
+<section class="screen" id="s-hi">
+  <div class="topbar"><span class="logo">malu<span>.app</span></span><button class="lang" data-lang>ES</button></div>
+  <div class="hello"><h1 data-t="hiT"></h1><span class="ser" data-t="hiS"></span><p data-t="hiP"></p></div>
+  <div class="links" id="links"></div>
+</section>
+
+<nav class="tabs" aria-label="Main">
+  <button class="tab on" data-go="me"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><span data-t="tMe"></span></button>
+  <button class="tab" data-go="reels"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M10 8.5v7l6-3.5z"/></svg><span data-t="tReels"></span></button>
+  <button class="tab" data-go="work"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="3"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></svg><span data-t="tWork"></span></button>
+  <button class="tab" data-go="hi"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg><span data-t="tHi"></span></button>
+</nav>
+
+<button class="pet" id="pet" aria-label="Chat with Pixel"><svg viewBox="0 0 120 130" id="petSvg"></svg><span class="dot"></span></button>
+<div class="bubble" id="bubble"></div>
+
+<div class="sheet" id="chat" role="dialog" aria-modal="true" aria-label="Pixel">
+  <div class="scrim" data-close></div>
+  <div class="body">
+    <div class="chead"><svg viewBox="0 0 120 130" class="catmini"></svg><div><h3>Pixel</h3><small data-t="petSub"></small></div><button class="x" data-close aria-label="Close">×</button></div>
+    <div id="msgs"></div>
+    <div class="sugs" id="sugs"></div>
+    <form class="cin" id="cform"><input id="cq" autocomplete="off" data-ph="ask"><button aria-label="Send"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></form>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<div class="splash" id="splash"><div><svg viewBox="0 0 120 130" class="catmini"></svg><b>malu</b></div></div>
+</div>
+<script>
+(()=>{
+const ADS=[{"src": "MRB_Titanium_comercial_github.mp4", "title": "MRB Titanium Series", "tag": "Tech commercial · 33 s", "model": "Omni 1.2 & Veo 3", "hd": "https://drive.google.com/file/d/1siJqH4Vx4trtaU1z6ruCJgzvh52Z0ZMF/view?usp=share_link", "desc": "Personal project for MRB: launch film for Titanium Series noise-cancelling headphones, from a world of noise to engineered silence, with the same product and glowing MRB monogram in every shot and a closing on “Hear what others can’t.”", "poster": "ad0.webp", "desc_es": "Proyecto personal para MRB: película de lanzamiento de los auriculares con cancelación de ruido Titanium Series, de un mundo de ruido a un silencio diseñado, con el mismo producto y el monograma MRB iluminado en cada plano, y un cierre con «Hear what others can’t.»", "tag_es": "Anuncio de tecnología · 33 s"}, {"src": "MRB_The_Obsidian_comercial_redes-2.mp4", "title": "MRB The Obsidian", "tag": "Fragrance commercial · 30 s", "model": "Seedance 2.5", "hd": "https://drive.google.com/file/d/1-F1Pfa46smKg39VrTjJls8hssGzjSxOM/view?usp=share_link", "desc": "Personal project for MRB: launch of The Obsidian, an eau de parfum told through a black panther, an obsidian throne and chains, with the same face and the same bottle in every shot, closing on “Born to leave a mark.”", "poster": "ad1.webp", "desc_es": "Proyecto personal para MRB: lanzamiento de The Obsidian, un eau de parfum contado con una pantera negra, un trono de obsidiana y cadenas, con la misma cara y el mismo frasco en cada plano, y que cierra con «Born to leave a mark.»", "tag_es": "Anuncio de perfume · 30 s"}, {"src": "mrb-petal-glow-serum.mp4", "title": "MRB Petal Glow Serum", "tag": "Product commercial · 31 s", "model": "Seedance 2.5", "hd": "https://drive.google.com/file/d/1D6LSBHER1MU1yX43KoI1YfW5eh6UhP0P/view?usp=sharing", "desc": "Beauty spot for Petal Glow, a facial serum by MRB, my concept brand: a macro drop, a rose petal on still water, application on skin and a sunset hero shot of the bottle.", "poster": "ad2.webp", "desc_es": "Anuncio de belleza para Petal Glow, un sérum facial de MRB, mi marca concepto: gota en macro, un pétalo de rosa sobre el agua, aplicación sobre la piel y plano final del frasco al atardecer.", "tag_es": "Anuncio de producto · 31 s"}, {"src": "MRB_bag_github.mp4", "title": "MRB Handbag", "tag": "Fashion commercial · 33 s", "model": "Veo 3 Flash & Omni 1.2", "hd": "https://drive.google.com/file/d/1LIPjkTZ8MXUa9gNG_Z8rjNjU2M5ViySS/view?usp=share_link", "desc": "Personal project for MRB: a blush leather handbag followed through a Madrid morning, from a sunlit street to a café table, closing on “The luxury of a pause.”", "poster": "ad3.webp", "desc_es": "Proyecto personal para MRB: un bolso de piel rosa empolvado que recorre una mañana en Madrid, de una calle con sol a la mesa de un café, y que cierra con «The luxury of a pause.»", "tag_es": "Anuncio de moda · 33 s"}, {"src": "MRB_comercial_1080p-2-2.mp4", "title": "MRB Sneakers", "tag": "Product commercial · 43 s", "model": "Omni 1.2", "hd": "https://drive.google.com/file/d/1ReJaw5YAkoviyfQuueQcRTjI7zQrIDvr/view?usp=sharing", "desc": "Personal project for MRB, the concept brand I created for this portfolio: a futuristic sneaker launch with neon light trails, a lightning-charged reveal and a night run.", "poster": "ad4.webp", "desc_es": "Proyecto personal para MRB, la marca concepto que creé para este portfolio: el lanzamiento de unas zapatillas futuristas con estelas de neón, una aparición cargada de rayos y una carrera nocturna.", "tag_es": "Anuncio de producto · 43 s"}, {"src": "seedance-commercial-morning-ritual.mp4", "title": "Pink Morning", "tag": "Lifestyle commercial · 27 s", "model": "Seedance 2.5", "hd": "https://drive.google.com/file/d/1bctGOAN5aL1zTLjksnovdUmnmM8RNReP/view?usp=share_link", "desc": "Lifestyle spot starring an AI version of myself: waking up, pouring coffee and scrolling, with the same face, outfit and room held across every shot.", "poster": "ad5.webp", "desc_es": "Anuncio lifestyle protagonizado por una versión de mí hecha con IA: despertarse, servirse el café y mirar el móvil, con la misma cara, el mismo look y la misma habitación en todos los planos.", "tag_es": "Anuncio lifestyle · 27 s"}, {"src": "MRB_EPICO_github.mp4", "title": "MRB Clair de Lune", "tag": "Jewellery commercial · 49 s", "model": "Omni 1.2 & Veo 3", "hd": "https://drive.google.com/file/d/1-NyaOnDrL4Fzvfl4Xv6C7oyOgXBi2cFZ/view?usp=share_link", "desc": "Personal project for MRB: a moonstone heart necklace followed through sand, water, satin and crystal, keeping the same piece in every shot and closing on the line “Wear the moon.”", "poster": "ad6.webp", "desc_es": "Proyecto personal para MRB: un collar de corazón con piedra luna que recorre arena, agua, satén y cristal, manteniendo la misma pieza en cada plano y cerrando con la frase «Wear the moon.»", "tag_es": "Anuncio de joyería · 49 s"}];
+const CAT=`<g><rect x="10" y="66" width="22" height="11" rx="5.5" fill="#e889b5"/></g><g><rect x="88" y="66" width="22" height="11" rx="5.5" fill="#e889b5"/><circle cx="108" cy="71" r="6" fill="#f6c7d9"/></g><path d="M24 36 30 8 50 30Z" fill="#e889b5"/><path d="M96 36 90 8 70 30Z" fill="#e889b5"/><path d="M30 31 33 17 43 29Z" fill="#fde8f1"/><path d="M90 31 87 17 77 29Z" fill="#fde8f1"/><rect x="20" y="26" width="80" height="72" rx="20" fill="#f2a9c8"/><rect x="29" y="35" width="62" height="48" rx="12" fill="#fff7fb"/><g class="eyes"><ellipse cx="49" cy="57" rx="5" ry="6.5" fill="#3b2748"/><ellipse cx="71" cy="57" rx="5" ry="6.5" fill="#3b2748"/><circle cx="51" cy="54" r="1.8" fill="#fff"/><circle cx="73" cy="54" r="1.8" fill="#fff"/></g><ellipse cx="41" cy="68" rx="5" ry="3" fill="#f6b9d4"/><ellipse cx="79" cy="68" rx="5" ry="3" fill="#f6b9d4"/><path d="M55 68q2.5 3 5 0q2.5 3 5 0" fill="none" stroke="#3b2748" stroke-width="2" stroke-linecap="round"/><g transform="translate(92 24) rotate(18)"><path d="M0 0-12-7-12 7Z" fill="#c9b0f2"/><path d="M0 0 12-7 12 7Z" fill="#c9b0f2"/><circle r="3.5" fill="#b48be6"/></g><rect x="38" y="97" width="16" height="15" rx="7" fill="#e889b5"/><rect x="66" y="97" width="16" height="15" rx="7" fill="#e889b5"/>`;
+const LI="https://www.linkedin.com/in/marialuisarosbolea/",WEB="../../",MAIL="mailto:malurosbolea@gmail.com",IG="https://www.instagram.com/malu_menolu/",TT="https://www.tiktok.com/@boleadelmar",CVD=WEB+"CV_Data_Analyst_Maria_Luisa_Ros_Bolea.pdf",CVM=WEB+"CV_Marketing_Maria_Luisa_Ros_Bolea.pdf";
+const T={en:{avail:"Open to new roles",tagA:"Data, strategy and AI video,",tagB:"in one person. I turn analysis into plans a business can actually run.",st1:"followers on accounts I've managed",st2:"Master's thesis in Big Data & AI",st3:"English, certified",whatT:"What I do",reelsT:"AI commercials",seeAll:"See all",appsT:"Apps I designed",workT:"My work",wP:"Projects",wA:"Apps",wC:"Path",wS:"Skills",appsP:"Each website I built, rethought as a phone app. Tap to open it; on your phone you can add it to your home screen.",open:"Open",hiT:"Let's build",hiS:"something together",hiP:"Roles, projects or a coffee in Murcia or Madrid. I usually answer the same day.",tMe:"Me",tReels:"Reels",tWork:"Work",tHi:"Contact",petSub:"Malu's assistant · online",ask:"Ask Pixel anything about Malu",tap:"Tap for sound",hd:"HD",model:"Model",share:"Share",copied:"Link copied",hello1:"Hi! I'm Pixel. Ask me about Malu",hello2:"Psst, I know everything about Malu"},
+es:{avail:"Disponible para nuevos retos",tagA:"Datos, estrategia y vídeo con IA,",tagB:"en una sola persona. Convierto el análisis en planes que un negocio puede ejecutar.",st1:"seguidores en cuentas que he gestionado",st2:"TFM del máster en Big Data e IA",st3:"de inglés, certificado",whatT:"Lo que hago",reelsT:"Comerciales con IA",seeAll:"Ver todo",appsT:"Apps que he diseñado",workT:"Mi trabajo",wP:"Proyectos",wA:"Apps",wC:"Trayectoria",wS:"Skills",appsP:"Cada web que he creado, repensada como app de móvil. Tócala para abrirla; en el móvil puedes añadirla a la pantalla de inicio.",open:"Abrir",hiT:"Hagamos algo",hiS:"juntos",hiP:"Puestos, proyectos o un café en Murcia o Madrid. Suelo contestar el mismo día.",tMe:"Yo",tReels:"Reels",tWork:"Trabajo",tHi:"Contacto",petSub:"La asistente de Malu · en línea",ask:"Pregúntale a Pixel lo que quieras de Malu",tap:"Toca para el sonido",hd:"HD",model:"Modelo",share:"Compartir",copied:"Enlace copiado",hello1:"¡Hola! Soy Pixel. Pregúntame por Malu",hello2:"Psst, lo sé todo de Malu"}};
+const SVC=[["c-pink",{en:"Data analysis",es:"Análisis de datos"},{en:"Python, SQL, Power BI and Tableau dashboards",es:"Python, SQL y cuadros de mando en Power BI y Tableau"},'<svg viewBox="0 0 24 24" fill="none" stroke="#b4467f" stroke-width="1.8" stroke-linecap="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>'],["c-lilac",{en:"AI commercials",es:"Comerciales con IA"},{en:"Seedance, Veo, Omni and Higgsfield",es:"Seedance, Veo, Omni y Higgsfield"},'<svg viewBox="0 0 24 24" fill="none" stroke="#7a4fc0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="14" height="14" rx="3"/><path d="m17 10 4-2v8l-4-2"/></svg>'],["c-mint",{en:"Websites & apps",es:"Webs y apps"},{en:"Designed and coded, live on the web",es:"Diseñadas y programadas, publicadas"},'<svg viewBox="0 0 24 24" fill="none" stroke="#2c7a5a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg>'],["c-peach",{en:"Social & ads",es:"Redes y anuncios"},{en:"Strategy, content, Meta and Google Ads",es:"Estrategia, contenido, Meta y Google Ads"},'<svg viewBox="0 0 24 24" fill="none" stroke="#c0603a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v2a1 1 0 0 0 1 1h3l5 4V6L7 10H4a1 1 0 0 0-1 1zM16 9a4 4 0 0 1 0 6M19 6a8 8 0 0 1 0 12"/></svg>']];
+const APPS=[{id:"tech",href:"../tech/",icon:"../tech/icon-192.png",n:"MRB Tech",d:{en:"Gadgets in orbit, VR demo booking and Nova, the AI guide",es:"Gadgets en órbita, reserva de demo VR y Nova, la guía con IA"}},{id:"matcha",href:"../matcha/",icon:"../matcha/icon-192.png",n:"MRB Matcha",d:{en:"Build your drink, order it, collect stamps. Matchi is the AI",es:"Monta tu bebida, pídela y suma sellos. Matchi es la IA"}},{id:"cocktail",href:"../cocktail/",icon:"../cocktail/icon-192.png",n:"MRB 玉龙",d:{en:"A Chinese cocktail house: signatures, menu and table booking",es:"Coctelería china: cócteles de autor, carta y reservas"}}];
+const PROJ=[{c:"c-lilac",k:{en:"Master's thesis · CEU",es:"TFM · CEU"},n:"Valoralia Systems",d:{en:"An automated valuation model for Madrid housing that mixes tabular data with what convolutional networks see in the listing photos.",es:"Un modelo de valoración automática de vivienda en Madrid que combina datos tabulares con lo que las redes convolucionales ven en las fotos del anuncio."},chips:["Python","CNN","scikit-learn","Streamlit"],grade:"9"},{c:"c-pink",k:{en:"Social media",es:"Redes sociales"},n:"Instituto Élan",d:{en:"I run the social media of a sexology and couples-therapy institute with a community of more than 10K followers.",es:"Llevo las redes de un instituto de sexología y terapia de pareja con una comunidad de más de 10K seguidores."},chips:[{en:"Strategy",es:"Estrategia"},"Reels",{en:"Analytics",es:"Analítica"}]},{c:"c-peach",k:{en:"Own brand",es:"Marca propia"},n:"MRB",d:{en:"My concept brand for the portfolio: jewellery, tech, matcha and cocktails, with websites, apps and AI commercials.",es:"Mi marca concepto para el portfolio: joyería, tecnología, matcha y cócteles, con webs, apps y comerciales con IA."},chips:[{en:"Branding",es:"Branding"},{en:"AI video",es:"Vídeo con IA"},"Web"]},{c:"c-sky",k:{en:"Content creator",es:"Creadora de contenido"},n:"@malu_menolu · @boleadelmar",d:{en:"20K+ followers on my own profile, brand collaborations, and AI tips on TikTok.",es:"Más de 20K seguidores en mi perfil, colaboraciones con marcas y consejos de IA en TikTok."},chips:["Instagram","TikTok","UGC"]}];
+const PATH=[{w:"2026",n:{en:"Master's in Big Data & AI",es:"Máster en Big Data e IA"},p:{en:"CEU · thesis graded 9/10",es:"CEU · TFM con un 9/10"}},{w:"2026",n:{en:"100 Global Leaders",es:"100 Global Leaders"},p:{en:"CEU-Santander by Talentum, selected programme",es:"CEU-Santander by Talentum, programa por selección"}},{w:{en:"2025 – now",es:"2025 – hoy"},n:{en:"Instituto Élan de Sexología",es:"Instituto Élan de Sexología"},p:{en:"Social media and digital strategy",es:"Redes sociales y estrategia digital"}},{w:"2025 – 2026",n:{en:"Luxury optician, Pozuelo",es:"Óptica de lujo, Pozuelo"},p:{en:"Strategy and social media",es:"Estrategia y redes sociales"}},{w:"2024 – 2025",n:{en:"SEO & digital agency",es:"Agencia SEO y digital"},p:{en:"SEO, content and campaigns",es:"SEO, contenido y campañas"}},{w:{en:"Degree",es:"Grado"},n:{en:"Digital Communication",es:"Comunicación Digital"},p:{en:"CEU San Pablo",es:"CEU San Pablo"}}];
+const SK=[["var(--pink2)",{en:"Data science",es:"Ciencia de datos"},["Python · Pandas · NumPy","Scikit-learn","SQL & NoSQL","Machine Learning","Power BI","Tableau"]],["var(--lilac)",{en:"Generative AI",es:"IA generativa"},["Seedance 2.5","Veo 3","Omni 1.2","Kling","Higgsfield","Magnific"]],["var(--peach)",{en:"Marketing",es:"Marketing"},[{en:"Social strategy",es:"Estrategia en redes"},{en:"Influencer management",es:"Gestión de influencers"},{en:"Paid social & ads",es:"Paid social y anuncios"},"SEO / SEM",{en:"Content creation",es:"Creación de contenido"}]],["var(--mint)",{en:"Languages",es:"Idiomas"},[{en:"Spanish, native",es:"Español, nativo"},{en:"English C1 (ISE III)",es:"Inglés C1 (ISE III)"}]]];
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const st={get(k,d){try{return JSON.parse(localStorage.getItem("malu-"+k))??d}catch(e){return d}},set(k,v){try{localStorage.setItem("malu-"+k,JSON.stringify(v))}catch(e){}}};
+const qp=new URLSearchParams(location.search);
+let L=qp.get("lang")||st.get("lang",null)||((navigator.language||"").startsWith("es")?"es":"en");if(!T[L])L="en";
+const t=k=>T[L][k]??k,tx=o=>typeof o==="string"?o:(o[L]||o.en);
+$$("#petSvg,.catmini").forEach(s=>s.innerHTML=CAT);
+function toast(m){const e=$("#toast");e.textContent=m;e.classList.add("on");clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("on"),1600)}
+const ICO={li:'<path d="M4 9h4v11H4zM6 4a2 2 0 1 1 0 4 2 2 0 0 1 0-4zM10 9h4v1.6c.6-1 1.9-1.8 3.5-1.8 3 0 3.5 2 3.5 4.6V20h-4v-5.6c0-1.3-.2-2.4-1.6-2.4S14 13.2 14 14.4V20h-4z"/>',mail:'<rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/>',cv:'<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/>',ig:'<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8"/>',tt:'<path d="M14 3v11a4 4 0 1 1-4-4M14 3c.5 2.6 2.3 4.2 5 4.4"/>',web:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/>'};
+const LINKS=()=>[["li","c-sky","LinkedIn","/in/marialuisarosbolea",LI],["mail","c-pink","Email","malurosbolea@gmail.com",MAIL],["cv","c-lilac",L==="es"?"CV · Analista de datos":"CV · Data analyst","PDF",CVD],["cv","c-peach",L==="es"?"CV · Marketing":"CV · Marketing","PDF",CVM],["ig","c-butter","Instagram","@malu_menolu",IG],["tt","c-mint","TikTok","@boleadelmar · "+(L==="es"?"consejos de IA":"AI tips"),TT],["web","c-pink",L==="es"?"Portfolio web":"Web portfolio","malurosbolea-ux.github.io",WEB]];
+
+function render(){
+ document.documentElement.lang=L;$$("[data-t]").forEach(e=>e.textContent=t(e.dataset.t));$$("[data-ph]").forEach(e=>e.placeholder=t(e.dataset.ph));$$("#lang,[data-lang]").forEach(b=>b.textContent=L==="en"?"ES":"EN");
+ $("#svc").innerHTML=SVC.map(s=>`<div class="sv ${s[0]}">${s[3]}<div><h3>${tx(s[1])}</h3><p>${tx(s[2])}</p></div></div>`).join("");
+ $("#strip").innerHTML=ADS.map((a,i)=>`<button class="thumb" data-reel="${i}"><div class="im"><img src="img/${a.poster}" alt="" loading="lazy"><span class="pl"><svg viewBox="0 0 12 12"><path d="M3 1.5v9l7.5-4.5z"/></svg></span></div><h4>${a.title}</h4></button>`).join("");
+ const ac=a=>`<a class="appc" href="${a.href}?lang=${L}"><img src="${a.icon}" alt=""><div><h3>${a.n}</h3><p>${tx(a.d)}</p></div><span class="go">${t("open")}</span></a>`;
+ $("#appsMini").innerHTML=APPS.slice(0,2).map(ac).join("");$("#appsFull").innerHTML=APPS.map(ac).join("");
+ $("#w-projects").innerHTML=PROJ.map(p=>`<article class="proj ${p.c}">${p.grade?`<div class="grade"><div>${p.grade}<small>/10</small></div></div>`:""}<span class="mono">${tx(p.k)}</span><h2>${p.n}</h2><p>${tx(p.d)}</p><div class="chips">${p.chips.map(c=>`<span class="chip">${tx(c)}</span>`).join("")}</div></article>`).join("");
+ $("#tl").innerHTML=PATH.map(p=>`<div class="ti"><span class="mono">${tx(p.w)}</span><h3>${tx(p.n)}</h3><p>${tx(p.p)}</p></div>`).join("");
+ $("#w-skills").innerHTML=SK.map(s=>`<div class="skill"><h3><i style="background:${s[0]}"></i>${tx(s[1])}</h3><div class="chips">${s[2].map(c=>`<span class="chip" style="background:${s[0]}">${tx(c)}</span>`).join("")}</div></div>`).join("");
+ $("#links").innerHTML=LINKS().map(l=>`<a class="lk" href="${l[4]}" ${l[4].startsWith("http")||l[4].endsWith(".pdf")?'target="_blank" rel="noopener"':""}><span class="ic ${l[1]}"><svg viewBox="0 0 24 24">${ICO[l[0]]}</svg></span><div><b>${l[2]}</b><span>${l[3]}</span></div><em>›</em></a>`).join("");
+ renderReels();renderSugs()}
+$("#app").addEventListener("click",e=>{if(e.target.closest("#lang,[data-lang]")){L=L==="en"?"es":"en";st.set("lang",L);const cur=$(".screen.on").id;render();if(cur==="s-reels")setupReels()}});
+
+let cur="me";
+function go(s){cur=s;$$(".screen").forEach(e=>e.classList.toggle("on",e.id==="s-"+s));$$(".tab").forEach(e=>e.classList.toggle("on",e.dataset.go===s));$("#app").classList.toggle("dark",s==="reels");if(s==="reels")setupReels();else pauseAll();if(s!=="reels")$("#s-"+s).scrollTop=0}
+document.addEventListener("click",e=>{const g=e.target.closest("[data-go]");if(g&&!e.target.closest("#msgs")){go(g.dataset.go);if(g.dataset.w)work(g.dataset.w)}
+ const w=e.target.closest("#seg [data-w]");if(w)work(w.dataset.w);
+ const r=e.target.closest("[data-reel]");if(r){go("reels");const sc=$("#s-reels");sc.scrollTop=sc.clientHeight*+r.dataset.reel}});
+function work(w){$$("#seg button").forEach(b=>b.classList.toggle("on",b.dataset.w===w));$$(".pane").forEach(p=>p.classList.toggle("on",p.id==="w-"+w))}
+
+/* reels */
+let muted=true,io=null;
+function renderReels(){$("#s-reels").innerHTML=ADS.map((a,i)=>`<article class="reel ${i===6?"vert":""}" data-i="${i}"><div class="bg" style="background-image:url(img/${a.poster})"></div><video src="${WEB+a.src}" poster="img/${a.poster}" playsinline loop muted preload="none"></video><span class="tapmsg">${t("tap")}</span><div class="ov"><span class="mono">${L==="es"&&a.tag_es?a.tag_es:a.tag}</span><h2>${a.title}</h2><p>${L==="es"&&a.desc_es?a.desc_es:a.desc}</p><p class="mono" style="margin-top:6px;opacity:1">${t("model")} · ${a.model}</p></div><div class="side">${a.hd?`<a class="rb" href="${a.hd}" target="_blank" rel="noopener" aria-label="HD"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="3"/><path d="M7 10v4M10 10v4M7 12h3M13 10v4h1.5a2 2 0 0 0 0-4z"/></svg></a><label>${t("hd")}</label>`:""}<button class="rb" data-snd aria-label="Sound"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4z"/><path class="w" d="M16 9a4 4 0 0 1 0 6"/></svg></button><button class="rb" data-share aria-label="${t("share")}"><svg viewBox="0 0 24 24"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7M16 6l-4-4-4 4M12 2v13"/></svg></button><label>${t("share")}</label></div><div class="prog"><i></i></div></article>`).join("");io=null}
+function setupReels(){if(io)return;io=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target.querySelector("video");if(e.isIntersecting){v.muted=muted;v.play().catch(()=>{})}else v.pause()}),{root:$("#s-reels"),threshold:.6});$$(".reel").forEach(r=>{io.observe(r);const v=r.querySelector("video"),p=r.querySelector(".prog i");v.addEventListener("timeupdate",()=>{if(v.duration)p.style.width=(v.currentTime/v.duration*100)+"%"})})}
+function pauseAll(){$$(".reel video").forEach(v=>v.pause())}
+$("#s-reels").addEventListener("click",e=>{const r=e.target.closest(".reel");if(!r)return;if(e.target.closest("[data-share]")){const u=new URL(WEB+"#commercials",location.href).href;if(navigator.share)navigator.share({title:ADS[r.dataset.i].title,url:u}).catch(()=>{});else{navigator.clipboard?.writeText(u);toast(t("copied"))}return}
+ if(e.target.closest("a"))return;
+ if(e.target.closest("[data-snd]")||e.target.closest("video")||e.target.closest(".tapmsg")){muted=!muted;$$(".reel video").forEach(v=>v.muted=muted);$$("[data-snd]").forEach(b=>b.classList.toggle("on",!muted));$$(".tapmsg").forEach(m=>m.style.display="none");const v=r.querySelector("video");if(v.paused)v.play().catch(()=>{})}});
+
+/* Pixel, the AI */
+const KB=[
+ {k:["hello","hi","hey","hola","buenas","que tal","qué tal"],a:{en:"Hi! I'm Pixel, Malu's little assistant. I know her work, skills and how to reach her. What would you like to know?",es:"¡Hola! Soy Pixel, la pequeña asistente de Malu. Me sé su trabajo, sus skills y cómo contactarla. ¿Qué quieres saber?"}},
+ {k:["who","about","quien","quién","sobre","summary","resumen","es malu","is malu"],a:{en:"María Luisa Ros Bolea, Malu for friends. She mixes data analysis, digital strategy and AI video: a Master's in Big Data & AI (CEU), a degree in Digital Communication and real client work in social media.",es:"María Luisa Ros Bolea, Malu para los amigos. Mezcla análisis de datos, estrategia digital y vídeo con IA: máster en Big Data e IA (CEU), grado en Comunicación Digital y trabajo real con clientes en redes."},acts:[["go","work",{en:"See her work",es:"Ver su trabajo"}]]},
+ {k:["data","datos","python","sql","power bi","tableau","analyst","analista","machine","ml","dashboard"],a:{en:"Data is her base: Python (Pandas, NumPy, scikit-learn), SQL and NoSQL, machine learning, and dashboards in Power BI and Tableau. Her thesis Valoralia predicts Madrid house prices from data plus listing photos, and got a 9/10.",es:"Los datos son su base: Python (Pandas, NumPy, scikit-learn), SQL y NoSQL, machine learning y cuadros de mando en Power BI y Tableau. Su TFM, Valoralia, predice el precio de la vivienda en Madrid con datos y fotos del anuncio, y sacó un 9/10."},acts:[["cv",CVD,{en:"Data CV",es:"CV de datos"}]]},
+ {k:["valoralia","thesis","tfm","master","máster","nota","grade"],a:{en:"Valoralia Systems is her Master's thesis: an automated valuation model for Madrid that combines tabular data with features that convolutional networks extract from the listing photos. Grade: 9/10.",es:"Valoralia Systems es su TFM: un modelo de valoración automática en Madrid que combina datos tabulares con lo que las redes convolucionales sacan de las fotos del anuncio. Nota: 9/10."}},
+ {k:["ai","ia","video","vídeo","commercial","comercial","anuncio","seedance","veo","omni","higgsfield","kling","reel"],a:{en:"She directs AI commercials with Seedance 2.5, Veo 3, Omni 1.2, Kling and Higgsfield. Seven of them are in the Reels tab, from the Titanium tech spot to Clair de Lune.",es:"Dirige comerciales con IA con Seedance 2.5, Veo 3, Omni 1.2, Kling y Higgsfield. Tienes siete en la pestaña Reels, desde el de Titanium hasta Clair de Lune."},acts:[["go","reels",{en:"Watch reels",es:"Ver reels"}]]},
+ {k:["social","redes","instagram","tiktok","followers","seguidores","influencer","community","contenido","content"],a:{en:"She runs the social media of Instituto Élan (10K+ community), has managed accounts of up to 20K followers, collaborates with brands on @malu_menolu and shares AI tips on TikTok as @boleadelmar.",es:"Lleva las redes del Instituto Élan (más de 10K de comunidad), ha gestionado cuentas de hasta 20K seguidores, colabora con marcas en @malu_menolu y comparte consejos de IA en TikTok como @boleadelmar."},acts:[["url",IG,{en:"Instagram",es:"Instagram"}],["url",TT,{en:"TikTok",es:"TikTok"}]]},
+ {k:["web","website","app","apps","página","pagina","code","código","programa"],a:{en:"She designs and codes websites, and each one now has an app version too: MRB Tech, MRB Matcha and the MRB Chinese cocktail house. You can install them on your phone.",es:"Diseña y programa webs, y ahora cada una tiene también su versión app: MRB Tech, MRB Matcha y la coctelería china MRB. Se pueden instalar en el móvil."},acts:[["work","apps",{en:"See the apps",es:"Ver las apps"}]]},
+ {k:["service","servicio","offer","ofrece","hire","contratar","hacer","price","precio","presupuesto","seo","sem","ads","meta","google"],a:{en:"For brands and companies she does websites, SEO and SEM reports, audits, Meta and Google Ads campaigns, AI product visuals and AI commercials. Prices depend on the project, so the best thing is to write to her.",es:"Para marcas y empresas hace webs, informes SEO y SEM, auditorías, campañas de Meta y Google Ads, imágenes de producto y comerciales con IA. El precio depende del proyecto, así que lo mejor es escribirle."},acts:[["url",MAIL,{en:"Email her",es:"Escribirle"}]]},
+ {k:["experience","experiencia","work","trabajo","job","empleo","career","trayectoria","élan","elan"],a:{en:"Since 2025 she manages social media and digital strategy at Instituto Élan de Sexología. Before that: strategy and social media for a luxury optician in Pozuelo, and SEO and content at a digital agency.",es:"Desde 2025 lleva las redes y la estrategia digital del Instituto Élan de Sexología. Antes: estrategia y redes de una óptica de lujo en Pozuelo, y SEO y contenido en una agencia digital."},acts:[["work","path",{en:"Full path",es:"Trayectoria"}]]},
+ {k:["study","estudi","degree","grado","education","formación","formacion","ceu","english","inglés","ingles","talentum","leaders"],a:{en:"Degree in Digital Communication (CEU San Pablo), Master's in Big Data & AI (CEU), the 100 Global Leaders programme by CEU-Santander and Talentum, and certified English C1. She also takes AI courses every month.",es:"Grado en Comunicación Digital (CEU San Pablo), máster en Big Data e IA (CEU), el programa 100 Global Leaders de CEU-Santander y Talentum, e inglés C1 certificado. Además hace cursos de IA todos los meses."}},
+ {k:["cv","resume","currículum","curriculum","pdf"],a:{en:"She has two CVs, pick your flavour:",es:"Tiene dos CV, elige sabor:"},acts:[["cv",CVD,{en:"Data analyst",es:"Analista de datos"}],["cv",CVM,{en:"Marketing",es:"Marketing"}]]},
+ {k:["contact","contacto","email","mail","correo","linkedin","phone","teléfono","llamar","reach","escribir"],a:{en:"The quickest way is LinkedIn or email. She usually answers the same day.",es:"Lo más rápido es LinkedIn o el email. Suele contestar el mismo día."},acts:[["url",LI,{en:"LinkedIn",es:"LinkedIn"}],["url",MAIL,{en:"Email",es:"Email"}]]},
+ {k:["where","dónde","donde","location","murcia","madrid","remote","remoto","city","ciudad","vive"],a:{en:"She's based in Murcia and works with Madrid too, on site or remote. Murcia brings the sunshine; she brings the dashboards.",es:"Está en Murcia y trabaja también con Madrid, presencial o en remoto. Murcia pone el sol y ella los dashboards."}},
+ {k:["available","disponible","start","empezar","open","busca","looking"],a:{en:"Yes, she's available now for roles and projects, especially teams that mix marketing and data.",es:"Sí, está disponible ya para puestos y proyectos, sobre todo en equipos que mezclen marketing y datos."},acts:[["go","hi",{en:"Contact",es:"Contacto"}]]},
+ {k:["pixel","you","tú","tu ","eres","real","bot","gpt","llm"],a:{en:"I'm Pixel, a scripted assistant that runs inside this app with Malu's info. I'm not a big language model, but I never get tired of talking about her.",es:"Soy Pixel, una asistente guionizada que vive dentro de esta app con la info de Malu. No soy un gran modelo de lenguaje, pero nunca me canso de hablar de ella."}},
+ {k:["thank","gracias","genial","great","cool","guay"],a:{en:"Anytime! Purr.",es:"¡Cuando quieras! Miau."}}];
+const SUG={en:["Who is Malu?","Data skills","AI commercials","Her apps","Services","Download CV","Contact"],es:["¿Quién es Malu?","Skills de datos","Comerciales con IA","Sus apps","Servicios","Descargar CV","Contacto"]};
+const norm=s=>s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g," ");
+function answer(q){const n=" "+norm(q)+" ";let best=null,sc=0;KB.forEach(e=>{let s=0;e.k.forEach(k=>{if(n.includes(" "+norm(k).trim()))s+=k.length>3?2:1});if(s>sc){sc=s;best=e}});
+ return best||{a:{en:"I'm not sure about that one. I can tell you about her data skills, AI commercials, apps, experience, CV or how to contact her.",es:"Eso no lo sé seguro. Te puedo contar sus skills de datos, comerciales con IA, apps, experiencia, CV o cómo contactarla."},acts:[["go","hi",{en:"Contact Malu",es:"Contactar a Malu"}]]}}
+function bot(e){const m=document.createElement("div");m.className="m b";m.innerHTML=tx(e.a)+(e.acts?`<div class="acts">${e.acts.map(a=>a[0]==="go"?`<button data-cgo="${a[1]}">${tx(a[2])}</button>`:a[0]==="work"?`<button data-cw="${a[1]}">${tx(a[2])}</button>`:`<a href="${a[1]}" ${a[1].startsWith("mailto")?"":'target="_blank" rel="noopener"'}>${tx(a[2])}</a>`).join("")}</div>`:"");return m}
+function say(q){const box=$("#msgs");const u=document.createElement("div");u.className="m u";u.textContent=q;box.appendChild(u);const ty=document.createElement("div");ty.className="m b typing";ty.innerHTML="<i></i><i></i><i></i>";box.appendChild(ty);box.scrollTop=box.scrollHeight;setTimeout(()=>{ty.replaceWith(bot(answer(q)));box.scrollTop=box.scrollHeight},650)}
+function renderSugs(){$("#sugs").innerHTML=SUG[L].map(s=>`<button type="button">${s}</button>`).join("")}
+$("#sugs").addEventListener("click",e=>{const b=e.target.closest("button");if(b)say(b.textContent)});
+$("#cform").onsubmit=e=>{e.preventDefault();const q=$("#cq").value.trim();if(!q)return;$("#cq").value="";say(q)};
+$("#msgs").addEventListener("click",e=>{const g=e.target.closest("[data-cgo]"),w=e.target.closest("[data-cw]");if(g){closeChat();go(g.dataset.cgo)}if(w){closeChat();go("work");work(w.dataset.cw)}});
+function openChat(){$("#bubble").classList.remove("on");$(".pet .dot").style.display="none";if(!$("#msgs").children.length)$("#msgs").appendChild(bot(KB[0]));$("#chat").classList.add("on")}
+function closeChat(){$("#chat").classList.remove("on")}
+$("#pet").onclick=openChat;$("#chat").addEventListener("click",e=>{if(e.target.closest("[data-close]"))closeChat()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeChat()});
+setTimeout(()=>{if(!$("#chat").classList.contains("on")&&cur!=="reels"){const b=$("#bubble");b.textContent=t("hello1");b.classList.add("on");setTimeout(()=>b.classList.remove("on"),4200)}},2600);
+
+render();
+setTimeout(()=>$("#splash").classList.add("off"),matchMedia("(prefers-reduced-motion: reduce)").matches?0:1300);
+if("serviceWorker" in navigator&&location.protocol==="https:")navigator.serviceWorker.register("sw.js").catch(()=>{});
+})();
+</script>
+</body>
+</html>
