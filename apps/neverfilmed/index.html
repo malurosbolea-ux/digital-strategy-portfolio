@@ -38,7 +38,7 @@ img,video{display:block;max-width:100%}
 .top{position:absolute;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;gap:10px;padding:calc(var(--sat) + 12px) 16px 10px;pointer-events:none}
 .top>*{pointer-events:auto}
 .logo{display:flex;align-items:center;gap:8px;font:800 13px var(--fd);font-stretch:125%;font-variation-settings:"wdth" 125;letter-spacing:.02em}
-.logo svg{width:24px;height:24px}
+.logo img{width:26px;height:26px;border-radius:7px;box-shadow:0 0 12px rgba(169,140,255,.35)}
 .rec{display:inline-flex;align-items:center;gap:6px;padding:5px 9px;border-radius:99px;background:rgba(7,6,26,.55);border:1px solid var(--edge);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--ink2)}
 .rec i{width:6px;height:6px;border-radius:50%;background:#ff6b8a;box-shadow:0 0 8px #ff6b8a;animation:blink 1.2s infinite}
 @keyframes blink{50%{opacity:.25}}
@@ -69,6 +69,7 @@ img,video{display:block;max-width:100%}
 .splash.out{opacity:0;transform:scale(1.15);pointer-events:none}
 .splash .corner{position:absolute;width:22px;height:22px;border:1.5px solid var(--lilac);opacity:.7}
 .splash .c1{top:calc(var(--sat) + 22px);left:22px;border-right:0;border-bottom:0}.splash .c2{top:calc(var(--sat) + 22px);right:22px;border-left:0;border-bottom:0}.splash .c3{bottom:calc(var(--sab) + 22px);left:22px;border-right:0;border-top:0}.splash .c4{bottom:calc(var(--sab) + 22px);right:22px;border-left:0;border-top:0}
+.slogo{width:88px;height:88px;margin-bottom:22px;filter:drop-shadow(0 0 24px rgba(169,140,255,.45));animation:pop .9s var(--spring) both}
 .boot{min-height:70px;color:var(--ink3);font:11px/1.7 var(--fm);margin-bottom:26px}
 .boot b{color:var(--aqua);font-weight:500}
 .sbrand{position:relative;font-size:34px;letter-spacing:.01em;white-space:nowrap}
@@ -268,7 +269,7 @@ img,video{display:block;max-width:100%}
   <div class="grain" aria-hidden="true"></div>
 
   <header class="top" id="top">
-    <div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="url(#gHeart)" stroke-width="1.8" stroke-linecap="round"><path d="M3 8V3h5M16 3h5v5M21 16v5h-5M8 21H3v-5"/><circle cx="12" cy="12" r="2.6" fill="#EEEBFF" stroke="none"/></svg>NEVERFILMED</div>
+    <div class="logo"><img src="icon-192.png" alt="" width="26" height="26">NEVERFILMED</div>
     <span class="sp"></span>
     <span class="rec m"><i></i><span id="tc">00:00:00:00</span></span>
     <button class="lang m" id="lang" aria-label="Change language">ES</button>
@@ -355,6 +356,7 @@ img,video{display:block;max-width:100%}
 
   <div class="splash" id="splash">
     <i class="corner c1"></i><i class="corner c2"></i><i class="corner c3"></i><i class="corner c4"></i>
+    <img class="slogo" src="icon-512.png" alt="" width="88" height="88">
     <div class="boot" id="boot"></div>
     <div class="sbrand d glitch" id="sbrand" data-text="NEVERFILMED">NEVERFILMED</div>
     <div class="stag m" data-es="Estudio creativo nativo IA · ni un fotograma rodado">AI-native creative studio · not a single frame filmed</div>
